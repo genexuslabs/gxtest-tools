@@ -136,9 +136,9 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace GeneXus.GXtest.Tools.TestConverter.Helpers
+namespace GeneXus.GXtest.Tools.TestConverter.CommandLine
 {
-    public class CommandLineParser
+	public class CommandLineParser
 	{
 		[Flags]
 		public enum ValueDelimiters

@@ -1,6 +1,6 @@
-﻿namespace GeneXus.GXtest.Tools.TestConverter
+﻿namespace GeneXus.GXtest.Tools.TestConverter.CommandLine
 {
-    public static class ReturnCode
+	public static class ReturnCode
 	{
 		public const int Success = 0;
 		public const int GenericError = 1;

@@ -1,5 +1,5 @@
-﻿using System;
-using static GeneXus.GXtest.Tools.TestConverter.Helpers.CommandLineParser;
+﻿using GeneXus.GXtest.Tools.TestConverter.CommandLine;
+using System;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {

@@ -1,6 +1,4 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.Helpers;
-
-namespace GeneXus.GXtest.Tools.TestConverter
+﻿namespace GeneXus.GXtest.Tools.TestConverter.CommandLine
 {
     class TestConverterCommandLineParser : CommandLineParser
     {
