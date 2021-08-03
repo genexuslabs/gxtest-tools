@@ -5,25 +5,17 @@ namespace GeneXus.GXtest.Tools.TestConverter
 {
     class Program
     {
+        private string sourceFilePath;
+
         static int Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            int argumentsError = ParseArguments(args);
-            if (argumentsError != ReturnCode.Success)
-                return argumentsError;
-
-
-            return ReturnCode.Success;
-        }
-
-        private static int ParseArguments(string[] args)
-        {
-            TestConverterCommandLineParser parser = new TestConverterCommandLineParser();
+            // Parse command line arguments
+            ProgramArguments parser = new ProgramArguments();
             try
             {
                 parser.Parse(args);
             }
-            catch (UsageException ex)
+            catch (CommandLineParser.UsageException ex)
             {
                 Console.Error.WriteLine(parser.GetUsage(ex.Message));
                 return ReturnCode.BadParameters;
@@ -34,7 +26,26 @@ namespace GeneXus.GXtest.Tools.TestConverter
                 return ReturnCode.BadParameters;
             }
 
-            return 0;
+            // Execute conversion
+            try
+            {
+                ExecuteConversion(parser);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+#if DEBUG
+                Console.Error.WriteLine(ex.StackTrace);
+#endif
+                return ReturnCode.GenericError; // generic error
+            }
+
+            return ReturnCode.Success;
+        }
+
+        private static void ExecuteConversion(ProgramArguments parser)
+        {
+            throw new NotImplementedException();
         }
     }
 }
