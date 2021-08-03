@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TestConverter
+namespace GeneXus.GXtest.Tools.TestConverterTestConverter
 {
     class Program
     {
