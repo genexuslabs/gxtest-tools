@@ -1261,10 +1261,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Helpers
 
 		public virtual string GetModuleName()
 		{
-			Assembly assem = Assembly.GetEntryAssembly();
-			if (null == assem) assem = Assembly.GetExecutingAssembly();
-
-			return Path.GetFileName(assem.Location);
+			string location = Process.GetCurrentProcess().MainModule.FileName;
+			return Path.GetFileName(location);
 		}
 
 		[FlagUsage("Show usage.", AlternateName1 = "?", AlternateName2 = "h", AllowOnOff = false, Category = "HELP"),]
