@@ -1,51 +1,31 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.CommandLine;
+﻿using CommandLine;
 using System;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
     class Program
     {
-        private string sourceFilePath;
+        [Verb("convert", true, HelpText = "Convert a GXtest 3.0 XML test case to GXtest 4.0")]
+        public class ConvertOptions
+        {
+            [Option('s', "source", Required = true, HelpText = "Path to the source XML file")]
+            public string sourceFilePath { get; set; }
+
+        }
 
         static int Main(string[] args)
         {
-            // Parse command line arguments
-            ProgramArguments parser = new ProgramArguments();
-            try
-            {
-                parser.Parse(args);
-            }
-            catch (CommandLineParser.UsageException ex)
-            {
-                Console.Error.WriteLine(parser.GetUsage(ex.Message));
-                return ReturnCode.BadParameters;
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-                return ReturnCode.BadParameters;
-            }
+            ErrorCode result = Parser.Default.ParseArguments<ConvertOptions>(args).MapResult(
+            options => Convert(options),
+            _ => ErrorCode.BadParameters);
 
-            // Execute conversion
-            try
-            {
-                ExecuteConversion(parser);
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-#if DEBUG
-                Console.Error.WriteLine(ex.StackTrace);
-#endif
-                return ReturnCode.GenericError; // generic error
-            }
-
-            return ReturnCode.Success;
+            return (int) result;
         }
 
-        private static void ExecuteConversion(ProgramArguments parser)
+        static ErrorCode Convert(ConvertOptions options)
         {
-            throw new NotImplementedException();
+            Console.Out.Write($"Converting {options.sourceFilePath}");
+            return ErrorCode.None;
         }
     }
 }
