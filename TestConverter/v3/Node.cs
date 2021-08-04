@@ -2,7 +2,7 @@
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
-    public class Page
+    public class Node
     {
         [XmlElement("PageName")]
         public string Id { get; set; }
