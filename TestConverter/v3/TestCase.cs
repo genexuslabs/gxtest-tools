@@ -24,6 +24,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         [XmlElement("Param Literal")]
         public List<ParameterLiteralValue> LiteralValues { get; set; }
 
+        [XmlElement("ParametersBoolean")]
+        public List<ParameterBooleanValue> BooleanValues { get; set; }
+
         [XmlElement("ParametersGXObject")]
         public List<ParameterControlValue> ControlValues { get; set; }
 
