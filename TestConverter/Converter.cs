@@ -1,5 +1,8 @@
-﻿using System;
+﻿using GeneXus.GXtest.Tools.TestConverter.v3;
+using System;
 using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
@@ -27,7 +30,14 @@ namespace GeneXus.GXtest.Tools.TestConverter
                 return false;
             }
 
-            testCaseInfo.Name = "NameOfTheTest";
+            using (var fileStream = File.Open(sourceFilePath, FileMode.Open))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(TestCase));
+                var testCase = (TestCase)serializer.Deserialize(fileStream);
+
+                testCaseInfo.Name = testCase.GeneralData.Name;
+            }
+
             return true;
         }
 
