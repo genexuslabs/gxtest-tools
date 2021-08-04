@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using System;
+using System.IO;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
@@ -9,8 +10,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
         public class ConvertOptions
         {
             [Option('s', "source", Required = true, HelpText = "Path to the source XML file")]
-            public string sourceFilePath { get; set; }
-
+            public string SourceFilePath { get; set; }
         }
 
         static int Main(string[] args)
@@ -24,8 +24,36 @@ namespace GeneXus.GXtest.Tools.TestConverter
 
         static ErrorCode Convert(ConvertOptions options)
         {
-            Console.Out.Write($"Converting {options.sourceFilePath}");
+            try
+            {
+                Console.Out.WriteLine($"Converting '{options.SourceFilePath}'");
+                Converter converter = new Converter(options.SourceFilePath);
+
+                // Load from XML file
+                if (!converter.LoadFromXML())
+                    return ErrorCode.ConversionError;
+
+                // Output Code
+                if (!converter.CreateTestCode())
+                    return ErrorCode.ConversionError;
+
+                ShowTestCode(converter.TestCode);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+#if DEBUG
+                Console.Error.WriteLine(ex.StackTrace);
+#endif
+                return ErrorCode.GenericError;
+            }
+
             return ErrorCode.None;
+        }
+
+        private static void ShowTestCode(string code)
+        {
+            Console.Out.WriteLine(code);
         }
     }
 }

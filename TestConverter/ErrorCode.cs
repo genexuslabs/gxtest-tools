@@ -4,7 +4,7 @@
 	{
 		None = 0,
 		BadParameters = 1,
-		InputXMLNotFound = 2,
+		ConversionError = 2,
 		GenericError = 100
 	}
 }
