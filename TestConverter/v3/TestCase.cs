@@ -10,6 +10,6 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         public GeneralData GeneralData { get; set; }
 
         [XmlElement("Paginas")]
-        public List<Node> Pages { get; set; }
+        public List<Node> Nodes { get; set; }
     }
 }
