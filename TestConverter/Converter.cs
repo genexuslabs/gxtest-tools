@@ -1,7 +1,6 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.v3;
 using System;
 using System.IO;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter

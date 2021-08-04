@@ -9,5 +9,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         [XmlElement("PageDesc")]
         public string Description { get; set; }
+
+        [XmlElement("GXObjectType")]
+        public string ObjectType { get; set; }
+
+        [XmlElement("GXObjectName")]
+        public string ObjectName { get; set; }
     }
 }
