@@ -11,5 +11,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         [XmlElement("Paginas")]
         public List<Node> Nodes { get; set; }
+
+        [XmlElement("Aristas")]
+        public List<Edge> Edges { get; set; }
+
+        [XmlElement("Comandos_x0020_Elemento")]
+        public List<Command> Commands { get; set; }
     }
 }
