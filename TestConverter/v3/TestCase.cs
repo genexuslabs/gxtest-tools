@@ -15,7 +15,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         [XmlElement("Aristas")]
         public List<Edge> Edges { get; set; }
 
-        [XmlElement("Comandos_x0020_Elemento")]
+        [XmlElement("Comandos Elemento")]
         public List<Command> Commands { get; set; }
+
+        [XmlElement("ParameterAbstract")]
+        public List<Parameter> Parameters { get; set; }
+
+        [XmlElement("Param Literal")]
+        public List<ParameterLiteralValue> LiteralValues { get; set; }
     }
 }

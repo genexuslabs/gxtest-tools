@@ -2,17 +2,8 @@
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
-    public class Parameter
+    public class Parameter : ParameterComponent
     {
-        [XmlElement("ElementName")]
-        public string ParentId { get; set; }
-
-        [XmlElement("CommandOrd")]
-        public string ParentOrder { get; set; }
-
-        [XmlElement("ParameterOrd")]
-        public string Order { get; set; }
-
         [XmlElement("ParameterType")]
         public string Type { get; set; }
     }
