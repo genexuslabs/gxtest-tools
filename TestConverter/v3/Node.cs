@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
@@ -38,12 +37,5 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         }
 
         public IEnumerable<Edge> OutboundEdges { get { return outboundEdges.Values; } }
-        public Edge GetFirstOutboundEdge()
-        {
-            if (outboundEdges.Count <= 0)
-                return null;
-
-            return outboundEdges.Values[0];
-        }
     }
 }
