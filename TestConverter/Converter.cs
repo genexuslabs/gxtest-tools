@@ -1,5 +1,4 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.v3;
-using System;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
@@ -9,36 +8,34 @@ namespace GeneXus.GXtest.Tools.TestConverter
 
         private TestCaseInfo testCaseInfo = null;
 
-        public string TestCode { get; set; }  = string.Empty;
+        private TestCase testCase = null;
 
         public Converter(string sourceFile)
         {
             this.sourceFilePath = sourceFile;
         }
 
-        public bool LoadFromXML()
+        public bool Convert()
         {
             testCaseInfo = new TestCaseInfo();
 
-            TestCase testCase = TestCase.DeserializeFromXML(sourceFilePath);
+            testCase = TestCase.DeserializeFromXML(sourceFilePath);
             if (testCase == null)
                 return false;
 
             testCaseInfo.Name = testCase.GeneralData.Name;
-
+            testCaseInfo.TestCode = CreateTestCode();
             return true;
         }
 
-        public bool CreateTestCode()
+        private string CreateTestCode()
         {
-            if (testCaseInfo == null)
-            {
-                Console.Error.WriteLine("Attempt to create code before loading test info");
-                return false;
-            }
+            return $"// {testCaseInfo.Name}";
+        }
 
-            TestCode = $"// {testCaseInfo.Name}";
-            return true;
+        public string GetTestCode()
+        {
+            return (testCaseInfo == null) ? string.Empty : testCaseInfo.TestCode;
         }
     }
 }

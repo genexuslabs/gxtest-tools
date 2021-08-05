@@ -1,6 +1,5 @@
 ﻿using CommandLine;
 using System;
-using System.IO;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
@@ -27,17 +26,12 @@ namespace GeneXus.GXtest.Tools.TestConverter
             try
             {
                 Console.Out.WriteLine($"Converting '{options.SourceFilePath}'");
+
                 Converter converter = new Converter(options.SourceFilePath);
-
-                // Load from XML file
-                if (!converter.LoadFromXML())
+                if (!converter.Convert())
                     return ErrorCode.ConversionError;
 
-                // Output Code
-                if (!converter.CreateTestCode())
-                    return ErrorCode.ConversionError;
-
-                ShowTestCode(converter.TestCode);
+                ShowTestCode(converter.GetTestCode());
             }
             catch (Exception ex)
             {
