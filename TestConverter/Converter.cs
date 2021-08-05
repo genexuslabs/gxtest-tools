@@ -1,7 +1,5 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.v3;
 using System;
-using System.IO;
-using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
@@ -22,20 +20,11 @@ namespace GeneXus.GXtest.Tools.TestConverter
         {
             testCaseInfo = new TestCaseInfo();
 
-            // verify file exists
-            if (!File.Exists(sourceFilePath))
-            {
-                Console.Error.WriteLine($"Source XML file does not exist '{sourceFilePath}'");
+            TestCase testCase = TestCase.DeserializeFromXML(sourceFilePath);
+            if (testCase == null)
                 return false;
-            }
 
-            using (var fileStream = File.Open(sourceFilePath, FileMode.Open))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(TestCase));
-                var testCase = (TestCase)serializer.Deserialize(fileStream);
-
-                testCaseInfo.Name = testCase.GeneralData.Name;
-            }
+            testCaseInfo.Name = testCase.GeneralData.Name;
 
             return true;
         }

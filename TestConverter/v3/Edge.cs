@@ -2,7 +2,7 @@
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
-    public class Edge
+    public class Edge : Element
     {
         [XmlElement("EdgeName")]
         public string Id { get; set; }

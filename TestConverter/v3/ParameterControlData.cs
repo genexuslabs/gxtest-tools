@@ -18,5 +18,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         [XmlElement("GXControlClass")]
         public string Class { get; set; }
+
+        public override string ToString()
+        {
+            return $"ParameterControlData[Id={ControlId}; Object={ObjectType}:{ObjectName}; Name={Name}; Class={Class}]";
+        }
     }
 }

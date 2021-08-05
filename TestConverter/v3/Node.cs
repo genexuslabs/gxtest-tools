@@ -1,8 +1,9 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections;
+using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
-    public class Node
+    public class Node : Element
     {
         [XmlElement("PageName")]
         public string Id { get; set; }
@@ -15,5 +16,16 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         [XmlElement("GXObjectName")]
         public string ObjectName { get; set; }
+
+        #region AfterSerialize
+
+        private SortedList outboundEdges = new SortedList();
+
+        public void AfterSerialize(TestCase testCase)
+        {
+
+        }
+
+        #endregion
     }
 }

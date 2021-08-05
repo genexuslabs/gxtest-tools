@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
@@ -32,5 +35,100 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         [XmlElement("ControlExportTC")]
         public List<ParameterControlData> ControlData { get; set; }
+
+        public static TestCase DeserializeFromXML(string xmlFilePath)
+        {
+            // verify file exists
+            if (!File.Exists(xmlFilePath))
+            {
+                Console.Error.WriteLine($"Source XML file does not exist '{xmlFilePath}'");
+                return null;
+            }
+
+            TestCase testCase = null;
+            using (var fileStream = File.Open(xmlFilePath, FileMode.Open))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(TestCase));
+                testCase = (TestCase)serializer.Deserialize(fileStream);
+            }
+
+            testCase.AfterSerialize();
+            return testCase;
+        }
+
+        private void AfterSerialize()
+        {
+            IndexElements();
+            LoadCommands();
+            LoadCommandParameters();
+            LoadCommandParameterValues();
+        }
+
+
+        private Dictionary<string, Element> elementsMap = new Dictionary<string, Element>();
+        private void IndexElements()
+        {
+            Nodes.ForEach(node => IndexElement(node.Id, node));
+            Edges.ForEach(edge => IndexElement(edge.Id, edge));
+        }
+
+        private void IndexElement(string id, Element element)
+        {
+            try
+            {
+                elementsMap.Add(id, element);
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new Exception($"Element id cannot be null", ex);
+            }
+            catch (ArgumentException ex)
+            {
+                throw new Exception($"Duplicate element id '{id}'", ex);
+            }
+        }
+
+        public Element GetElement(string id)
+        {
+            return elementsMap[id];
+        }
+
+        private Dictionary<string, ParameterControlData> controlDataMap = new Dictionary<string, ParameterControlData>();
+        private void IndexControlData()
+        {
+            ControlData.ForEach(data => controlDataMap.Add(data.ControlId, data));
+        }
+        public ParameterControlData GetControlData(string controlId)
+        {
+            return controlDataMap[controlId];
+        }
+
+        private void LoadCommands()
+        {
+            Commands.ForEach(command => GetElement(command.ParentId).AddCommand(command, this));
+        }
+
+        private void LoadCommandParameters()
+        {
+            Parameters.ForEach(parm => GetElement(parm.ParentId).AddCommandParameter(parm, this));
+        }
+
+        private void AddParameterValue(ParameterValue val)
+        {
+            GetElement(val.ParentId).AddCommandParameterValue(val, this);
+        }
+
+        private void LoadCommandParameterValues()
+        {
+            LiteralValues.ForEach(val => AddParameterValue(val));
+            BooleanValues.ForEach(val => AddParameterValue(val));
+
+            IndexControlData();
+            ControlValues.ForEach(val => {
+                val.AddControlData(controlDataMap);
+                AddParameterValue(val);
+            });
+        }
+
     }
 }

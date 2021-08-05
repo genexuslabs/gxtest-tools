@@ -6,5 +6,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
     {
         [XmlElement("ParameterLiteralValue")]
         public string Value { get; set; }
+
+        public override string ToString()
+        {
+            return $"ParameterLiteralValue[Value]";
+        }
     }
 }
