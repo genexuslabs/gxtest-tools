@@ -22,7 +22,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
             builder.AppendLine("// Converted from GXtest v3");
             builder.AppendLine();
 
-            builder.AppendLine("//Start webdriver");
+            builder.AppendLine("// Start webdriver");
             builder.AppendLine("&driver.Start()");
             builder.AppendLine("&driver.Maximize()");
         }
@@ -41,6 +41,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
             foreach (Command command in element.GetCommands())
             {
                 builder.AppendLine($"// {command}");
+
             }
         }
     }

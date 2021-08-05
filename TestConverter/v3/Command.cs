@@ -25,7 +25,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             int separatorLength = parmSeparator.Length;
             StringBuilder builder = new StringBuilder();
 
-            builder.Append( $"{Name}(");
+            builder.Append( $"{Type} {Name}(");
 
             foreach (Parameter parm in GetParameters())
                 builder.Append($"{parm}{parmSeparator}");

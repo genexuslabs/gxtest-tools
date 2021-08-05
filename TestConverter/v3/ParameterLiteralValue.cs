@@ -9,7 +9,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         public override string ToString()
         {
-            return $"ParameterLiteralValue[Value]";
+            return $"ParameterLiteralValue[{Value}]";
         }
     }
 }
