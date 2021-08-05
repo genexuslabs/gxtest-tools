@@ -19,6 +19,12 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         [XmlElement("EdgeOrder")] 
         public string Order { get; set; }
 
+        public override string ToString()
+        {
+            return $"Edge[{Id}]";
+        }
+
+
         public Node SourceNode { get; set; }
 
         public Node TargetNode { get; set; }

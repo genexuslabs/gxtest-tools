@@ -58,6 +58,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         private void AfterSerialize()
         {
             IndexElements();
+            ConnectNodes();
             LoadCommands();
             LoadCommandParameters();
             LoadCommandParameterValues();
@@ -90,6 +91,19 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         public Element GetElement(string id)
         {
             return elementsMap[id];
+        }
+
+        private void ConnectNodes()
+        {
+            Edges.ForEach(edge =>
+            {
+                // Make the edge know its source and target nodes
+                edge.SourceNode = GetElement(edge.SourceNodeId) as Node;
+                edge.TargetNode = GetElement(edge.TargetNodeId) as Node;
+
+                // Make the source node know this outbound edge
+                edge.SourceNode.AddEdge(edge);
+            });
         }
 
         private Dictionary<string, ParameterControlData> controlDataMap = new Dictionary<string, ParameterControlData>();

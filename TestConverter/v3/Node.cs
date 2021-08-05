@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
@@ -17,15 +19,22 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         [XmlElement("GXObjectName")]
         public string ObjectName { get; set; }
 
-        #region AfterSerialize
-
-        private SortedList outboundEdges = new SortedList();
-
-        public void AfterSerialize(TestCase testCase)
+        public override string ToString()
         {
-
+            return $"Node[{Id}]";
         }
 
-        #endregion
+        private SortedList<string, Edge> outboundEdges = new SortedList<string, Edge>();
+
+        internal void AddEdge(Edge edge)
+        {
+            if (edge.SourceNodeId != this.Id)
+                throw new Exception($"Trying to add {edge} with SourceNodeId='{edge.SourceNodeId}' to {this} (different Id).");
+
+            if (outboundEdges.ContainsKey(edge.Order))
+                throw new Exception($"Trying to adde {edge} with a duplicated order '{edge.Order}' to {this}.");
+
+            outboundEdges.Add(edge.Order, edge);
+        }
     }
 }
