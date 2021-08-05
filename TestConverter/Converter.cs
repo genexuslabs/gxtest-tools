@@ -1,4 +1,5 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.v3;
+using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
@@ -30,7 +31,16 @@ namespace GeneXus.GXtest.Tools.TestConverter
 
         private string CreateTestCode()
         {
-            return $"// {testCaseInfo.Name}";
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"// {testCaseInfo.Name}");
+            builder.AppendLine();
+
+            foreach(Element element in TestCaseTraverser.GetElements(testCase))
+            {
+                builder.AppendLine($"// {element}");
+            }
+
+            return builder.ToString();
         }
 
         public string GetTestCode()
