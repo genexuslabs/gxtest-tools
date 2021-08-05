@@ -11,7 +11,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             commands.Add(command.Order, command);
         }
 
-        protected IEnumerable<Command> GetCommands()
+        internal IEnumerable<Command> GetCommands()
         {
             return commands.Values;
         }

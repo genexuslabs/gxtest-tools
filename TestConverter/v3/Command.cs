@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
@@ -17,6 +18,23 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         [XmlElement("CommandName")]
         public string Name { get; set; }
+
+        public override string ToString()
+        {
+            string parmSeparator = ", ";
+            int separatorLength = parmSeparator.Length;
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append( $"{Name}(");
+
+            foreach (Parameter parm in GetParameters())
+                builder.Append($"{parm}{parmSeparator}");
+            builder.Remove(builder.Length - separatorLength, separatorLength);
+
+            builder.Append(")");
+
+            return builder.ToString();
+        }
 
         private SortedList<string, Parameter> parms = new SortedList<string, Parameter>();
 
