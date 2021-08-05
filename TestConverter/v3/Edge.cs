@@ -11,12 +11,16 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         public string Description { get; set; }
 
         [XmlElement("PageNameSource")]
-        public string SourceNode { get; set; }
+        public string SourceNodeId { get; set; }
 
         [XmlElement("PageNameTarget")]
-        public string TargetNode { get; set; }
+        public string TargetNodeId { get; set; }
 
         [XmlElement("EdgeOrder")] 
         public string Order { get; set; }
+
+        public Node SourceNode { get; set; }
+
+        public Node TargetNode { get; set; }
     }
 }
