@@ -25,22 +25,8 @@ namespace GeneXus.GXtest.Tools.TestConverter
                 return false;
 
             testCaseInfo.Name = testCase.GeneralData.Name;
-            testCaseInfo.TestCode = CreateTestCode();
+            testCaseInfo.TestCode = TestCodeGenerator.Generate(testCase);
             return true;
-        }
-
-        private string CreateTestCode()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine($"// {testCaseInfo.Name}");
-            builder.AppendLine();
-
-            foreach(Element element in TestCaseTraverser.GetElements(testCase))
-            {
-                builder.AppendLine($"// {element}");
-            }
-
-            return builder.ToString();
         }
 
         public string GetTestCode()
