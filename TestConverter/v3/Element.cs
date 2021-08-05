@@ -6,7 +6,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
     {
         private SortedList<string, Command> commands = new SortedList<string, Command>();
 
-        internal void AddCommand(Command command, TestCase testCase)
+        internal void AddCommand(Command command)
         {
             commands.Add(command.Order, command);
         }
@@ -16,7 +16,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             return commands.Values;
         }
 
-        internal void AddCommandParameter(Parameter parm, TestCase testCase)
+        internal void AddCommandParameter(Parameter parm)
         {
             Command command = commands[parm.ParentOrder];
             command.AddParameter(parm);

@@ -104,12 +104,12 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         private void LoadCommands()
         {
-            Commands.ForEach(command => GetElement(command.ParentId).AddCommand(command, this));
+            Commands.ForEach(command => GetElement(command.ParentId).AddCommand(command));
         }
 
         private void LoadCommandParameters()
         {
-            Parameters.ForEach(parm => GetElement(parm.ParentId).AddCommandParameter(parm, this));
+            Parameters.ForEach(parm => GetElement(parm.ParentId).AddCommandParameter(parm));
         }
 
         private void AddParameterValue(ParameterValue val)
