@@ -2,7 +2,7 @@
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation
 {
-    internal static class CommentGenerator
+    internal static class CommentHelper
     {
         private static string commentPrefix = "// ";
         public static void AppendCommentLine(this StringBuilder builder, string text, Verbosity verbosityLevel = Verbosity.Normal)

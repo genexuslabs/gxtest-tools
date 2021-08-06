@@ -24,7 +24,6 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             return $"Edge[{Id}]";
         }
 
-
         public Node SourceNode { get; set; }
 
         public Node TargetNode { get; set; }
