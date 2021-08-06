@@ -16,6 +16,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         private ParameterControlData controlData = null;
 
+        public ParameterControlData Data => controlData;
+
+
         public void AddControlData(IReadOnlyDictionary<string, ParameterControlData> dataStore)
         {
             if (controlData != null)

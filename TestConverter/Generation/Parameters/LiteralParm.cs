@@ -12,21 +12,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         public LiteralParm(Parameter parm)
            : base(parm)
         {
-            Debug.Assert(parm.Type == ParameterTypes.Literal);
-            Debug.Assert(parm.Value != null);
-            Debug.Assert(parm.Value is ParameterLiteralValue);
-
-            if (parm.Value == null)
-                throw new Exception("ParameterLiteralValue contains no value");
-
+            ValidateParameterTypes(parm, ParameterTypes.Literal, typeof(ParameterLiteralValue));
             LiteralValue = parm.Value as ParameterLiteralValue;
-            if (LiteralValue == null)
-                throw new Exception($"ParameterLiteralValue contains invalid value. Expected {typeof(ParameterLiteralValue)}; found {parm.Value.GetType()}.");
         }
         
         public override void Generate(StringBuilder builder)
         {
-            builder.Append($"\"{LiteralValue.Value}\"");
+            builder.AppendQuoted(LiteralValue.Value);
         }
     }
 }

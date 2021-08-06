@@ -26,6 +26,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
                 case CommandNames.Go:
                     return new GoCommand(command);
 
+                case CommandNames.Click:
+                    return new ClickCommand(command);
+
                 default:
                     return new NotImplementedCommand(command);
             }

@@ -24,6 +24,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
                 case ParameterTypes.Literal:
                     return new LiteralParm(parm);
 
+                case ParameterTypes.Control:
+                    return new ControlParm(parm);
+
                 default:
                     return new NotImplementedParm(parm);
             }

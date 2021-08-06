@@ -12,7 +12,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 
         public override void Generate(StringBuilder builder)
         {
-            builder.AppendLine("parm not yet implemented");
+            builder.Append("parm not yet implemented");
         }
     }
 }
