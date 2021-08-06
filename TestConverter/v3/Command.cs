@@ -23,25 +23,22 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         {
             string parmSeparator = ", ";
             int separatorLength = parmSeparator.Length;
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
 
             builder.Append( $"{Type} {Name}(");
 
-            foreach (Parameter parm in GetParameters())
+            foreach (var parm in Parameters)
                 builder.Append($"{parm}{parmSeparator}");
             builder.Remove(builder.Length - separatorLength, separatorLength);
 
-            builder.Append(")");
+            builder.Append(')');
 
             return builder.ToString();
         }
 
-        private SortedList<string, Parameter> parms = new SortedList<string, Parameter>();
+        private SortedList<string, Parameter> parms = new();
 
-        protected IEnumerable<Parameter> GetParameters()
-        {
-            return parms.Values;
-        }
+        internal IList<Parameter> Parameters => parms.Values;
 
         internal void AddParameter(Parameter parm)
         {

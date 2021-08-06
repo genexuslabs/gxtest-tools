@@ -7,19 +7,19 @@ namespace GeneXus.GXtest.Tools.TestConverter
     {
         public static IEnumerable<Element> GetElements(TestCase testCase, bool allowDuplicateNodes = false)
         {
-            TestCaseTraverser traverser = new TestCaseTraverser(true, true, allowDuplicateNodes);
+            var traverser = new TestCaseTraverser(true, true, allowDuplicateNodes);
             return traverser.GetElements(testCase);
         }
 
         public static IEnumerable<Element> GetNodes(TestCase testCase, bool allowDuplicateNodes = false)
         {
-            TestCaseTraverser traverser = new TestCaseTraverser(true, false, allowDuplicateNodes);
+            var traverser = new TestCaseTraverser(true, false, allowDuplicateNodes);
             return traverser.GetElements(testCase);
         }
 
         public static IEnumerable<Element> GetEdges(TestCase testCase)
         {
-            TestCaseTraverser traverser = new TestCaseTraverser(false, true, false);
+            var traverser = new TestCaseTraverser(false, true, false);
             return traverser.GetElements(testCase);
         }
 
@@ -45,7 +45,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
             if (node == null)
                 throw new System.Exception($"Start element should be a Node, but found {startElement}.");
 
-            Dictionary<string, IEnumerator<Edge>> edgeEnumeratorByNodeId = new Dictionary<string, IEnumerator<Edge>>();
+            var edgeEnumeratorByNodeId = new Dictionary<string, IEnumerator<Edge>>();
             foreach (Element element in TraverseTestCaseFromNode(edgeEnumeratorByNodeId, node))
                 yield return element;
         }

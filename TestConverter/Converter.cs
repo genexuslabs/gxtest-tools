@@ -1,5 +1,5 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.v3;
-using System.Text;
+﻿using GeneXus.GXtest.Tools.TestConverter.Generation;
+using GeneXus.GXtest.Tools.TestConverter.v3;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {

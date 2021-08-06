@@ -23,7 +23,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             return $"Node[{Id}]";
         }
 
-        private SortedList<string, Edge> outboundEdges = new SortedList<string, Edge>();
+        private SortedList<string, Edge> outboundEdges = new();
 
         internal void AddEdge(Edge edge)
         {

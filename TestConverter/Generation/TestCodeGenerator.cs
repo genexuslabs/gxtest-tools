@@ -2,13 +2,13 @@
 using System;
 using System.Text;
 
-namespace GeneXus.GXtest.Tools.TestConverter
+namespace GeneXus.GXtest.Tools.TestConverter.Generation
 {
     internal static class TestCodeGenerator
     {
         public static string Generate(TestCase testCase)
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
 
             GenerateHeader(builder, testCase);
             GenerateCommands(builder, testCase);
@@ -18,30 +18,32 @@ namespace GeneXus.GXtest.Tools.TestConverter
 
         private static void GenerateHeader(StringBuilder builder, TestCase testCase)
         {
-            builder.AppendLine($"// {testCase.GeneralData.Name}");
-            builder.AppendLine("// Converted from GXtest v3");
+            GenerationOptions.Verbosity = Verbosity.Detailed;
+
+            builder.AppendCommentLine($"{testCase.GeneralData.Name}");
+            builder.AppendCommentLine("Converted from GXtest v3", Verbosity.Detailed);
             builder.AppendLine();
 
-            builder.AppendLine("// Start webdriver");
+            builder.AppendCommentLine("Start webdriver");
             builder.AppendLine("&driver.Start()");
             builder.AppendLine("&driver.Maximize()");
+            builder.AppendLine();
         }
 
         private static void GenerateCommands(StringBuilder builder, TestCase testCase)
         {
             foreach (Element element in TestCaseTraverser.GetElements(testCase))
             {
-                builder.AppendLine($"// {element}");
-                GenerateElementCommands(builder, testCase, element);
+                builder.AppendCommentLine($"{element}", Verbosity.Diagnostic);
+                GenerateElementCommands(builder, element);
             }
         }
 
-        private static void GenerateElementCommands(StringBuilder builder, TestCase testCase, Element element)
+        private static void GenerateElementCommands(StringBuilder builder, Element element)
         {
             foreach (Command command in element.GetCommands())
             {
-                builder.AppendLine($"// {command}");
-
+                command.GenerateCode(builder);
             }
         }
     }

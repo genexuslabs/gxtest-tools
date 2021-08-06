@@ -47,7 +47,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             TestCase testCase = null;
             using (var fileStream = File.Open(xmlFilePath, FileMode.Open))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(TestCase));
+                var serializer = new XmlSerializer(typeof(TestCase));
                 testCase = (TestCase)serializer.Deserialize(fileStream);
             }
 
@@ -65,7 +65,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         }
 
 
-        private Dictionary<string, Element> elementsMap = new Dictionary<string, Element>();
+        private Dictionary<string, Element> elementsMap = new();
         private void IndexElements()
         {
             Nodes.ForEach(node => IndexElement(node.Id, node));
@@ -106,7 +106,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             });
         }
 
-        private Dictionary<string, ParameterControlData> controlDataMap = new Dictionary<string, ParameterControlData>();
+        private Dictionary<string, ParameterControlData> controlDataMap = new();
         private void IndexControlData()
         {
             ControlData.ForEach(data => controlDataMap.Add(data.ControlId, data));

@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using System;
+using System.IO;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
@@ -27,7 +28,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
             {
                 Console.Out.WriteLine($"Converting '{options.SourceFilePath}'");
 
-                Converter converter = new Converter(options.SourceFilePath);
+                var converter = new Converter(options.SourceFilePath);
                 if (!converter.Convert())
                     return ErrorCode.ConversionError;
 

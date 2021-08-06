@@ -4,7 +4,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
     public class Element
     {
-        private SortedList<string, Command> commands = new SortedList<string, Command>();
+        private SortedList<string, Command> commands = new();
 
         internal void AddCommand(Command command)
         {
