@@ -14,7 +14,19 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 
         public static void AppendParameter(this StringBuilder builder, Parameter parm)
         {
-            builder.Append("the parameter value");
+            ParameterGenerator generator = CreateGenerator(parm);
+            generator.Generate(builder);
+        }
+        private static ParameterGenerator CreateGenerator(Parameter parm)
+        {
+            switch (parm.Type)
+            {
+                case ParameterTypes.Literal:
+                    return new LiteralParm(parm);
+
+                default:
+                    return new NotImplementedParm(parm);
+            }
         }
     }
 }

@@ -25,5 +25,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
             value = val;
         }
+
+        public ParameterValue Value
+        {
+            get { return value; }
+        }
+
     }
 }
