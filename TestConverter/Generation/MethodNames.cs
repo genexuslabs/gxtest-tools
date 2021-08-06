@@ -4,5 +4,6 @@
     {
         public const string Go = "Go";
         public const string ClickBy = "ClickBy";
+        public const string TypeByID = "TypeByID";
     }
 }

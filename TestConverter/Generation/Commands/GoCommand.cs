@@ -15,8 +15,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
         public override void Generate(StringBuilder builder)
         {
             builder.AppendCommentLine("GO command generation", Verbosity.Diagnostic);
-
             builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
+
             builder.AppendDriverMethod(MethodNames.Go, Command.Parameters[1]);
         }
     }
