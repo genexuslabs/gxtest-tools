@@ -18,8 +18,6 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
 
         private static void GenerateHeader(StringBuilder builder, TestCase testCase)
         {
-            GenerationOptions.Verbosity = Verbosity.Detailed;
-
             builder.AppendCommentLine($"{testCase.GeneralData.Name}");
             builder.AppendCommentLine("Converted from GXtest v3", Verbosity.Detailed);
             builder.AppendLine();
