@@ -16,7 +16,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 
         public override void Generate(StringBuilder builder)
         {
-            bool.TryParse(BooleanValue.Value, out bool value);
+            if (!bool.TryParse(BooleanValue.Value, out bool value))
+                value = false;
+
             _ = builder.Append(value);
         }
     }

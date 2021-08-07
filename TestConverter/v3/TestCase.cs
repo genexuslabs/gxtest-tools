@@ -65,7 +65,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         }
 
 
-        private Dictionary<string, Element> elementsMap = new();
+        private readonly Dictionary<string, Element> elementsMap = new();
         private void IndexElements()
         {
             Nodes.ForEach(node => IndexElement(node.Id, node));
@@ -106,7 +106,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             });
         }
 
-        private Dictionary<string, ParameterControlData> controlDataMap = new();
+        private readonly Dictionary<string, ParameterControlData> controlDataMap = new();
+
         private void IndexControlData()
         {
             ControlData.ForEach(data => controlDataMap.Add(data.ControlId, data));
@@ -128,7 +129,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         private void AddParameterValue(ParameterValue val)
         {
-            GetElement(val.ParentId).AddCommandParameterValue(val, this);
+            GetElement(val.ParentId).AddCommandParameterValue(val);
         }
 
         private void LoadCommandParameterValues()

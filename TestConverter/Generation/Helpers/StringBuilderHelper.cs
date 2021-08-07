@@ -4,7 +4,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
 {
     internal static class StringBuilderHelper
     {
-        private static string commentPrefix = "// ";
+        private static readonly string commentPrefix = "// ";
+
         public static StringBuilder AppendCommentLine(this StringBuilder builder, string text, Verbosity verbosityLevel = Verbosity.Normal)
         {
             if (verbosityLevel > GenerationOptions.Verbosity)

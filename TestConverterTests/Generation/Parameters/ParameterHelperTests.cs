@@ -11,38 +11,38 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters.Tests
         [TestMethod()]
         public void GetParameterCodeTest()
         {
-            foreach (var parmCase in GetParmCases())
+            foreach (var (Parm, Expected, IgnoreCase) in GetParmCases())
             {
-                var actual = ParameterHelper.GetParameterCode(parmCase.Parm);
-                Assert.AreEqual(parmCase.Expected, actual, parmCase.IgnoreCase);
+                var actual = ParameterHelper.GetParameterCode(Parm);
+                Assert.AreEqual(Expected, actual, IgnoreCase);
             }
         }
 
         [TestMethod()]
         public void AppendParameterTest()
         {
-            foreach (var parmCase in GetParmCases())
+            foreach (var (Parm, Expected, IgnoreCase) in GetParmCases())
             {
                 StringBuilder builder = new();
-                builder.AppendParameter(parmCase.Parm);
+                builder.AppendParameter(Parm);
 
                 string actual = builder.ToString();
-                Assert.AreEqual(parmCase.Expected, actual, parmCase.IgnoreCase);
+                Assert.AreEqual(Expected, actual, IgnoreCase);
             }
         }
 
         private static IEnumerable<(Parameter Parm, string Expected, bool IgnoreCase)> GetParmCases()
         {
-            foreach (var literalCase in GetLiteralCases())
+            foreach (var (InputValue, Expectedoutput) in GetLiteralCases())
             {
-                var parm = Parameter.CreateLiteralParameter(literalCase.InputValue);
-                yield return (parm, literalCase.Expectedoutput, true);
+                var parm = Parameter.CreateLiteralParameter(InputValue);
+                yield return (parm, Expectedoutput, true);
             }
 
-            foreach (var booleanCase in GetBooleanCases())
+            foreach (var (InputValue, Expectedoutput) in GetBooleanCases())
             {
-                var parm = Parameter.CreateBooleanParameter(booleanCase.InputValue);
-                yield return (parm, booleanCase.Expectedoutput, true);
+                var parm = Parameter.CreateBooleanParameter(InputValue);
+                yield return (parm, Expectedoutput, true);
             }
         }
 

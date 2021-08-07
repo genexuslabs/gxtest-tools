@@ -23,9 +23,9 @@ namespace GeneXus.GXtest.Tools.TestConverter
             return traverser.GetElements(testCase);
         }
 
-        private bool returnNodes = true;
-        private bool returnEdges = true;
-        private bool allowDuplicateNodes = false;
+        private readonly bool returnNodes = true;
+        private readonly bool returnEdges = true;
+        private readonly bool allowDuplicateNodes = false;
 
         private TestCaseTraverser(bool returnNodes, bool returnEdges, bool allowDuplicateNodes)
         {
@@ -41,9 +41,8 @@ namespace GeneXus.GXtest.Tools.TestConverter
             if (startElement == null)
                 throw new System.Exception($"Could not find start element with Id='{startId}'.");
 
-            Node node = startElement as Node;
-            if (node == null)
-                throw new System.Exception($"Start element should be a Node, but found {startElement}.");
+            Node node = startElement as Node
+                        ?? throw new System.Exception($"Start element should be a Node, but found {startElement}.");
 
             var edgeEnumeratorByNodeId = new Dictionary<string, IEnumerator<Edge>>();
             foreach (Element element in TraverseTestCaseFromNode(edgeEnumeratorByNodeId, node))

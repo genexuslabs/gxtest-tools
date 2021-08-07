@@ -21,20 +21,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
         private static CommandGenerator CreateGenerator(Command command)
         {
-            switch (command.Name)
+            return command.Name switch
             {
-                case CommandNames.Go:
-                    return new GoCommand(command);
-
-                case CommandNames.Click:
-                    return new ClickCommand(command);
-
-                case CommandNames.FillInput:
-                    return new FillInputCommand(command);
-
-                default:
-                    return new NotImplementedCommand(command);
-            }
+                CommandNames.Go => new GoCommand(command),
+                CommandNames.Click => new ClickCommand(command),
+                CommandNames.FillInput => new FillInputCommand(command),
+                _ => new NotImplementedCommand(command),
+            };
         }
     }
 }

@@ -23,7 +23,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             return $"{Type} {Name}({string.Join(", ", Parameters)})";
         }
 
-        private SortedList<string, Parameter> parms = new();
+        private readonly SortedList<string, Parameter> parms = new();
 
         internal IList<Parameter> Parameters => parms.Values;
 

@@ -5,7 +5,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
 {
     class Converter
     {
-        private string sourceFilePath { get; set; }
+        private string SourceFilePath { get; set; }
 
         private TestCaseInfo testCaseInfo = null;
 
@@ -13,14 +13,14 @@ namespace GeneXus.GXtest.Tools.TestConverter
 
         public Converter(string sourceFile)
         {
-            this.sourceFilePath = sourceFile;
+            SourceFilePath = sourceFile;
         }
 
         public bool Convert()
         {
             testCaseInfo = new TestCaseInfo();
 
-            testCase = TestCase.DeserializeFromXML(sourceFilePath);
+            testCase = TestCase.DeserializeFromXML(SourceFilePath);
             if (testCase == null)
                 return false;
 
