@@ -2,7 +2,7 @@
 {
     public class ParameterValue : ParameterComponent
     {
-        public string Type { get;  protected set; }
+        public string Type { get; protected set; }
 
         protected ParameterValue(string type)
         {

@@ -24,7 +24,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
 
             builder.AppendCommentLine("Start webdriver");
             builder.AppendDriverMethodNoParms("Start");
-            builder.AppendDriverMethodNoParms( "Maximize");
+            builder.AppendDriverMethodNoParms("Maximize");
             builder.AppendLine();
         }
 

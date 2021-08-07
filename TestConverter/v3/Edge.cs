@@ -16,7 +16,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         [XmlElement("PageNameTarget")]
         public string TargetNodeId { get; set; }
 
-        [XmlElement("EdgeOrder")] 
+        [XmlElement("EdgeOrder")]
         public string Order { get; set; }
 
         public override string ToString()

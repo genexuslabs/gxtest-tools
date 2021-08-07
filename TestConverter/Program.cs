@@ -28,7 +28,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
             options => Convert(options),
             _ => ErrorCode.BadParameters);
 
-            return (int) result;
+            return (int)result;
         }
 
         static ErrorCode Convert(ConvertOptions options)

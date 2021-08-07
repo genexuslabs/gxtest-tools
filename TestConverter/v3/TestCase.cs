@@ -137,7 +137,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             BooleanValues.ForEach(val => AddParameterValue(val));
 
             IndexControlData();
-            ControlValues.ForEach(val => {
+            ControlValues.ForEach(val =>
+            {
                 val.AddControlData(controlDataMap);
                 AddParameterValue(val);
             });
