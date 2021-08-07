@@ -27,6 +27,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
                 case ParameterTypes.Control:
                     return new ControlParm(parm);
 
+                case ParameterTypes.Boolean:
+                    return new BooleanParm(parm);
+
                 default:
                     return new NotImplementedParm(parm);
             }
