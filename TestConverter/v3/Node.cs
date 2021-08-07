@@ -36,6 +36,6 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             outboundEdges.Add(edge.Order, edge);
         }
 
-        public IEnumerable<Edge> OutboundEdges { get { return outboundEdges.Values; } }
+        public IList<Edge> OutboundEdges => outboundEdges.Values;
     }
 }

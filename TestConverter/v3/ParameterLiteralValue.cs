@@ -4,6 +4,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
     public class ParameterLiteralValue : ParameterValue
     {
+        public ParameterLiteralValue()
+            : base(ParameterTypes.Literal)
+        {
+        }
+
         [XmlElement("ParameterLiteralValue")]
         public string Value { get; set; }
 

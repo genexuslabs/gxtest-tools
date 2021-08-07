@@ -1,5 +1,5 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.v3;
-using System;
+﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Commands;
+using GeneXus.GXtest.Tools.TestConverter.v3;
 using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation
@@ -18,15 +18,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
 
         private static void GenerateHeader(StringBuilder builder, TestCase testCase)
         {
-            GenerationOptions.Verbosity = Verbosity.Detailed;
-
             builder.AppendCommentLine($"{testCase.GeneralData.Name}");
             builder.AppendCommentLine("Converted from GXtest v3", Verbosity.Detailed);
             builder.AppendLine();
 
             builder.AppendCommentLine("Start webdriver");
-            builder.AppendLine("&driver.Start()");
-            builder.AppendLine("&driver.Maximize()");
+            builder.AppendDriverMethodNoParms("Start");
+            builder.AppendDriverMethodNoParms( "Maximize");
             builder.AppendLine();
         }
 
@@ -36,6 +34,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
             {
                 builder.AppendCommentLine($"{element}", Verbosity.Diagnostic);
                 GenerateElementCommands(builder, element);
+                builder.AppendLine();
             }
         }
 
@@ -43,7 +42,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
         {
             foreach (Command command in element.GetCommands())
             {
-                command.GenerateCode(builder);
+                builder.AppendCommand(command);
             }
         }
     }

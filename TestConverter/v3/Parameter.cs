@@ -23,7 +23,12 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             if (value != null)
                 throw new Exception($"Trying to add parameter value '{val}' over an existing value '{value}'");
 
+            if (val.Type != this.Type)
+                throw new Exception($"Trying to add parameter value of type '{val.Type}' to a parameter of type {this.Type}");
+
             value = val;
         }
+
+        public ParameterValue Value => value;
     }
 }

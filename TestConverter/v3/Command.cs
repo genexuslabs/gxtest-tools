@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
@@ -21,19 +20,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         public override string ToString()
         {
-            string parmSeparator = ", ";
-            int separatorLength = parmSeparator.Length;
-            var builder = new StringBuilder();
-
-            builder.Append( $"{Type} {Name}(");
-
-            foreach (var parm in Parameters)
-                builder.Append($"{parm}{parmSeparator}");
-            builder.Remove(builder.Length - separatorLength, separatorLength);
-
-            builder.Append(')');
-
-            return builder.ToString();
+            return $"{Type} {Name}({string.Join(", ", Parameters)})";
         }
 
         private SortedList<string, Parameter> parms = new();

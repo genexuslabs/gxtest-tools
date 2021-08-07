@@ -12,5 +12,7 @@
     internal class GenerationOptions
     {
         public static Verbosity Verbosity { get; set; } = Verbosity.Normal;
+
+        public static bool BlankLineAfterElement { get; set; } = true;
     }
 }

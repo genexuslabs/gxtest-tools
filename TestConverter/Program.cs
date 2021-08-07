@@ -1,6 +1,6 @@
 ﻿using CommandLine;
+using GeneXus.GXtest.Tools.TestConverter.Generation;
 using System;
-using System.IO;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
@@ -11,11 +11,20 @@ namespace GeneXus.GXtest.Tools.TestConverter
         {
             [Option('s', "source", Required = true, HelpText = "Path to the source XML file")]
             public string SourceFilePath { get; set; }
+
+            [Option('v', "verbosity", Required = false, HelpText = "Verbosity level on code comments")]
+            public Verbosity Verbosity { get; set; } = Verbosity.Normal;
         }
 
         static int Main(string[] args)
         {
-            ErrorCode result = Parser.Default.ParseArguments<ConvertOptions>(args).MapResult(
+            var parser = new Parser(settings =>
+            {
+                settings.CaseInsensitiveEnumValues = true;
+                settings.CaseSensitive = false;
+
+            });
+            ErrorCode result = parser.ParseArguments<ConvertOptions>(args).MapResult(
             options => Convert(options),
             _ => ErrorCode.BadParameters);
 
@@ -27,6 +36,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
             try
             {
                 Console.Out.WriteLine($"Converting '{options.SourceFilePath}'");
+                GenerationOptions.Verbosity = options.Verbosity;
 
                 var converter = new Converter(options.SourceFilePath);
                 if (!converter.Convert())

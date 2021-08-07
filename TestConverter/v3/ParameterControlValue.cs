@@ -6,6 +6,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
     public class ParameterControlValue : ParameterValue
     {
+        public ParameterControlValue()
+            : base(ParameterTypes.Control)
+        {
+        }
+
         [XmlElement("GXControlGUID")]
         public string ControlId { get; set; }
 
@@ -15,6 +20,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         }
 
         private ParameterControlData controlData = null;
+
+        public ParameterControlData Data => controlData;
+
 
         public void AddControlData(IReadOnlyDictionary<string, ParameterControlData> dataStore)
         {
