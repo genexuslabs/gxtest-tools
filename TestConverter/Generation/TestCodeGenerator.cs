@@ -34,6 +34,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
             {
                 builder.AppendCommentLine($"{element}", Verbosity.Diagnostic);
                 GenerateElementCommands(builder, element);
+                builder.AppendLine();
             }
         }
 
