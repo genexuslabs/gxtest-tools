@@ -6,6 +6,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
     public class ParameterControlValue : ParameterValue
     {
+        public ParameterControlValue()
+            : base(ParameterTypes.Control)
+        {
+        }
+
         [XmlElement("GXControlGUID")]
         public string ControlId { get; set; }
 
