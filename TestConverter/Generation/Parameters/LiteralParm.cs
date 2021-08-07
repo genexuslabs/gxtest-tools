@@ -7,7 +7,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 {
     class LiteralParm : ParameterGenerator
     {
-        private ParameterLiteralValue LiteralValue;
+        private readonly ParameterLiteralValue LiteralValue;
         
         public LiteralParm(Parameter parm)
            : base(parm)
@@ -18,7 +18,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         
         public override void Generate(StringBuilder builder)
         {
-            builder.AppendQuoted(LiteralValue.Value);
+            _ = builder.AppendQuoted(LiteralValue.Value);
         }
     }
 }

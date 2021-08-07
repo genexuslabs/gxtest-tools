@@ -10,7 +10,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 {
     class ControlParm : ParameterGenerator
     {
-        private ParameterControlValue ControlValue;
+        private readonly ParameterControlValue ControlValue;
 
         public ControlParm(Parameter parm)
            : base(parm)
@@ -21,7 +21,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 
         public override void Generate(StringBuilder builder)
         {
-            builder.AppendQuoted(ControlValue.Data.Name);
+            _ = builder.AppendQuoted(ControlValue.Data.Name);
         }
     }
 }
