@@ -30,5 +30,41 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         }
 
         public ParameterValue Value => value;
+
+        #region Factory
+
+        public static Parameter CreateParameter(string parmType, ParameterValue parmValue)
+        {
+            var parm = new Parameter
+            {
+                Type = parmType
+            };
+
+            parm.AddValue(parmValue);
+
+            return parm;
+        }
+
+        public static Parameter CreateLiteralParameter(string literal)
+        {
+            var literalValue = new ParameterLiteralValue
+            {
+                Value = literal
+            };
+
+            return CreateParameter(ParameterTypes.Literal, literalValue);
+        }
+
+        public static Parameter CreateBooleanParameter(string boolean)
+        {
+            var booleanValue = new ParameterBooleanValue
+            {
+                Value = boolean
+            };
+
+            return CreateParameter(ParameterTypes.Boolean, booleanValue);
+        }
+
+        #endregion
     }
 }
