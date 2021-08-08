@@ -34,10 +34,15 @@ namespace GeneXus.GXtest.Tools.TestConverter.Tests
             Assert.AreEqual(expectedCode, code);
         }
 
-        private static IEnumerable<(string InputFile, string OutputFile)> GetCases()
+        private static readonly string testDataFolder = "TestData";
+        private static string getTestDataFile(string filename)
         {
-            yield return ("TestData\\MinimalTest.xml", "TestData\\MinimalTestCode.txt");
+            return Path.Combine(testDataFolder, filename);
         }
 
+        private static IEnumerable<(string InputFile, string OutputFile)> GetCases()
+        {
+            yield return (getTestDataFile("MinimalTest.xml"), getTestDataFile("MinimalTestCode.txt"));
+        }
     }
 }
