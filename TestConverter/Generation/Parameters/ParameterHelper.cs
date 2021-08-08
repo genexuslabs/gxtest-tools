@@ -19,17 +19,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         }
         private static ParameterGenerator CreateGenerator(Parameter parm)
         {
-            switch (parm.Type)
+            return parm.Type switch
             {
-                case ParameterTypes.Literal:
-                    return new LiteralParm(parm);
-
-                case ParameterTypes.Control:
-                    return new ControlParm(parm);
-
-                default:
-                    return new NotImplementedParm(parm);
-            }
+                ParameterTypes.Literal => new LiteralParm(parm),
+                ParameterTypes.Control => new ControlParm(parm),
+                ParameterTypes.Boolean => new BooleanParm(parm),
+                _ => new NotImplementedParm(parm),
+            };
         }
     }
 }

@@ -1,16 +1,11 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.v3;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 {
     class ControlParm : ParameterGenerator
     {
-        private ParameterControlValue ControlValue;
+        private readonly ParameterControlValue ControlValue;
 
         public ControlParm(Parameter parm)
            : base(parm)
@@ -21,7 +16,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 
         public override void Generate(StringBuilder builder)
         {
-            builder.AppendQuoted(ControlValue.Data.Name);
+            _ = builder.AppendQuoted(ControlValue.Data.Name);
         }
     }
 }

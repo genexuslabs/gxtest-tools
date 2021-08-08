@@ -1,0 +1,15 @@
+﻿// AddCountry
+
+// Start webdriver
+&driver.Start()
+&driver.Maximize()
+
+&driver.Go("http://localhost/GXtestDPs.NetEnvironment/wwcountry.aspx")
+
+&driver.ClickBy("BtnInsert")
+
+&driver.TypeByID("CountryName", "Uruguay")
+
+&driver.ClickBy("btn_enter")
+
+&driver.ClickBy("deleteGrid")

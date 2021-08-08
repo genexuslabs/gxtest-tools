@@ -3,29 +3,39 @@ using GeneXus.GXtest.Tools.TestConverter.v3;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
-    class Converter
+    public class Converter
     {
-        private string sourceFilePath { get; set; }
-
         private TestCaseInfo testCaseInfo = null;
 
         private TestCase testCase = null;
 
-        public Converter(string sourceFile)
+        public Converter()
         {
-            this.sourceFilePath = sourceFile;
         }
 
-        public bool Convert()
+        public bool ConvertFromFile(string sourceFilePath)
         {
-            testCaseInfo = new TestCaseInfo();
+            testCase = TestCase.DeserializeFromXMLfile(sourceFilePath);
+            return Generate();
+        }
 
-            testCase = TestCase.DeserializeFromXML(sourceFilePath);
+        public bool ConvertFromString(string sourceXML)
+        {
+            testCase = TestCase.DeserializeFromXML(sourceXML);
+            return Generate();
+        }
+
+        private bool Generate()
+        {
             if (testCase == null)
                 return false;
 
-            testCaseInfo.Name = testCase.GeneralData.Name;
-            testCaseInfo.TestCode = TestCodeGenerator.Generate(testCase);
+            testCaseInfo = new TestCaseInfo
+            {
+                Name = testCase.GeneralData.Name,
+                TestCode = TestCodeGenerator.Generate(testCase)
+            };
+
             return true;
         }
 

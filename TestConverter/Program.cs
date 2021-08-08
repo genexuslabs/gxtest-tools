@@ -28,7 +28,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
             options => Convert(options),
             _ => ErrorCode.BadParameters);
 
-            return (int) result;
+            return (int)result;
         }
 
         static ErrorCode Convert(ConvertOptions options)
@@ -38,8 +38,8 @@ namespace GeneXus.GXtest.Tools.TestConverter
                 Console.Out.WriteLine($"Converting '{options.SourceFilePath}'");
                 GenerationOptions.Verbosity = options.Verbosity;
 
-                var converter = new Converter(options.SourceFilePath);
-                if (!converter.Convert())
+                var converter = new Converter();
+                if (!converter.ConvertFromFile(options.SourceFilePath))
                     return ErrorCode.ConversionError;
 
                 ShowTestCode(converter.GetTestCode());

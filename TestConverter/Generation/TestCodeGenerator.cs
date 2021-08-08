@@ -24,7 +24,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
 
             builder.AppendCommentLine("Start webdriver");
             builder.AppendDriverMethodNoParms("Start");
-            builder.AppendDriverMethodNoParms( "Maximize");
+            builder.AppendDriverMethodNoParms("Maximize");
             builder.AppendLine();
         }
 
@@ -34,15 +34,19 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
             {
                 builder.AppendCommentLine($"{element}", Verbosity.Diagnostic);
                 GenerateElementCommands(builder, element);
-                builder.AppendLine();
             }
         }
 
         private static void GenerateElementCommands(StringBuilder builder, Element element)
         {
-            foreach (Command command in element.GetCommands())
+            if (element.GetCommands().Count > 0)
             {
-                builder.AppendCommand(command);
+                foreach (Command command in element.GetCommands())
+                {
+                    builder.AppendCommand(command);
+                }
+
+                builder.AppendLine();
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.v3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,61 +11,54 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters.Tests
         [TestMethod()]
         public void GetParameterCodeTest()
         {
-            foreach (var parmCase in GetParmCases())
+            foreach (var (Parm, Expected, IgnoreCase) in GetParmCases())
             {
-                var parm = parmCase.Item1;
-                var expected = parmCase.Item2;
-
-                var actual = ParameterHelper.GetParameterCode(parm);
-                Assert.AreEqual(expected, actual);
+                var actual = ParameterHelper.GetParameterCode(Parm);
+                Assert.AreEqual(Expected, actual, IgnoreCase);
             }
         }
 
         [TestMethod()]
         public void AppendParameterTest()
         {
-            foreach (var parmCase in GetParmCases())
+            foreach (var (Parm, Expected, IgnoreCase) in GetParmCases())
             {
-                var parm = parmCase.Item1;
-                var expected = parmCase.Item2;
-
                 StringBuilder builder = new();
-                builder.AppendParameter(parm);
+                builder.AppendParameter(Parm);
 
-                var actual = builder.ToString();
-                Assert.AreEqual(expected, actual);
+                string actual = builder.ToString();
+                Assert.AreEqual(Expected, actual, IgnoreCase);
             }
         }
 
-        private IEnumerable<Tuple<Parameter, string>> GetParmCases()
+        private static IEnumerable<(Parameter Parm, string Expected, bool IgnoreCase)> GetParmCases()
         {
-            foreach (var literalCase in GetLiteralCases())
+            foreach (var (InputValue, Expectedoutput) in GetLiteralCases())
             {
-                var input = literalCase.Item1;
-                var expectedOutput = literalCase.Item2;
-                var parm = CreateLiteralParameter(input);
-                yield return new Tuple<Parameter, string>(parm, expectedOutput);
+                var parm = Parameter.CreateLiteralParameter(InputValue);
+                yield return (parm, Expectedoutput, true);
+            }
+
+            foreach (var (InputValue, Expectedoutput) in GetBooleanCases())
+            {
+                var parm = Parameter.CreateBooleanParameter(InputValue);
+                yield return (parm, Expectedoutput, true);
             }
         }
 
-        private IEnumerable<Tuple<string, string>> GetLiteralCases()
+        private static IEnumerable<(string InputValue, string Expectedoutput)> GetLiteralCases()
         {
-            // returns <"input string", "expected output string"> tuples
-            yield return new Tuple<string, string>("some value", "\"some value\"");
-            yield return new Tuple<string, string>("", "\"\"");
-            yield return new Tuple<string, string>(null, "\"\"");
+            yield return ("some value", "\"some value\"");
+            yield return ("", "\"\"");
+            yield return (null, "\"\"");
         }
 
-        private Parameter CreateLiteralParameter(string literal)
+        private static IEnumerable<(string InputValue, string Expectedoutput)> GetBooleanCases()
         {
-            var literalValue = new ParameterLiteralValue();
-            literalValue.Value = literal;
-
-            var parm = new Parameter();
-            parm.Type = ParameterTypes.Literal;
-            parm.AddValue(literalValue);
-
-            return parm;
+            yield return ("false", "false");
+            yield return ("whatever", "false");
+            yield return ("", "false");
+            yield return ("true", "true");
         }
     }
 }

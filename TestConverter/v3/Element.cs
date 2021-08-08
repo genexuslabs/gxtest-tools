@@ -4,7 +4,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
     public class Element
     {
-        private SortedList<string, Command> commands = new();
+        private readonly SortedList<string, Command> commands = new();
 
         internal void AddCommand(Command command)
         {
@@ -22,7 +22,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             command.AddParameter(parm);
         }
 
-        internal void AddCommandParameterValue(ParameterValue val, TestCase testCase)
+        internal void AddCommandParameterValue(ParameterValue val)
         {
             Command command = commands[val.ParentOrder];
             command.AddParameterValue(val);

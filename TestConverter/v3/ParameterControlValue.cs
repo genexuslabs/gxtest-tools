@@ -30,10 +30,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
                 throw new Exception($"Trying to add control data for value '{this}' over existing data '{controlData}'");
 
             ParameterControlData data = dataStore[ControlId];
-            if (data == null)
-                throw new Exception($"Trying to add null control data for value '{this}'");
-
-            controlData = data;
+            controlData = data ?? throw new Exception($"Trying to add null control data for value '{this}'");
         }
     }
 }

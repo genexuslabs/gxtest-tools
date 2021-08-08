@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
@@ -35,7 +36,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         [XmlElement("ControlExportTC")]
         public List<ParameterControlData> ControlData { get; set; }
 
-        public static TestCase DeserializeFromXML(string xmlFilePath)
+        public static TestCase DeserializeFromXMLfile(string xmlFilePath)
         {
             // verify file exists
             if (!File.Exists(xmlFilePath))
@@ -44,14 +45,24 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
                 return null;
             }
 
-            TestCase testCase = null;
-            using (var fileStream = File.Open(xmlFilePath, FileMode.Open))
-            {
-                var serializer = new XmlSerializer(typeof(TestCase));
-                testCase = (TestCase)serializer.Deserialize(fileStream);
-            }
+            using var fileStream = File.Open(xmlFilePath, FileMode.Open);
+            return DeserializeFromXML(fileStream);
+        }
 
-            testCase.AfterSerialize();
+        public static TestCase DeserializeFromXML(string xmlString)
+        {
+            byte[] byteArray = Encoding.UTF8.GetBytes(xmlString);
+            using var memoryStream = new MemoryStream(byteArray);
+            return DeserializeFromXML(memoryStream);
+        }
+
+        public static TestCase DeserializeFromXML(Stream stream)
+        {
+            var serializer = new XmlSerializer(typeof(TestCase));
+            TestCase testCase = (TestCase)serializer.Deserialize(stream);
+            if (testCase != null)
+                testCase.AfterSerialize();
+
             return testCase;
         }
 
@@ -65,7 +76,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         }
 
 
-        private Dictionary<string, Element> elementsMap = new();
+        private readonly Dictionary<string, Element> elementsMap = new();
         private void IndexElements()
         {
             Nodes.ForEach(node => IndexElement(node.Id, node));
@@ -106,7 +117,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             });
         }
 
-        private Dictionary<string, ParameterControlData> controlDataMap = new();
+        private readonly Dictionary<string, ParameterControlData> controlDataMap = new();
+
         private void IndexControlData()
         {
             ControlData.ForEach(data => controlDataMap.Add(data.ControlId, data));
@@ -128,7 +140,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         private void AddParameterValue(ParameterValue val)
         {
-            GetElement(val.ParentId).AddCommandParameterValue(val, this);
+            GetElement(val.ParentId).AddCommandParameterValue(val);
         }
 
         private void LoadCommandParameterValues()
@@ -137,7 +149,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             BooleanValues.ForEach(val => AddParameterValue(val));
 
             IndexControlData();
-            ControlValues.ForEach(val => {
+            ControlValues.ForEach(val =>
+            {
                 val.AddControlData(controlDataMap);
                 AddParameterValue(val);
             });
