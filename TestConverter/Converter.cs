@@ -3,7 +3,7 @@ using GeneXus.GXtest.Tools.TestConverter.v3;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
-    class Converter
+    public class Converter
     {
         private TestCaseInfo testCaseInfo = null;
 
