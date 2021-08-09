@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using TestConverterTests.Helpers;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Tests
 {
@@ -25,24 +27,29 @@ namespace GeneXus.GXtest.Tools.TestConverter.Tests
 
         private static void TestFileConversion(string inputFile, string outputFile)
         {
-            string expectedCode = File.ReadAllText(outputFile).Trim();
-
             Converter converter = new();
             Assert.IsTrue(converter.ConvertFromFile(inputFile));
             string code = converter.GetTestCode().Trim();
 
-            Assert.AreEqual(expectedCode, code);
+            LineComparer.AreEqual(File.ReadAllLines(outputFile), code.Split(Environment.NewLine));
         }
 
         private static readonly string testDataFolder = "TestData";
-        private static string getTestDataFile(string filename)
+
+        private static string GetTestDataFile(string filename, string extension)
         {
-            return Path.Combine(testDataFolder, filename);
+            return Path.Combine(testDataFolder, filename + extension);
         }
 
         private static IEnumerable<(string InputFile, string OutputFile)> GetCases()
         {
-            yield return (getTestDataFile("MinimalTest.xml"), getTestDataFile("MinimalTestCode.txt"));
+            foreach (var name in testCaseNames)
+                yield return (GetTestDataFile(name, ".xml"), GetTestDataFile(name, ".txt"));
         }
+
+        private static readonly string[] testCaseNames = new string[]
+            {
+                "MinimalTest",
+            };
     }
 }
