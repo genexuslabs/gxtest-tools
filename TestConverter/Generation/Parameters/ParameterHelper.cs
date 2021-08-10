@@ -24,6 +24,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
                 ParameterTypes.Literal => new LiteralParm(parm),
                 ParameterTypes.Control => new ControlParm(parm),
                 ParameterTypes.Boolean => new BooleanParm(parm),
+                ParameterTypes.Variable => new VariableParm(parm),
                 _ => new NotImplementedParm(parm),
             };
         }

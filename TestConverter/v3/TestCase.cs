@@ -30,6 +30,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         [XmlElement("ParametersBoolean")]
         public List<ParameterBooleanValue> BooleanValues { get; set; }
 
+        [XmlElement("Param Variable")]
+        public List<ParameterVariableValue> VariableValues { get; set; }
+
         [XmlElement("ParametersGXObject")]
         public List<ParameterControlValue> ControlValues { get; set; }
 
@@ -147,6 +150,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         {
             LiteralValues.ForEach(val => AddParameterValue(val));
             BooleanValues.ForEach(val => AddParameterValue(val));
+            VariableValues.ForEach(val => AddParameterValue(val));
 
             IndexControlData();
             ControlValues.ForEach(val =>
