@@ -1,6 +1,7 @@
 ﻿using CommandLine;
 using GeneXus.GXtest.Tools.TestConverter.Generation;
 using System;
+using System.Collections.Generic;
 
 namespace GeneXus.GXtest.Tools.TestConverter
 {
@@ -14,6 +15,9 @@ namespace GeneXus.GXtest.Tools.TestConverter
 
             [Option('v', "verbosity", Required = false, HelpText = "Verbosity level on code comments")]
             public Verbosity Verbosity { get; set; } = Verbosity.Normal;
+
+            [Option("vars", Separator = ';', Required = false, HelpText = "List of semicolon separated 'name=value' variable substitutions")]
+            public IEnumerable<string> Variables { get; set; }
         }
 
         static int Main(string[] args)
@@ -36,7 +40,8 @@ namespace GeneXus.GXtest.Tools.TestConverter
             try
             {
                 Console.Out.WriteLine($"Converting '{options.SourceFilePath}'");
-                GenerationOptions.Verbosity = options.Verbosity;
+                GenerationOptions.General.Verbosity = options.Verbosity;
+                GenerationOptions.General.SetVariables(options.Variables);
 
                 var converter = new Converter();
                 if (!converter.ConvertFromFile(options.SourceFilePath))

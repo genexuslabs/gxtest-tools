@@ -5,8 +5,10 @@ namespace TestConverterTests.Helpers
 {
     public static class LineComparer
     {
-        public static void AreEqual(IEnumerable<string> expectedLines, IEnumerable<string> actualLines)
+        public static void AreEqual(IEnumerable<string> expectedLines, IEnumerable<string> actualLines, string caseName = "")
         {
+            string caseInfo = string.IsNullOrEmpty(caseName)? "" : $"Case '{caseName}'";
+
             IEnumerator<string> expectedEnum = expectedLines.GetEnumerator();
             IEnumerator<string> actualEnum = actualLines.GetEnumerator();
 
@@ -24,7 +26,7 @@ namespace TestConverterTests.Helpers
                 string expected = gotExpected ? expectedEnum.Current : string.Empty;
                 string actual = gotActual ? actualEnum.Current : string.Empty;
 
-                Assert.AreEqual(expected, actual, false, $"Line {line}");
+                Assert.AreEqual(expected, actual, false, $"{caseInfo}, Line {line}");
                 line++;
             }
         }

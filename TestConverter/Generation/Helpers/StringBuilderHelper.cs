@@ -8,7 +8,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
 
         public static StringBuilder AppendCommentLine(this StringBuilder builder, string text, Verbosity verbosityLevel = Verbosity.Normal)
         {
-            if (verbosityLevel > GenerationOptions.Verbosity)
+            if (verbosityLevel > GenerationOptions.General.Verbosity)
                 return builder;
 
             return builder.AppendLine(commentPrefix + text);

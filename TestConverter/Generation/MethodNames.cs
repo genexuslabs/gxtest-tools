@@ -3,7 +3,8 @@
     static class MethodNames
     {
         public const string Go = "Go";
-        public const string ClickBy = "ClickBy";
+        public const string Click = "Click";
+        public const string ClickByID = "ClickByID";
         public const string TypeByID = "TypeByID";
     }
 }

@@ -6,10 +6,10 @@
 
 &driver.Go("http://localhost/GXtestDPs.NetEnvironment/wwcountry.aspx")
 
-&driver.ClickBy("BtnInsert")
+&driver.Click("BtnInsert")
 
 &driver.TypeByID("CountryName", "Uruguay")
 
-&driver.ClickBy("btn_enter")
+&driver.Click("btn_enter")
 
-&driver.ClickBy("deleteGrid")
+&driver.Click("deleteGrid")

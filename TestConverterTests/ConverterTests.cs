@@ -1,8 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using GeneXus.GXtest.Tools.TestConverter.Generation;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using TestConverterTests.Helpers;
+using TestConverterTests.TestData;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Tests
 {
@@ -19,37 +20,21 @@ namespace GeneXus.GXtest.Tools.TestConverter.Tests
             file = "<Invalid path>";
             Assert.IsFalse(converter.ConvertFromFile(file));
 
-            foreach (var (inputFile, outputFile) in GetCases())
+            foreach (var testCase in FileTestCase.GetCases())
             {
-                TestFileConversion(inputFile, outputFile);
+                TestFileConversion(testCase);
             }
         }
 
-        private static void TestFileConversion(string inputFile, string outputFile)
+        private static void TestFileConversion(FileTestCase testCase)
         {
             Converter converter = new();
-            Assert.IsTrue(converter.ConvertFromFile(inputFile));
+            GenerationOptions.General.SetVariables(testCase.Variables);
+
+            Assert.IsTrue(converter.ConvertFromFile(testCase.InputFile));
             string code = converter.GetTestCode().Trim();
 
-            LineComparer.AreEqual(File.ReadAllLines(outputFile), code.Split(Environment.NewLine));
+            LineComparer.AreEqual(File.ReadAllLines(testCase.OutputFile), code.Split(Environment.NewLine), testCase.CaseName);
         }
-
-        private static readonly string testDataFolder = "TestData";
-
-        private static string GetTestDataFile(string filename, string extension)
-        {
-            return Path.Combine(testDataFolder, filename + extension);
-        }
-
-        private static IEnumerable<(string InputFile, string OutputFile)> GetCases()
-        {
-            foreach (var name in testCaseNames)
-                yield return (GetTestDataFile(name, ".xml"), GetTestDataFile(name, ".txt"));
-        }
-
-        private static readonly string[] testCaseNames = new string[]
-            {
-                "MinimalTest",
-            };
     }
 }

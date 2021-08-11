@@ -17,7 +17,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             builder.AppendCommentLine("Click command generation", Verbosity.Diagnostic);
             builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
 
-            builder.AppendDriverMethod(MethodNames.ClickBy, Command.Parameters[1]);
+            builder.AppendDriverMethod(MethodNames.Click, Command.Parameters[1]);
         }
     }
 }
