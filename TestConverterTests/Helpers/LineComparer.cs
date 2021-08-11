@@ -7,7 +7,7 @@ namespace TestConverterTests.Helpers
     {
         public static void AreEqual(IEnumerable<string> expectedLines, IEnumerable<string> actualLines, string caseName = "")
         {
-            string caseInfo = string.IsNullOrEmpty(caseName)? "" : $"Case '{caseName}'";
+            string caseInfo = string.IsNullOrEmpty(caseName) ? "" : $"Case '{caseName}'";
 
             IEnumerator<string> expectedEnum = expectedLines.GetEnumerator();
             IEnumerator<string> actualEnum = actualLines.GetEnumerator();
