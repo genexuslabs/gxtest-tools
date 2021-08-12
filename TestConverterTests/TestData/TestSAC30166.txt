@@ -9,22 +9,21 @@
 &driver.Click("Button2")
 &driver.Verify(&driver.AppearText("los datos han sido inicializados"), False, "")
 
-&driver.Click("CASO8")
+&driver.Click("Button1")
 
-&driver.Click("BTN_LAST")
-&driver.Verify(&driver.GetValue("TSAC30166PERSONNAME") = "Juan",false,"No aparece el registro de nombre Juan")
-&driver.Verify(&driver.GetValue("TSAC30166PERSONAGE") = "23",false,"No aparece el valor 23")
+&driver.Click("btn_last")
+&driver.Verify(&driver.GetValue("TSAC30166PERSONNAME") = "Juan", False, "No aparece el valor 23")
 
-&driver.Type("TSAC30166COUNTRYID",1,"6")
-&driver.KeysByID("TSAC30166COUNTRYID_0001",keys.TAB)
-&driver.Verify(&driver.AppearText("No matching 'TSAC30166 Country'."),false,"No aparece el texto No matching 'TSAC30166 Country'.")
+&driver.Type("TSAC30166COUNTRYID", 1, "6")
+&driver.KeysByID("TSAC30166COUNTRYID_0001", keys.TAB)
+&driver.Verify(&driver.AppearText("No matching 'TSAC30166 Country'."), False, "No aparece el texto No matching 'TSAC30166 Country'.")
 
 &driver.ClickByID("deleteGridtsac30166person_country_0001")
 &driver.ClickByID("PROMPT_112_0002")
 &driver.SwitchFrame("index=0")
-&driver.Click("&LinkSelection",1)
+&driver.Click("&LinkSelection", 1)
 &driver.SwitchFrame("relative=parent")
-&driver.KeysByID("TSAC30166COUNTRYID_0002",keys.TAB)
-&driver.Verify(&driver.GetTextByID("span_TSAC30166COUNTRYNAME_0002") = "Uruguay",false,"No aparece el valor Uruguay")
+&driver.KeysByID("TSAC30166COUNTRYID_0002", keys.TAB)
+&driver.Verify(&driver.GetTextByID("span_TSAC30166COUNTRYNAME_0002") = "Uruguay", False, "No aparece el valor Uruguay")
 
 &driver.End()
