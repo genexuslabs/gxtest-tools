@@ -7,7 +7,7 @@
 &driver.Go(TestMain.Link())
 
 &driver.Click("Button2")
-&driver.Verify(&driver.AppearText("datos inicializados"),false,"No aparece el texto datos inicializados")
+&driver.Verify(&driver.AppearText("los datos han sido inicializados"), False, "")
 
 &driver.Click("CASO8")
 
