@@ -39,10 +39,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
         private static string RemoveQuotes(string quoted)
         {
-            if (quoted.Length >= 2 && quoted[0] == '"' && quoted[quoted.Length - 1] == '"')
-                return quoted.Substring(1, quoted.Length - 2);
-
-            return quoted;
+            return quoted.Length >= 2 && quoted[0] == '"' && quoted[^1] == '"' ? quoted[1..^1] : quoted;
         }
     }
 }
