@@ -7,23 +7,34 @@
 &driver.Go(TestMain.Link())
 
 &driver.Click("Button2")
-&driver.Verify(&driver.AppearText("los datos han sido inicializados"), False, "")
+&driver.Verify(&driver.AppearText("los datos han sido inicializados"), False)
 
 &driver.Click("Button1")
 
 &driver.Click("btn_last")
-&driver.Verify(&driver.GetValue("TSAC30166PERSONNAME") = "Juan", False, "No aparece el valor 23")
+&driver.Type("CountryId", 1, "6")
+&driver.SendKeys(keys.TAB)
+&driver.PauseFor(1)
 
-&driver.Type("TSAC30166COUNTRYID", 1, "6")
-&driver.KeysByID("TSAC30166COUNTRYID_0001", keys.TAB)
-&driver.Verify(&driver.AppearText("No matching 'TSAC30166 Country'."), False, "No aparece el texto No matching 'TSAC30166 Country'.")
+&driver.Verify(&driver.GetTextByID("COUNTRYID_0001_Balloon") = "No matching 'Country'.") // &driver.Verify(&driver.GetValidationText("CountryId", 1) = ("No matching 'Country'.") 
 
-&driver.ClickByID("deleteGridtsac30166person_country_0001")
-&driver.ClickByID("PROMPT_112_0002")
+&driver.ClickByID("deleteGridperson_country_0001") // &driver.DeleteRow("GridPerson_Country", 1)
+
+&driver.ClickByID("PROMPT_1_0002") // &driver.ClickPrompt("CountryId", 2)
 &driver.SwitchFrame("index=0")
-&driver.Click("&LinkSelection", 1)
+
+&driver.Click("CountryName", 1)
 &driver.SwitchFrame("relative=parent")
-&driver.KeysByID("TSAC30166COUNTRYID_0002", keys.TAB)
-&driver.Verify(&driver.GetTextByID("span_TSAC30166COUNTRYNAME_0002") = "Uruguay", False, "No aparece el valor Uruguay")
+
+&driver.SendKeys(keys.TAB)
+&driver.Type("VisitedTimes", 2, "234")
+&driver.SendKeys(keys.TAB)
+&driver.Type("VisitedCity", 2, "Montevideo")
+&driver.SendKeys(keys.TAB)
+&driver.Verify(not &driver.IsControlPresent("COUNTRYID_0002_Balloon")) // &driver.Verify(&driver.GetValidationText("CountryId", 1) != ("No matching 'Country'.") 
+
+
+&driver.Click("btn_enter")
+&driver.Verify(&driver.GetMessages().ToJson().Contains("Data has been successfully updated."))
 
 &driver.End()
