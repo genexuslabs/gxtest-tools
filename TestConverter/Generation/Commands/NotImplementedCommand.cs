@@ -13,7 +13,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
         public override void Generate(StringBuilder builder)
         {
             builder.AppendCommentLine("Unknown command generation", Verbosity.Diagnostic);
-            builder.AppendLine("code not yet implemented");
+            builder.AppendLine($"code not yet implemented: {Command}");
         }
     }
 }
