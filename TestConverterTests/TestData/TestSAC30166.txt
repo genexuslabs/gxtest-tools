@@ -15,7 +15,6 @@
 &driver.Type("CountryId", 1, "6")
 &driver.SendKeys(Keys.TAB)
 &driver.PauseFor(1)
-
 &driver.Verify(&driver.GetTextByID("COUNTRYID_0001_Balloon") = "No matching 'Country'.") // &driver.Verify(&driver.GetValidationText("CountryId", 1) = ("No matching 'Country'.") 
 
 &driver.ClickByID("deleteGridperson_country_0001") // &driver.DeleteRow("GridPerson_Country", 1)
