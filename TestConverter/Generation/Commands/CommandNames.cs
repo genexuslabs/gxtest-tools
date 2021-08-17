@@ -2,10 +2,11 @@
 {
     static class CommandNames
     {
-        public const string Go = "Go";
+        public const string AppearText = "AppearText";
         public const string Click = "Click";
         public const string FillInput = "FillInput";
         public const string FillInputTable = "FillInputTable";
-        public const string AppearText = "AppearText";
+        public const string Go = "Go";
+        public const string PressKey = "PressKey";
     }
 }

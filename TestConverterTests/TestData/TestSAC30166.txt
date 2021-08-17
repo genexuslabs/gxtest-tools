@@ -13,7 +13,7 @@
 
 &driver.Click("btn_last")
 &driver.Type("CountryId", 1, "6")
-&driver.SendKeys(keys.TAB)
+&driver.SendKeys(Keys.TAB)
 &driver.PauseFor(1)
 
 &driver.Verify(&driver.GetTextByID("COUNTRYID_0001_Balloon") = "No matching 'Country'.") // &driver.Verify(&driver.GetValidationText("CountryId", 1) = ("No matching 'Country'.") 
@@ -26,11 +26,11 @@
 &driver.Click("CountryName", 1)
 &driver.SwitchFrame("relative=parent")
 
-&driver.SendKeys(keys.TAB)
+&driver.SendKeys(Keys.TAB)
 &driver.Type("VisitedTimes", 2, "234")
-&driver.SendKeys(keys.TAB)
+&driver.SendKeys(Keys.TAB)
 &driver.Type("VisitedCity", 2, "Montevideo")
-&driver.SendKeys(keys.TAB)
+&driver.SendKeys(Keys.TAB)
 &driver.Verify(not &driver.IsControlPresent("COUNTRYID_0002_Balloon")) // &driver.Verify(&driver.GetValidationText("CountryId", 1) != ("No matching 'Country'.") 
 
 

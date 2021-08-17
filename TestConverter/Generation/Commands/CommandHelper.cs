@@ -23,11 +23,12 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
         {
             return command.Name switch
             {
-                CommandNames.Go => new GoCommand(command),
+                CommandNames.AppearText => new AppearTextCommand(command),
                 CommandNames.Click => new ClickCommand(command),
                 CommandNames.FillInput => new FillInputCommand(command),
                 CommandNames.FillInputTable => new FillInputTableCommand(command),
-                CommandNames.AppearText => new AppearTextCommand(command),
+                CommandNames.Go => new GoCommand(command),
+                CommandNames.PressKey => new PressKeyCommand(command),
                 _ => new NotImplementedCommand(command),
             };
         }

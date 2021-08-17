@@ -30,16 +30,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
                 return;
             }
 
-            string rowId = RemoveQuotes(ParameterHelper.GetParameterCode(Command.Parameters[3]));
+            string rowId = StringHelper.RemoveQuotes(ParameterHelper.GetParameterCode(Command.Parameters[3]));
             string controlName = ParameterHelper.GetParameterCode(Command.Parameters[4]);
             string valueToType = ParameterHelper.GetParameterCode(Command.Parameters[5]);
 
             builder.AppendDriverMethod(MethodNames.Type, controlName, rowId, valueToType);
-        }
-
-        private static string RemoveQuotes(string quoted)
-        {
-            return quoted.Length >= 2 && quoted[0] == '"' && quoted[^1] == '"' ? quoted[1..^1] : quoted;
         }
     }
 }
