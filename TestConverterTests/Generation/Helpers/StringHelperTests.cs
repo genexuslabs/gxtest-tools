@@ -9,20 +9,20 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Tests
         [TestMethod()]
         public void ProcessKeyLiteralsTest()
         {
-            foreach ((string input, string expectedOutput) in GetCases())
+            foreach ((string input, string[] expectedOutput) in GetCases())
             {
-                Assert.AreEqual(expectedOutput, StringHelper.ProcessKeyLiterals(input));
+                CollectionAssert.AreEqual(expectedOutput, StringHelper.SplitLiteralByKeys(input));
             }
         }
 
-        private static IEnumerable<(string input, string expectedOutput)> GetCases()
+        private static IEnumerable<(string input, string[] expectedOutput)> GetCases()
         {
-            yield return ("", "\"\"");
-            yield return ("\"\"", "\"\"");
-            yield return ("{TAB}", "Keys.TAB");
-            yield return ("\"{TAB}\"", "Keys.TAB");
-            yield return ("\"algo {TAB} otro {SHIFT}\"", "\"algo \" + Keys.TAB + \" otro \" + Keys.SHIFT");
-            yield return ("\"algo {TAB} otro {SHIFT} extra\"", "\"algo \" + Keys.TAB + \" otro \" + Keys.SHIFT + \" extra\"");
+            yield return ("", new string[] { "\"\"" });
+            yield return ("\"\"", new string[] { "\"\"" });
+            yield return ("{TAB}", new string[] { "Keys.TAB" });
+            yield return ("\"{TAB}\"", new string[] { "Keys.TAB" });
+            yield return ("\"algo {TAB} otro {SHIFT}\"", new string[] { "\"algo \"", "Keys.TAB", "\" otro \"", "Keys.SHIFT" });
+            yield return ("\"algo {TAB} otro {SHIFT} extra\"", new string[] { "\"algo \"", "Keys.TAB", "\" otro \"", "Keys.SHIFT", "\" extra\"" });
         }
     }
 }

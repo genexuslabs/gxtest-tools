@@ -19,8 +19,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
 
             string parameter = ParameterHelper.GetParameterCode(Command.Parameters[1]);
-            string convertedParm = StringHelper.ProcessKeyLiterals(parameter);
-            builder.AppendDriverMethod(MethodNames.SendKeys, convertedParm);
+            foreach (var fragment in StringHelper.SplitLiteralByKeys(parameter))
+                builder.AppendDriverMethod(MethodNames.SendKeys, fragment);
         }
     }
 }
