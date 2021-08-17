@@ -28,6 +28,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
                 CommandNames.FillInput => new FillInputCommand(command),
                 CommandNames.FillInputTable => new FillInputTableCommand(command),
                 CommandNames.Go => new GoCommand(command),
+                CommandNames.Pause => new PauseCommand(command),
                 CommandNames.PressKey => new PressKeyCommand(command),
                 _ => new NotImplementedCommand(command),
             };

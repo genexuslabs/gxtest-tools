@@ -7,6 +7,7 @@
         public const string FillInput = "FillInput";
         public const string FillInputTable = "FillInputTable";
         public const string Go = "Go";
+        public const string Pause = "Pause";
         public const string PressKey = "PressKey";
     }
 }
