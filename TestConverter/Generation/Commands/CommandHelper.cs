@@ -23,6 +23,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
         {
             return command.Name switch
             {
+                CommandNames.AppearBalloonTable => new AppearBalloonTable(command),
                 CommandNames.AppearText => new AppearTextCommand(command),
                 CommandNames.Click => new ClickCommand(command),
                 CommandNames.FillInput => new FillInputCommand(command),
