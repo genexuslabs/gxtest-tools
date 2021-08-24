@@ -5,9 +5,9 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class PressKeyCommand : CommandGenerator
+    class PressKey : CommandGenerator
     {
-        public PressKeyCommand(Command command)
+        public PressKey(Command command)
             : base(command)
         {
             Debug.Assert(command.Name == CommandNames.PressKey);

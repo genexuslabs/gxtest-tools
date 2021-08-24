@@ -24,14 +24,14 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             return command.Name switch
             {
                 CommandNames.AppearBalloonTable => new AppearBalloonTable(command),
-                CommandNames.AppearText => new AppearTextCommand(command),
-                CommandNames.Click => new ClickCommand(command),
-                CommandNames.FillInput => new FillInputCommand(command),
-                CommandNames.FillInputTable => new FillInputTableCommand(command),
-                CommandNames.Go => new GoCommand(command),
-                CommandNames.Pause => new PauseCommand(command),
-                CommandNames.PressKey => new PressKeyCommand(command),
-                _ => new NotImplementedCommand(command),
+                CommandNames.AppearText => new AppearText(command),
+                CommandNames.Click => new Click(command),
+                CommandNames.FillInput => new FillInput(command),
+                CommandNames.FillInputTable => new FillInputTable(command),
+                CommandNames.Go => new Go(command),
+                CommandNames.Pause => new Pause(command),
+                CommandNames.PressKey => new PressKey(command),
+                _ => new NotImplemented(command),
             };
         }
     }

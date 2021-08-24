@@ -5,9 +5,9 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class FillInputTableCommand : CommandGenerator
+    class FillInputTable : CommandGenerator
     {
-        public FillInputTableCommand(Command command)
+        public FillInputTable(Command command)
             : base(command)
         {
             Debug.Assert(command.Name == CommandNames.FillInputTable);

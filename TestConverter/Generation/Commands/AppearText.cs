@@ -7,9 +7,9 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class AppearTextCommand : CommandGenerator
+    class AppearText : CommandGenerator
     {
-        public AppearTextCommand(Command command)
+        public AppearText(Command command)
             : base(command)
         {
             Debug.Assert(command.Name == CommandNames.AppearText);

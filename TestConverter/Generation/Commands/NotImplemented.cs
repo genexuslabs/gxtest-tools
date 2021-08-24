@@ -3,9 +3,9 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class NotImplementedCommand : CommandGenerator
+    class NotImplemented : CommandGenerator
     {
-        public NotImplementedCommand(Command command)
+        public NotImplemented(Command command)
             : base(command)
         {
         }

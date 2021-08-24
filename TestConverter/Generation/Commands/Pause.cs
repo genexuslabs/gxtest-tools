@@ -6,9 +6,9 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class PauseCommand : CommandGenerator
+    class Pause : CommandGenerator
     {
-        public PauseCommand(Command command)
+        public Pause(Command command)
             : base(command)
         {
             Debug.Assert(command.Name == CommandNames.Pause);
