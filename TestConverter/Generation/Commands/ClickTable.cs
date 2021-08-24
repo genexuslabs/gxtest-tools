@@ -2,7 +2,6 @@
 using GeneXus.GXtest.Tools.TestConverter.v3;
 using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands

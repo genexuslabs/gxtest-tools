@@ -12,6 +12,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
         {
             Debug.Assert(command.Name == CommandNames.FillInputTable);
         }
+
         public override void Generate(StringBuilder builder)
         {
             builder.AppendCommentLine("FillInputTable command generation", Verbosity.Diagnostic);

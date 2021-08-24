@@ -1,6 +1,5 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Parameters;
 using GeneXus.GXtest.Tools.TestConverter.v3;
-using System;
 using System.Diagnostics;
 using System.Text;
 

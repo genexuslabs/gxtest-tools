@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation
@@ -11,7 +10,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
         {
             return $"\"{unquoted}\"";
         }
-            
+
         public static string RemoveQuotes(string quoted)
         {
             return quoted.Length >= 2 && quoted[0] == '"' && quoted[^1] == '"' ? quoted[1..^1] : quoted;
