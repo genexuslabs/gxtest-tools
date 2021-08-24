@@ -26,6 +26,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
                 CommandNames.AppearBalloonTable => new AppearBalloonTable(command),
                 CommandNames.AppearText => new AppearText(command),
                 CommandNames.Click => new Click(command),
+                CommandNames.ClickTable => new ClickTable(command),
                 CommandNames.FillInput => new FillInput(command),
                 CommandNames.FillInputTable => new FillInputTable(command),
                 CommandNames.Go => new Go(command),
