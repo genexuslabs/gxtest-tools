@@ -19,10 +19,10 @@
 &driver.ClickByID("deleteGridperson_country_0001") // &driver.DeleteRow("GridPerson_Country", 1)
 
 &driver.ClickByID("PROMPT_1_0002") // &driver.ClickPrompt("CountryId", 2)
-&driver.SwitchFrame("index=0")
+&driver.SwitchFrame("index=0") // should not be needed
 
 &driver.Click("CountryName", 1)
-&driver.SwitchFrame("relative=parent")
+&driver.SwitchFrame("relative=parent") // should not be needed
 
 &driver.SendKeys(Keys.TAB)
 &driver.Type("VisitedTimes", 2, "234")
