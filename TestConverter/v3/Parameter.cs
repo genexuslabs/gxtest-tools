@@ -47,7 +47,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         public static Parameter CreateLiteralParameter(string literal)
         {
-            var literalValue = new ParameterLiteralValue
+            var literalValue = new LiteralValue
             {
                 Value = literal
             };
@@ -57,7 +57,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         public static Parameter CreateBooleanParameter(string boolean)
         {
-            var booleanValue = new ParameterBooleanValue
+            var booleanValue = new BooleanValue
             {
                 Value = boolean
             };

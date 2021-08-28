@@ -6,13 +6,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 {
     class VariableParm : ParameterGenerator
     {
-        private readonly ParameterVariableValue VariableValue;
+        private readonly VariableValue VariableValue;
 
         public VariableParm(Parameter parm)
            : base(parm)
         {
-            ValidateParameterTypes(parm, ParameterTypes.Variable, typeof(ParameterVariableValue));
-            VariableValue = parm.Value as ParameterVariableValue;
+            ValidateParameterTypes(parm, ParameterTypes.Variable, typeof(VariableValue));
+            VariableValue = parm.Value as VariableValue;
         }
 
         public override void Generate(StringBuilder builder)

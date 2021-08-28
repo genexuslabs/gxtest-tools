@@ -2,9 +2,9 @@
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
-    public class ParameterBooleanValue : ParameterValue
+    public class BooleanValue : ParameterValue
     {
-        public ParameterBooleanValue()
+        public BooleanValue()
             : base(ParameterTypes.Boolean)
         {
         }
@@ -14,7 +14,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         public override string ToString()
         {
-            return $"ParameterBooleanValue[{Value}]";
+            return $"{GetType().Name}[{Value}]";
         }
     }
 }

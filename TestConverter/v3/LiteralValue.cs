@@ -2,9 +2,9 @@
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
-    public class ParameterLiteralValue : ParameterValue
+    public class LiteralValue : ParameterValue
     {
-        public ParameterLiteralValue()
+        public LiteralValue()
             : base(ParameterTypes.Literal)
         {
         }
@@ -14,7 +14,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         public override string ToString()
         {
-            return $"ParameterLiteralValue[{Value}]";
+            return $"{GetType().Name}[{Value}]";
         }
     }
 }

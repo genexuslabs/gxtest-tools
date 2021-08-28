@@ -2,9 +2,9 @@
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
-    public class ParameterVariableValue : ParameterValue
+    public class VariableValue : ParameterValue
     {
-        public ParameterVariableValue()
+        public VariableValue()
             : base(ParameterTypes.Variable)
         {
         }
@@ -14,7 +14,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         public override string ToString()
         {
-            return $"ParameterVariableValue[&{VariableName}]";
+            return $"{GetType().Name}[&{VariableName}]";
         }
     }
 }
