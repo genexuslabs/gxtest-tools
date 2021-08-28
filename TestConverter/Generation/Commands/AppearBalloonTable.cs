@@ -64,11 +64,16 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
         private static string GetHasValidationWorkAround(string controlName, string rowId)
         {
+            string balloonControlId = GetBalloonControlId(controlName, rowId);
+            return $"{DriverMethodHelper.GetDriverMethodCode(MethodNames.GetTextByID, StringHelper.Quote(balloonControlId))} <> \"\"";
+        }
+
+        private static string GetBalloonControlId(string controlName, string rowId)
+        {
             if (!int.TryParse(rowId, out int row))
                 row = 1;
 
-            string balloonControlId = $"{StringHelper.RemoveQuotes(controlName.ToUpper())}_{row:D4}_Balloon";
-            return $"{DriverMethodHelper.GetDriverMethodCode(MethodNames.GetTextByID, StringHelper.Quote(balloonControlId))} <> \"\"";
+            return $"{StringHelper.RemoveQuotes(controlName.ToUpper())}_{row:D4}_Balloon";
         }
 
         private static string GetExpectedResult(Parameter parm)
