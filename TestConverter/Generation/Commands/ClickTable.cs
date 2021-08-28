@@ -19,8 +19,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             builder.AppendCommentLine("ClickTable command generation", Verbosity.Diagnostic);
             builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
 
-            string selectionType = Command.Parameters[2].Type;
-            if (selectionType != SelectionType.ByRow)
+            ParmType selectionType = Command.Parameters[2].Type;
+            if (selectionType != ParmType.SelectionByRow)
             {
                 builder.AppendLine("code not yet implemented");
                 return;

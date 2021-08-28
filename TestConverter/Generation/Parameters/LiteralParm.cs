@@ -10,7 +10,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         public LiteralParm(Parameter parm)
            : base(parm)
         {
-            ValidateParameterTypes(parm, ParameterTypes.Literal, typeof(LiteralValue));
+            ValidateParameterTypes(parm, ParmType.Literal, typeof(LiteralValue));
             LiteralValue = parm.Value as LiteralValue;
         }
 

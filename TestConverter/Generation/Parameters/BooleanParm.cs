@@ -10,7 +10,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         public BooleanParm(Parameter parm)
            : base(parm)
         {
-            ValidateParameterTypes(parm, ParameterTypes.Boolean, typeof(BooleanValue));
+            ValidateParameterTypes(parm, ParmType.Boolean, typeof(BooleanValue));
             BooleanValue = parm.Value as BooleanValue;
         }
 

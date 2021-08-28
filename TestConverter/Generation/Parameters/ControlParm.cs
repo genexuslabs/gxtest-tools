@@ -10,7 +10,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         public ControlParm(Parameter parm)
            : base(parm)
         {
-            ValidateParameterTypes(parm, ParameterTypes.Control, typeof(ControlValue));
+            ValidateParameterTypes(parm, ParmType.Control, typeof(ControlValue));
             ControlValue = parm.Value as ControlValue;
         }
 

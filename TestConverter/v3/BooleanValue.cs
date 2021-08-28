@@ -5,7 +5,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
     public class BooleanValue : ParameterValue
     {
         public BooleanValue()
-            : base(ParameterTypes.Boolean)
+            : base(ParmType.Boolean)
         {
         }
 

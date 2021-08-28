@@ -11,7 +11,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         public VariableParm(Parameter parm)
            : base(parm)
         {
-            ValidateParameterTypes(parm, ParameterTypes.Variable, typeof(VariableValue));
+            ValidateParameterTypes(parm, ParmType.Variable, typeof(VariableValue));
             VariableValue = parm.Value as VariableValue;
         }
 

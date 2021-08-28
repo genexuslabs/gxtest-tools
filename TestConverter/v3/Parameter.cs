@@ -6,7 +6,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
     public class Parameter : ParameterComponent
     {
         [XmlElement("ParameterType")]
-        public string Type { get; set; }
+        public ParmType Type { get; set; }
 
         public override string ToString()
         {
@@ -33,7 +33,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         #region Factory
 
-        public static Parameter CreateParameter(string parmType, ParameterValue parmValue)
+        public static Parameter CreateParameter(ParmType parmType, ParameterValue parmValue)
         {
             var parm = new Parameter
             {
@@ -52,7 +52,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
                 Value = literal
             };
 
-            return CreateParameter(ParameterTypes.Literal, literalValue);
+            return CreateParameter(ParmType.Literal, literalValue);
         }
 
         public static Parameter CreateBooleanParameter(string boolean)
@@ -62,7 +62,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
                 Value = boolean
             };
 
-            return CreateParameter(ParameterTypes.Boolean, booleanValue);
+            return CreateParameter(ParmType.Boolean, booleanValue);
         }
 
         #endregion

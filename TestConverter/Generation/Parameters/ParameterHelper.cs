@@ -21,10 +21,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         {
             return parm.Type switch
             {
-                ParameterTypes.Literal => new LiteralParm(parm),
-                ParameterTypes.Control => new ControlParm(parm),
-                ParameterTypes.Boolean => new BooleanParm(parm),
-                ParameterTypes.Variable => new VariableParm(parm),
+                ParmType.Literal => new LiteralParm(parm),
+                ParmType.Control => new ControlParm(parm),
+                ParmType.Boolean => new BooleanParm(parm),
+                ParmType.Variable => new VariableParm(parm),
                 _ => new NotImplementedParm(parm),
             };
         }

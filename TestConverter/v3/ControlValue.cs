@@ -7,7 +7,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
     public class ControlValue : ParameterValue
     {
         public ControlValue()
-            : base(ParameterTypes.Control)
+            : base(ParmType.Control)
         {
         }
 

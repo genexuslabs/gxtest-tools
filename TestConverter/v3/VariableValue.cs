@@ -5,7 +5,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
     public class VariableValue : ParameterValue
     {
         public VariableValue()
-            : base(ParameterTypes.Variable)
+            : base(ParmType.Variable)
         {
         }
 

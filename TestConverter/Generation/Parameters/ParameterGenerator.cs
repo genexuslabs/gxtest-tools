@@ -13,7 +13,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
             Parameter = parm;
         }
 
-        protected static void ValidateParameterTypes(Parameter parm, string parmType, Type valueType)
+        protected static void ValidateParameterTypes(Parameter parm, ParmType parmType, Type valueType)
         {
             if (parm.Type != parmType)
                 throw new Exception($"Invalid parameter type. Expected {parmType}; found {parm.Type}");

@@ -5,7 +5,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
     public class LiteralValue : ParameterValue
     {
         public LiteralValue()
-            : base(ParameterTypes.Literal)
+            : base(ParmType.Literal)
         {
         }
 
