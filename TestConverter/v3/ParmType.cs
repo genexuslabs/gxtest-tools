@@ -14,6 +14,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         SelectionByControl,
         [XmlEnum(Name = "SelectionByRow")]
         SelectionByRow,
+        [XmlEnum(Name = "SelectionByContext")]
+        SelectionByContext,
         [XmlEnum(Name = "Variable")]
         Variable
     }

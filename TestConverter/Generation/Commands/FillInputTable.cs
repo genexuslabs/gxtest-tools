@@ -5,37 +5,25 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class FillInputTable : CommandGenerator
+    class FillInputTable : TableCommand
     {
         public FillInputTable(Command command)
-            : base(command)
+            : base(command, /* additionalParms */ 1)
         {
             Debug.Assert(command.Name == CommandNames.FillInputTable);
         }
 
+        protected int InputIndex => LastTableCommandParm + 1;
+
         public override void Generate(StringBuilder builder)
         {
-            builder.AppendCommentLine("FillInputTable command generation", Verbosity.Diagnostic);
-            builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
-
-            ParmType selectionType = Command.Parameters[2].Type;
-            if (selectionType != ParmType.SelectionByRow)
-            {
-                builder.AppendLine("code not yet implemented");
+            if (!PreGenerate(builder))
                 return;
-            }
 
-            if (Command.Parameters.Count < 6)
-            {
-                builder.AppendLine("not enough parameters");
-                return;
-            }
-
-            string rowId = StringHelper.RemoveQuotes(ParameterHelper.GetParameterCode(Command.Parameters[3]));
-            string controlName = ParameterHelper.GetParameterCode(Command.Parameters[4]);
-            string valueToType = ParameterHelper.GetParameterCode(Command.Parameters[5]);
-
-            builder.AppendDriverMethod(MethodNames.Type, controlName, rowId, valueToType);
+            int row = SelectorType != ParmType.SelectionByRow ? 0 : Row;
+            string valueToType = ParameterHelper.GetParameterCode(Command.Parameters[InputIndex]);
+            builder.AppendDriverMethod(MethodNames.Type, TargetControlName, row, valueToType);
         }
+
     }
 }

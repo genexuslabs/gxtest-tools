@@ -5,55 +5,45 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class AppearBalloonTable : CommandGenerator
+    class AppearBalloonTable : TableCommand
     {
         public AppearBalloonTable(Command command)
-            : base(command)
+            : base(command, /* additionalParms */ 2)
         {
             Debug.Assert(command.Name == CommandNames.AppearBalloonTable);
         }
 
+        protected int NegateIndex => LastTableCommandParm + 1;
+        protected int ErrorMsgIndex => NegateIndex + 1;
+
         public override void Generate(StringBuilder builder)
         {
             // Validation AppearBalloonTable(
-            //  [0] ignore    - ParameterBooleanValue[false],
-            //  [1] grid      - ParameterControlValue[a4126e3c-555b-4570-86c5-da96ec7da727],
-            //  [2] byRow     - /* SelectionByRow */ null,
-            //  [3] row       - ParameterLiteralValue[1],
-            //  [4] CountryId - ParameterControlValue[401bbfb2-14de-4e7c-b79b-c2c0aaf12d0f],
-            //  [5] negate?   - ParameterBooleanValue[false],
-            //  [6} errorMsg  - ParameterLiteralValue[No matching 'Country'.])
+            //  [0] ignore        - ParameterBooleanValue[false],
+            //  [1] grid          - ParameterControlValue[a4126e3c-555b-4570-86c5-da96ec7da727],
+            //  [2] byRow         - /* SelectionByRow */ RowSelectorValue,
+            //  [3] row           - ParameterLiteralValue[1],
+            //  [4] targetControl - ParameterControlValue[401bbfb2-14de-4e7c-b79b-c2c0aaf12d0f],
+            //  [5] negate?       - ParameterBooleanValue[false],
+            //  [6} errorMsg      - ParameterLiteralValue[No matching 'Country'.])
 
-            builder.AppendCommentLine("AppearBalloonTable command generation", Verbosity.Diagnostic);
-            builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
-            builder.AppendCommentLine($"Ignoring second parm {Command.Parameters[1]}", Verbosity.Diagnostic);
-
-            ParmType selectionType = Command.Parameters[2].Type;
-            if (selectionType != ParmType.SelectionByRow)
-            {
-                builder.AppendLine("code not yet implemented");
+            if (!base.PreGenerate(builder))
                 return;
-            }
-
-            if (Command.Parameters.Count < 7)
-            {
-                builder.AppendLine("not enough parameters");
-                return;
-            }
 
             // Expected:  &driver.Verify(&driver.GetTextByID("COUNTRYID_0001_Balloon") <> \"\", True, "No matching 'Country'.")
             // Desired:   &driver.Verify(&driver.HasValidationText("CountryId", 1), True, "No matching 'Country'.")
 
-            string rowId = StringHelper.RemoveQuotes(ParameterHelper.GetParameterCode(Command.Parameters[3]));
-            string controlName = ParameterHelper.GetParameterCode(Command.Parameters[4]);
-            string hasValidation = DriverMethodHelper.GetDriverMethodCode(MethodNames.HasValidationText, controlName, rowId);
-            string hasValidationWorkaround = GetHasValidationWorkAround(controlName, rowId);
-            string expectedResult = GetExpectedResult(Command.Parameters[5]);
-            string message = ParameterHelper.GetParameterCode(Command.Parameters[6]);
+            int row = SelectorType != ParmType.SelectionByRow ? 0 : Row;
+
+            string hasValidation = DriverMethodHelper.GetDriverMethodCode(MethodNames.HasValidationText, TargetControlName, row);
+            string hasValidationWorkaround = GetHasValidationWorkAround(TargetControlName, row);
+            string expectedResult = GetExpectedResult(Command.Parameters[NegateIndex]);
+            string message = ParameterHelper.GetParameterCode(Command.Parameters[ErrorMsgIndex]);
 
             builder.Append(GetVerifyCode(hasValidationWorkaround, expectedResult, message));
             builder.AppendLine($" // {GetVerifyCode(hasValidation, expectedResult, message)}");
 
+            // When workaround stops being needed we will just do
             // builder.AppendDriverMethod(MethodNames.Verify, hasValidation, expectedResult, message);
         }
 
@@ -62,17 +52,14 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             return DriverMethodHelper.GetDriverMethodCode(MethodNames.Verify, hasValidationCode, expectedResult, message);
         }
 
-        private static string GetHasValidationWorkAround(string controlName, string rowId)
+        private static string GetHasValidationWorkAround(string controlName, int row)
         {
-            string balloonControlId = GetBalloonControlId(controlName, rowId);
+            string balloonControlId = GetBalloonControlId(controlName, row);
             return $"{DriverMethodHelper.GetDriverMethodCode(MethodNames.GetTextByID, StringHelper.Quote(balloonControlId))} <> \"\"";
         }
 
-        private static string GetBalloonControlId(string controlName, string rowId)
+        private static string GetBalloonControlId(string controlName, int row)
         {
-            if (!int.TryParse(rowId, out int row))
-                row = 1;
-
             return $"{StringHelper.RemoveQuotes(controlName.ToUpper())}_{row:D4}_Balloon";
         }
 

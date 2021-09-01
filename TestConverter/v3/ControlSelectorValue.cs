@@ -13,17 +13,17 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         public int ControlParmIndex { get; set; }
 
         [XmlElement("Comparator")]
-        public string Comparator { get; set; }
+        public ComparisonOperator Comparator { get; set; }
 
         [XmlElement("ComparatorType")]
-        public string ComparatorType { get; set; }
+        public ComparisonType ComparisonType { get; set; }
 
         [XmlElement("ParameterOrdValuable")]
         public int ValueParmIndex { get; set; }
 
         public override string ToString()
         {
-            return $"{GetType().Name}[Control at parm[{ControlParmIndex - 1}] {Comparator}(as {ComparatorType}) Value at parm[{ValueParmIndex - 1}]]";
+            return $"{GetType().Name}[Control at parm[{ControlParmIndex - 1}] {Comparator}(as {ComparisonType}) Value at parm[{ValueParmIndex - 1}]]";
         }
     }
 }

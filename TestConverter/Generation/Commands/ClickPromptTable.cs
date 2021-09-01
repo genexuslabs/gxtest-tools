@@ -5,10 +5,10 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class ClickPromptTable : CommandGenerator
+    class ClickPromptTable : TableCommand
     {
         public ClickPromptTable(Command command)
-            : base(command)
+            : base(command, /* additionalParms */ 0)
         {
             Debug.Assert(command.Name == CommandNames.ClickPromptTable);
         }
@@ -22,46 +22,31 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             //      [3] row       - ParameterLiteralValue[2],
             //      [4] CountryId - ParameterControlValue[401bbfb2-14de-4e7c-b79b-c2c0aaf12d0f]
             // )
-
-            builder.AppendCommentLine("ClickPromptTable command generation", Verbosity.Diagnostic);
-            builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
-            builder.AppendCommentLine($"Ignoring second parm {Command.Parameters[1]}", Verbosity.Diagnostic);
-
-            ParmType selectionType = Command.Parameters[2].Type;
-            if (selectionType != ParmType.SelectionByRow)
-            {
-                builder.AppendLine("code not yet implemented");
+            if (!base.PreGenerate(builder))
                 return;
-            }
 
-            if (Command.Parameters.Count < 5)
-            {
-                builder.AppendLine("not enough parameters");
-                return;
-            }
+            int row = SelectorType != ParmType.SelectionByRow ? 0 : Row;
 
-            string rowId = StringHelper.RemoveQuotes(ParameterHelper.GetParameterCode(Command.Parameters[3]));
-            string controlName = ParameterHelper.GetParameterCode(Command.Parameters[4]);
-            GenerateClickPrompt(builder, controlName, rowId);
+            GenerateClickPrompt(builder, TargetControlName, row);
             GenerateSwitchFrame(builder);
         }
 
-        private static void GenerateClickPrompt(StringBuilder builder, string controlName, string rowId)
+        private static void GenerateClickPrompt(StringBuilder builder, string controlName, int row)
         {
-            GenerateClickPromptCodeWorkAround(builder, controlName, rowId);
-            GenerateClickPromptCode(builder, controlName, rowId);
+            GenerateClickPromptCodeWorkAround(builder, controlName, row);
+            GenerateClickPromptCode(builder, controlName, row);
         }
 
-        public static void GenerateClickPromptCodeWorkAround(StringBuilder builder, string controlName, string rowId)
+        public static void GenerateClickPromptCodeWorkAround(StringBuilder builder, string controlName, int row)
         {
-            string promptControlId = GetPromptControlId(rowId);
+            string promptControlId = GetPromptControlId(row);
             string clickByIDCode = DriverMethodHelper.GetDriverMethodCode(MethodNames.ClickByID, StringHelper.Quote(promptControlId));
             builder.Append($"{clickByIDCode} // ");
         }
 
-        public static void GenerateClickPromptCode(StringBuilder builder, string controlName, string rowId)
+        public static void GenerateClickPromptCode(StringBuilder builder, string controlName, int row)
         {
-            builder.AppendDriverMethod(MethodNames.ClickPrompt, controlName, rowId);
+            builder.AppendDriverMethod(MethodNames.ClickPrompt, controlName, row);
         }
 
         public static void GenerateSwitchFrame(StringBuilder builder)
@@ -69,11 +54,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             _ = builder.AppendLine("&driver.SwitchFrame(\"index=0\") // should not be needed");
         }
 
-        private static string GetPromptControlId(string rowId, int gridId = 1)
+        private static string GetPromptControlId(int row, int gridId = 1)
         {
-            if (!int.TryParse(rowId, out int row))
-                row = 1;
-
             // e.g.: "PROMPT_1_0002"
             return $"PROMPT_{gridId}_{row:D4}";
         }

@@ -10,7 +10,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
         private static readonly string driverVar = "&driver";
         private static readonly string parmSeparator = ", ";
 
-        public static string GetDriverMethodCode(string methodName, params string[] parameters)
+        public static string GetDriverMethodCode(string methodName, params object[] parameters)
         {
             // eg: "&driver.Method(parm1, parm2, ..., paramN)"
             return $"{driverVar}.{methodName}({string.Join(parmSeparator, parameters)})";
@@ -21,7 +21,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
             return builder.AppendDriverMethod(methodName, Array.Empty<string>());
         }
 
-        public static StringBuilder AppendDriverMethod(this StringBuilder builder, string methodName, params string[] parameters)
+        public static StringBuilder AppendDriverMethod(this StringBuilder builder, string methodName, params object[] parameters)
         {
 
             return builder.AppendLine(GetDriverMethodCode(methodName, parameters));
