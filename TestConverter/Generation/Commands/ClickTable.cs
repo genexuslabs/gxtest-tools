@@ -6,73 +6,56 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class ClickTable : CommandGenerator
+    class ClickTable : TableCommand
     {
         public ClickTable(Command command)
-            : base(command)
+            : base(command, 0)
         {
             Debug.Assert(command.Name == CommandNames.ClickTable);
         }
 
         public override void Generate(StringBuilder builder)
         {
-            builder.AppendCommentLine("ClickTable command generation", Verbosity.Diagnostic);
-            builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
-
-            ParmType selectionType = Command.Parameters[2].Type;
-            if (selectionType != ParmType.SelectionByRow)
-            {
-                builder.AppendLine("code not yet implemented");
+            if (!PreGenerate(builder))
                 return;
-            }
 
-            if (Command.Parameters.Count < 5)
-            {
-                builder.AppendLine("not enough parameters");
-                return;
-            }
-
-            string gridName = ParameterHelper.GetParameterCode(Command.Parameters[1]);
-            string rowId = StringHelper.RemoveQuotes(ParameterHelper.GetParameterCode(Command.Parameters[3]));
-            string controlName = ParameterHelper.GetParameterCode(Command.Parameters[4]);
+            string gridName = GridControlName;
+            string controlName = TargetControlName;
 
             if (IsDeleteRow(gridName, controlName))
             {
-                GenerateDeleteRow(builder, gridName, rowId);
+                GenerateDeleteRow(builder, gridName, Row);
                 return;
             }
 
-            builder.AppendDriverMethod(MethodNames.Click, controlName, rowId);
+            builder.AppendDriverMethod(MethodNames.Click, controlName, RowExpression);
         }
 
         private static bool IsDeleteRow(string gridName, string controlName)
         {
-            return string.Compare(controlName, $"delete{gridName}", true) != 0;
+            return string.Compare(StringHelper.RemoveQuotes(controlName), $"delete{StringHelper.RemoveQuotes(gridName)}", true) == 0;
         }
 
-        private static void GenerateDeleteRow(StringBuilder builder, string gridName, string rowId)
+        private static void GenerateDeleteRow(StringBuilder builder, string gridName, int row)
         {
-            GenerateDeleteRowCodeWorkAround(builder, gridName, rowId);
-            GenerateDeleteRowCode(builder, gridName, rowId);
+            GenerateDeleteRowCodeWorkAround(builder, gridName, row);
+            GenerateDeleteRowCode(builder, gridName, row);
         }
 
-        public static void GenerateDeleteRowCodeWorkAround(StringBuilder builder, string gridName, string rowId)
+        public static void GenerateDeleteRowCodeWorkAround(StringBuilder builder, string gridName, int row)
         {
-            string deleteRowControlId = GetDeleteRowControlId(gridName, rowId);
-            string clickByIDCode = DriverMethodHelper.GetDriverMethodCode(MethodNames.ClickByID, deleteRowControlId);
+            string deleteRowControlId = GetDeleteRowControlId(gridName, row);
+            string clickByIDCode = DriverHelper.GetDriverMethodCode(MethodNames.ClickByID, deleteRowControlId);
             builder.Append($"{clickByIDCode} // ");
         }
 
-        public static void GenerateDeleteRowCode(StringBuilder builder, string gridName, string rowId)
+        public static void GenerateDeleteRowCode(StringBuilder builder, string gridName, int row)
         {
-            builder.AppendDriverMethod(MethodNames.DeleteRow, gridName, rowId);
+            builder.AppendDriverMethod(MethodNames.DeleteRow, gridName, row);
         }
 
-        private static string GetDeleteRowControlId(string quotedGridName, string rowId)
+        private static string GetDeleteRowControlId(string quotedGridName, int row)
         {
-            if (!int.TryParse(rowId, out int row))
-                row = 1;
-
             string gridName = StringHelper.RemoveQuotes(quotedGridName);
             string titleCaseGridName = gridName.Length <= 0 ? string.Empty : Char.ToUpper(gridName[0]) + gridName[1..].ToLower();
 

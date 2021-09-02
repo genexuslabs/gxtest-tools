@@ -21,7 +21,7 @@
 &driver.ClickByID("PROMPT_1_0002") // &driver.ClickPrompt("CountryId", 2)
 &driver.SwitchFrame("index=0") // should not be needed
 
-&driver.Click("CountryName", 1)
+&driver.Click("CountryName", GetRowByControlNumericValue(&driver, "Grid1", "CountryId", CompareKind.Equal, 1))
 &driver.SwitchFrame("relative=parent") // should not be needed
 
 &driver.SendKeys(Keys.TAB)

@@ -27,16 +27,14 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             //  [5] negate?       - ParameterBooleanValue[false],
             //  [6} errorMsg      - ParameterLiteralValue[No matching 'Country'.])
 
-            if (!base.PreGenerate(builder))
+            if (!PreGenerate(builder))
                 return;
 
             // Expected:  &driver.Verify(&driver.GetTextByID("COUNTRYID_0001_Balloon") <> \"\", True, "No matching 'Country'.")
             // Desired:   &driver.Verify(&driver.HasValidationText("CountryId", 1), True, "No matching 'Country'.")
 
-            int row = SelectorType != ParmType.SelectionByRow ? 0 : Row;
-
-            string hasValidation = DriverMethodHelper.GetDriverMethodCode(MethodNames.HasValidationText, TargetControlName, row);
-            string hasValidationWorkaround = GetHasValidationWorkAround(TargetControlName, row);
+            string hasValidation = DriverHelper.GetDriverMethodCode(MethodNames.HasValidationText, TargetControlName, Row);
+            string hasValidationWorkaround = GetHasValidationWorkAround(TargetControlName, Row);
             string expectedResult = GetExpectedResult(Command.Parameters[NegateIndex]);
             string message = ParameterHelper.GetParameterCode(Command.Parameters[ErrorMsgIndex]);
 
@@ -47,15 +45,29 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             // builder.AppendDriverMethod(MethodNames.Verify, hasValidation, expectedResult, message);
         }
 
+        protected override bool PreGenerate(StringBuilder builder)
+        {
+            if (!base.PreGenerate(builder))
+                return false;
+
+            if (!UsesRowSelector)
+            {
+                builder.AppendLine("code not yet implemented");
+                return false;
+            }
+
+            return true;
+        }
+
         private static string GetVerifyCode(string hasValidationCode, string expectedResult, string message)
         {
-            return DriverMethodHelper.GetDriverMethodCode(MethodNames.Verify, hasValidationCode, expectedResult, message);
+            return DriverHelper.GetDriverMethodCode(MethodNames.Verify, hasValidationCode, expectedResult, message);
         }
 
         private static string GetHasValidationWorkAround(string controlName, int row)
         {
             string balloonControlId = GetBalloonControlId(controlName, row);
-            return $"{DriverMethodHelper.GetDriverMethodCode(MethodNames.GetTextByID, StringHelper.Quote(balloonControlId))} <> \"\"";
+            return $"{DriverHelper.GetDriverMethodCode(MethodNames.GetTextByID, StringHelper.Quote(balloonControlId))} <> \"\"";
         }
 
         private static string GetBalloonControlId(string controlName, int row)

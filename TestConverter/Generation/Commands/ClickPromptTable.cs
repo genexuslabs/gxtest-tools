@@ -22,13 +22,25 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             //      [3] row       - ParameterLiteralValue[2],
             //      [4] CountryId - ParameterControlValue[401bbfb2-14de-4e7c-b79b-c2c0aaf12d0f]
             // )
-            if (!base.PreGenerate(builder))
+            if (!PreGenerate(builder))
                 return;
 
-            int row = SelectorType != ParmType.SelectionByRow ? 0 : Row;
-
-            GenerateClickPrompt(builder, TargetControlName, row);
+            GenerateClickPrompt(builder, TargetControlName, Row);
             GenerateSwitchFrame(builder);
+        }
+
+        protected override bool PreGenerate(StringBuilder builder)
+        {
+            if (!base.PreGenerate(builder))
+                return false;
+
+            if (!UsesRowSelector)
+            {
+                builder.AppendLine("code not yet implemented");
+                return false;
+            }
+
+            return true;
         }
 
         private static void GenerateClickPrompt(StringBuilder builder, string controlName, int row)
@@ -40,7 +52,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
         public static void GenerateClickPromptCodeWorkAround(StringBuilder builder, string controlName, int row)
         {
             string promptControlId = GetPromptControlId(row);
-            string clickByIDCode = DriverMethodHelper.GetDriverMethodCode(MethodNames.ClickByID, StringHelper.Quote(promptControlId));
+            string clickByIDCode = DriverHelper.GetDriverMethodCode(MethodNames.ClickByID, StringHelper.Quote(promptControlId));
             builder.Append($"{clickByIDCode} // ");
         }
 

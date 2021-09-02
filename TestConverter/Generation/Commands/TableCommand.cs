@@ -1,12 +1,16 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Parameters;
 using GeneXus.GXtest.Tools.TestConverter.v3;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
     abstract class TableCommand : CommandGenerator
     {
+        private const string RowByControlNumber = "GetRowByControlNumericValue";
+        private const string RowByControlText = "GetRowByControlTextValue";
+
         //  [0] ignore        - ParameterBooleanValue[false],
         //  [1] grid          - ParameterControlValue[a4126e3c-555b-4570-86c5-da96ec7da727],
         //  [2] byRow         - /* SelectionByRow */ RowSelectorValue,
@@ -25,13 +29,12 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             this.additionalParms = additionalParms;
         }
 
-        public virtual bool PreGenerate(StringBuilder builder)
+        protected virtual bool PreGenerate(StringBuilder builder)
         {
             builder.AppendCommentLine($"{GetType().Name} command generation", Verbosity.Diagnostic);
             builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[IgnoreErrorIndex]}", Verbosity.Diagnostic);
-            builder.AppendCommentLine($"Ignoring grid parm {Command.Parameters[GridIndex]}", Verbosity.Diagnostic);
 
-            if (SelectorType != ParmType.SelectionByRow)
+            if (UsesContextSelector)
             {
                 builder.AppendLine("code not yet implemented");
                 return false;
@@ -45,6 +48,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
             return true;
         }
+
+        protected string GridControlName => ParameterHelper.GetParameterCode(Command.Parameters[GridIndex]);
 
         protected int SelectionParmCount => UsesRowSelector ? 1 : UsesControlSelector ? 2 : 1;
 
@@ -131,5 +136,42 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
         }
 
         protected string TargetControlName => ParameterHelper.GetParameterCode(Command.Parameters[TargetControlIndex]);
+
+        protected string RowExpression
+        {
+            get
+            {
+                if (UsesRowSelector)
+                    return $"{Row}";
+
+                if (UsesControlSelector)
+                {
+                    string method = ComparisonType == ComparisonType.Number ? RowByControlNumber : RowByControlText;
+                    string comparator = GetComparatorExpression(Comparator);
+
+                    // eg: GetRowByControlNumericValue(&driver, "Grid1", "CountryId", CompareKind.Equal, 2)
+                    return $"{method}({DriverHelper.DriverVar}, {GridControlName}, {ControlName}, {comparator}, {NumericValue})";
+                }
+
+                return string.Empty;
+            }
+        }
+
+        private static readonly Dictionary<ComparisonOperator, string> comparatorExpression = new()
+        {
+            { ComparisonOperator.Contains, "Contains"},
+            { ComparisonOperator.EndsWith, "EndsWith"},
+            { ComparisonOperator.Equal,  "CompareKind.Equal"},
+            { ComparisonOperator.Greater, "CompareKind.Greater"},
+            { ComparisonOperator.Less, "CompareKind.Less"},
+            { ComparisonOperator.NotEqual, "CompareKind.NotEqual"},
+            { ComparisonOperator.RegEx, "RegEx"},
+            { ComparisonOperator.StartsWith, "StartsWith"}
+        };
+
+        private static string GetComparatorExpression(ComparisonOperator comparator)
+        {
+            return comparatorExpression[comparator];
+        }
     }
 }

@@ -5,15 +5,16 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation
 {
-    static class DriverMethodHelper
+    static class DriverHelper
     {
-        private static readonly string driverVar = "&driver";
         private static readonly string parmSeparator = ", ";
+
+        public static string DriverVar => "&driver";
 
         public static string GetDriverMethodCode(string methodName, params object[] parameters)
         {
             // eg: "&driver.Method(parm1, parm2, ..., paramN)"
-            return $"{driverVar}.{methodName}({string.Join(parmSeparator, parameters)})";
+            return $"{DriverVar}.{methodName}({string.Join(parmSeparator, parameters)})";
         }
 
         public static StringBuilder AppendDriverMethodNoParms(this StringBuilder builder, string methodName)

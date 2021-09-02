@@ -22,7 +22,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
             List<string> stringParameters = new(Command.Parameters.Skip(1).Select(parm => ParameterHelper.GetParameterCode(parm)));
 
-            stringParameters[0] = DriverMethodHelper.GetDriverMethodCode(MethodNames.AppearText, stringParameters[0]);
+            stringParameters[0] = DriverHelper.GetDriverMethodCode(MethodNames.AppearText, stringParameters[0]);
 
             // avoid passing third parameter if empty
             const int messageParmIndex = 2;

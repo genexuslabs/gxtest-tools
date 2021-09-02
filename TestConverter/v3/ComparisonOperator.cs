@@ -6,19 +6,16 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
     {
         #region Number Comparison
         [XmlEnum(Name = "minor")]
-        LessThan,
+        Less,
 
         [XmlEnum(Name = "mayor")]
-        GreaterThan,
+        Greater,
 
         [XmlEnum(Name = "equal")]
-        Equal,
+        Equal, //also used on strings
 
         [XmlEnum(Name = "different")]
         NotEqual,
-
-        [XmlEnum(Name = "equal")]
-        Equals, //also used on strings
 
         #endregion
 

@@ -20,9 +20,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             if (!PreGenerate(builder))
                 return;
 
-            int row = SelectorType != ParmType.SelectionByRow ? 0 : Row;
             string valueToType = ParameterHelper.GetParameterCode(Command.Parameters[InputIndex]);
-            builder.AppendDriverMethod(MethodNames.Type, TargetControlName, row, valueToType);
+            builder.AppendDriverMethod(MethodNames.Type, TargetControlName, RowExpression, valueToType);
         }
 
     }
