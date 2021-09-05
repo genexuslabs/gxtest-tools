@@ -9,6 +9,7 @@
         public const string DeleteRow = "DeleteRow";
         public const string GetTextByID = "GetTextByID";
         public const string Go = "Go";
+        public const string IsElementPresentByID = "IsElementPresentByID";
         public const string HasValidationText = "HasValidationText";
         public const string PauseFor = "PauseFor";
         public const string SendKeys = "SendKeys";

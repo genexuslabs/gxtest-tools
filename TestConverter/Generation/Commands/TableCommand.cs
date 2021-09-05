@@ -1,6 +1,5 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Parameters;
 using GeneXus.GXtest.Tools.TestConverter.v3;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -118,7 +117,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
                 return GetStringValue(ControlSelector.ValueParmIndex);
             }
         }
-            
+
 
         private int GetNumericValue(int parmIndex)
         {
@@ -159,14 +158,14 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
         private static readonly Dictionary<ComparisonOperator, string> comparatorExpression = new()
         {
-            { ComparisonOperator.Contains, "Contains"},
-            { ComparisonOperator.EndsWith, "EndsWith"},
-            { ComparisonOperator.Equal,  "CompareKind.Equal"},
-            { ComparisonOperator.Greater, "CompareKind.Greater"},
-            { ComparisonOperator.Less, "CompareKind.Less"},
-            { ComparisonOperator.NotEqual, "CompareKind.NotEqual"},
-            { ComparisonOperator.RegEx, "RegEx"},
-            { ComparisonOperator.StartsWith, "StartsWith"}
+            { ComparisonOperator.Contains, "Contains" },
+            { ComparisonOperator.EndsWith, "EndsWith" },
+            { ComparisonOperator.Equal, "CompareKind.Equal" },
+            { ComparisonOperator.Greater, "CompareKind.Greater" },
+            { ComparisonOperator.Less, "CompareKind.Less" },
+            { ComparisonOperator.NotEqual, "CompareKind.NotEqual" },
+            { ComparisonOperator.RegEx, "RegEx" },
+            { ComparisonOperator.StartsWith, "StartsWith" }
         };
 
         private static string GetComparatorExpression(ComparisonOperator comparator)

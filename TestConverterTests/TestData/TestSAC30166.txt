@@ -15,7 +15,7 @@
 &driver.Type("CountryId", 1, "6")
 &driver.SendKeys(Keys.TAB)
 &driver.PauseFor(1)
-&driver.Verify(&driver.GetTextByID("COUNTRYID_0001_Balloon") <> "", True, "No matching 'Country'.") // &driver.Verify(&driver.HasValidationText("CountryId", 1), True, "No matching 'Country'.")
+&driver.Verify(&driver.IsElementPresentByID("COUNTRYID_0001_Balloon"), True, "No matching 'Country'.") // &driver.Verify(&driver.HasValidationText("CountryId", 1), True, "No matching 'Country'.")
 &driver.ClickByID("deleteGridperson_country_0001") // &driver.DeleteRow("GridPerson_Country", 1)
 
 &driver.ClickByID("PROMPT_1_0002") // &driver.ClickPrompt("CountryId", 2)
@@ -29,8 +29,7 @@
 &driver.SendKeys(Keys.TAB)
 &driver.Type("VisitedCity", 2, "Montevideo")
 &driver.SendKeys(Keys.TAB)
-&driver.Verify(not &driver.IsControlPresent("COUNTRYID_0002_Balloon")) // &driver.Verify(&driver.GetValidationText("CountryId", 1) != ("No matching 'Country'.") 
-
+&driver.Verify(not &driver.IsElementPresentByID("COUNTRYID_0001_Balloon"), True, "No matching 'country'.") // &driver.Verify(not &driver.HasValidationText("CountryId", 1), True, "No matching 'country'.")
 &driver.Click("btn_enter")
 &driver.Verify(&driver.GetMessages().ToJson().Contains("Data has been successfully updated."))
 

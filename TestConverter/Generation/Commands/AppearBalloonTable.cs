@@ -35,11 +35,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
             string hasValidation = DriverHelper.GetDriverMethodCode(MethodNames.HasValidationText, TargetControlName, Row);
             string hasValidationWorkaround = GetHasValidationWorkAround(TargetControlName, Row);
-            string expectedResult = GetExpectedResult(Command.Parameters[NegateIndex]);
+            bool expectsFalse = GetExpectsFalse(Command.Parameters[NegateIndex]);
             string message = ParameterHelper.GetParameterCode(Command.Parameters[ErrorMsgIndex]);
 
-            builder.Append(GetVerifyCode(hasValidationWorkaround, expectedResult, message));
-            builder.AppendLine($" // {GetVerifyCode(hasValidation, expectedResult, message)}");
+            builder.Append(GetVerifyCode(hasValidationWorkaround, expectsFalse, message));
+            builder.AppendLine($" // {GetVerifyCode(hasValidation, expectsFalse, message)}");
 
             // When workaround stops being needed we will just do
             // builder.AppendDriverMethod(MethodNames.Verify, hasValidation, expectedResult, message);
@@ -59,15 +59,16 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             return true;
         }
 
-        private static string GetVerifyCode(string hasValidationCode, string expectedResult, string message)
+        private static string GetVerifyCode(string hasValidationCode, bool expectsFalse, string message)
         {
-            return DriverHelper.GetDriverMethodCode(MethodNames.Verify, hasValidationCode, expectedResult, message);
+            string negation = expectsFalse ? "not " : string.Empty;
+            return DriverHelper.GetDriverMethodCode(MethodNames.Verify, $"{negation}{ hasValidationCode}", "True", message);
         }
 
         private static string GetHasValidationWorkAround(string controlName, int row)
         {
             string balloonControlId = GetBalloonControlId(controlName, row);
-            return $"{DriverHelper.GetDriverMethodCode(MethodNames.GetTextByID, StringHelper.Quote(balloonControlId))} <> \"\"";
+            return DriverHelper.GetDriverMethodCode(MethodNames.IsElementPresentByID, StringHelper.Quote(balloonControlId));
         }
 
         private static string GetBalloonControlId(string controlName, int row)
@@ -75,11 +76,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             return $"{StringHelper.RemoveQuotes(controlName.ToUpper())}_{row:D4}_Balloon";
         }
 
-        private static string GetExpectedResult(Parameter parm)
+        private static bool GetExpectsFalse(Parameter parm)
         {
             string strNegateValue = ParameterHelper.GetParameterCode(parm);
-            _ = bool.TryParse(strNegateValue, out bool negateValue);
-            return negateValue ? "False" : "True";
+            _ = bool.TryParse(strNegateValue, out bool expectsFalse);
+            return expectsFalse;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Parameters;
-using GeneXus.GXtest.Tools.TestConverter.v3;
+﻿using GeneXus.GXtest.Tools.TestConverter.v3;
 using System.Diagnostics;
 using System.Text;
 
@@ -27,6 +26,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
             GenerateClickPrompt(builder, TargetControlName, Row);
             GenerateSwitchFrame(builder);
+            GenerationState.State.OnPrompt = true;
         }
 
         protected override bool PreGenerate(StringBuilder builder)
@@ -49,19 +49,19 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             GenerateClickPromptCode(builder, controlName, row);
         }
 
-        public static void GenerateClickPromptCodeWorkAround(StringBuilder builder, string controlName, int row)
+        private static void GenerateClickPromptCodeWorkAround(StringBuilder builder, string _/*controlName*/, int row)
         {
             string promptControlId = GetPromptControlId(row);
             string clickByIDCode = DriverHelper.GetDriverMethodCode(MethodNames.ClickByID, StringHelper.Quote(promptControlId));
             builder.Append($"{clickByIDCode} // ");
         }
 
-        public static void GenerateClickPromptCode(StringBuilder builder, string controlName, int row)
+        private static void GenerateClickPromptCode(StringBuilder builder, string controlName, int row)
         {
             builder.AppendDriverMethod(MethodNames.ClickPrompt, controlName, row);
         }
 
-        public static void GenerateSwitchFrame(StringBuilder builder)
+        private static void GenerateSwitchFrame(StringBuilder builder)
         {
             _ = builder.AppendLine("&driver.SwitchFrame(\"index=0\") // should not be needed");
         }

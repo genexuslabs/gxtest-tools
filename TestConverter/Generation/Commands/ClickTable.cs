@@ -1,5 +1,4 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Parameters;
-using GeneXus.GXtest.Tools.TestConverter.v3;
+﻿using GeneXus.GXtest.Tools.TestConverter.v3;
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -29,6 +28,16 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             }
 
             builder.AppendDriverMethod(MethodNames.Click, controlName, RowExpression);
+            if (GenerationState.State.OnPrompt)
+            {
+                GeneratePromptExit(builder);
+                GenerationState.State.OnPrompt = false;
+            }
+        }
+
+        private static void GeneratePromptExit(StringBuilder builder)
+        {
+            _ = builder.AppendLine("&driver.SwitchFrame(\"relative=parent\") // should not be needed");
         }
 
         private static bool IsDeleteRow(string gridName, string controlName)
@@ -42,14 +51,14 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             GenerateDeleteRowCode(builder, gridName, row);
         }
 
-        public static void GenerateDeleteRowCodeWorkAround(StringBuilder builder, string gridName, int row)
+        private static void GenerateDeleteRowCodeWorkAround(StringBuilder builder, string gridName, int row)
         {
             string deleteRowControlId = GetDeleteRowControlId(gridName, row);
             string clickByIDCode = DriverHelper.GetDriverMethodCode(MethodNames.ClickByID, deleteRowControlId);
             builder.Append($"{clickByIDCode} // ");
         }
 
-        public static void GenerateDeleteRowCode(StringBuilder builder, string gridName, int row)
+        private static void GenerateDeleteRowCode(StringBuilder builder, string gridName, int row)
         {
             builder.AppendDriverMethod(MethodNames.DeleteRow, gridName, row);
         }
