@@ -5,13 +5,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 {
     class LiteralParm : ParameterGenerator
     {
-        private readonly ParameterLiteralValue LiteralValue;
+        private readonly LiteralValue LiteralValue;
 
         public LiteralParm(Parameter parm)
            : base(parm)
         {
-            ValidateParameterTypes(parm, ParameterTypes.Literal, typeof(ParameterLiteralValue));
-            LiteralValue = parm.Value as ParameterLiteralValue;
+            ValidateParameterTypes(parm, ParmType.Literal, typeof(LiteralValue));
+            LiteralValue = parm.Value as LiteralValue;
         }
 
         public override void Generate(StringBuilder builder)

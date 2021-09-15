@@ -2,11 +2,11 @@
 {
     public class ParameterValue : ParameterComponent
     {
-        private readonly string type;
+        private readonly ParmType type;
 
-        public string Type => type;
+        public ParmType Type => type;
 
-        protected ParameterValue(string type)
+        protected ParameterValue(ParmType type)
         {
             this.type = type;
         }

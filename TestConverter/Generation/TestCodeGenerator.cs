@@ -1,5 +1,6 @@
 ﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Commands;
 using GeneXus.GXtest.Tools.TestConverter.v3;
+using System;
 using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation
@@ -35,6 +36,17 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
                 builder.AppendCommentLine($"{element}", Verbosity.Diagnostic);
                 GenerateElementCommands(builder, element);
             }
+
+            GenerateEndMethod(builder);
+        }
+
+        private static void GenerateEndMethod(StringBuilder builder)
+        {
+            if (!GenerationOptions.General.GenerateEndMethod)
+                return;
+
+            builder.AppendLine();
+            builder.AppendDriverMethodNoParms(MethodNames.End);
         }
 
         private static void GenerateElementCommands(StringBuilder builder, Element element)
@@ -46,7 +58,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
                     builder.AppendCommand(command);
                 }
 
-                builder.AppendLine();
+                if (GenerationOptions.General.BlankLineAfterElement)
+                    builder.AppendLine();
             }
         }
     }

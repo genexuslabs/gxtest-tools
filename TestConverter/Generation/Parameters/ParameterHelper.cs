@@ -21,11 +21,31 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         {
             return parm.Type switch
             {
-                ParameterTypes.Literal => new LiteralParm(parm),
-                ParameterTypes.Control => new ControlParm(parm),
-                ParameterTypes.Boolean => new BooleanParm(parm),
+                ParmType.Literal => new LiteralParm(parm),
+                ParmType.Control => new ControlParm(parm),
+                ParmType.Boolean => new BooleanParm(parm),
+                ParmType.Variable => new VariableParm(parm),
                 _ => new NotImplementedParm(parm),
             };
+        }
+
+        public static int GetNumericValue(Command command, int parmIndex) => GetNumericValue(command.Parameters[parmIndex]);
+
+        public static int GetNumericValue(Parameter parm)
+        {
+            string numberAsString = StringHelper.RemoveQuotes(ParameterHelper.GetParameterCode(parm));
+
+            if (!int.TryParse(numberAsString, out int number))
+                return 0;
+
+            return number;
+        }
+
+        public static string GetStringValue(Command command, int parmIndex) => GetStringValue(command.Parameters[parmIndex]);
+
+        public static string GetStringValue(Parameter parm)
+        {
+            return GetParameterCode(parm);
         }
     }
 }

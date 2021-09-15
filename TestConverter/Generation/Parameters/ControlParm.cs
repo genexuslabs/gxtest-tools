@@ -5,13 +5,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 {
     class ControlParm : ParameterGenerator
     {
-        private readonly ParameterControlValue ControlValue;
+        private readonly ControlValue ControlValue;
 
         public ControlParm(Parameter parm)
            : base(parm)
         {
-            ValidateParameterTypes(parm, ParameterTypes.Control, typeof(ParameterControlValue));
-            ControlValue = parm.Value as ParameterControlValue;
+            ValidateParameterTypes(parm, ParmType.Control, typeof(ControlValue));
+            ControlValue = parm.Value as ControlValue;
         }
 
         public override void Generate(StringBuilder builder)

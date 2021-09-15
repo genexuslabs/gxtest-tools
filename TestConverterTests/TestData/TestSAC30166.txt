@@ -1,0 +1,36 @@
+﻿// Test
+
+// Start webdriver
+&driver.Start()
+&driver.Maximize()
+
+&driver.Go(TestMain.Link())
+
+&driver.Click("Button2")
+&driver.Verify(&driver.AppearText("los datos han sido inicializados"), False)
+
+&driver.Click("Button1")
+
+&driver.Click("btn_last")
+&driver.Type("CountryId", 1, "6")
+&driver.SendKeys(Keys.TAB)
+&driver.PauseFor(1)
+&driver.Verify(&driver.IsElementPresentByID("COUNTRYID_0001_Balloon"), True, "No matching 'Country'.") // &driver.Verify(&driver.HasValidationText("CountryId", 1), True, "No matching 'Country'.")
+&driver.ClickByID("deleteGridperson_country_0001") // &driver.DeleteRow("GridPerson_Country", 1)
+
+&driver.ClickByID("PROMPT_1_0002") // &driver.ClickPrompt("CountryId", 2)
+&driver.SwitchFrame("index=0") // should not be needed
+
+&driver.Click("CountryName", GetRowByControlNumericValue(&driver, "Grid1", "CountryId", CompareKind.Equal, 1))
+&driver.SwitchFrame("relative=parent") // should not be needed
+
+&driver.SendKeys(Keys.TAB)
+&driver.Type("VisitedTimes", 2, "234")
+&driver.SendKeys(Keys.TAB)
+&driver.Type("VisitedCity", 2, "Montevideo")
+&driver.SendKeys(Keys.TAB)
+&driver.Verify(not &driver.IsElementPresentByID("COUNTRYID_0001_Balloon"), True, "No matching 'country'.") // &driver.Verify(not &driver.HasValidationText("CountryId", 1), True, "No matching 'country'.")
+&driver.Click("btn_enter")
+&driver.Verify(CompareTextValue(&driver.GetTextByCSS("div.gx-warning-message"), TextComparison.Equal, "Data has been successfully updated."), True, "")
+
+&driver.End()

@@ -4,20 +4,20 @@ using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
-    class FillInputCommand : CommandGenerator
+    class Go : CommandGenerator
     {
-        public FillInputCommand(Command command)
+        public Go(Command command)
             : base(command)
         {
-            Debug.Assert(command.Name == CommandNames.FillInput);
+            Debug.Assert(command.Name == CommandNames.Go);
         }
 
         public override void Generate(StringBuilder builder)
         {
-            builder.AppendCommentLine("FillInput command generation", Verbosity.Diagnostic);
+            builder.AppendCommentLine("GO command generation", Verbosity.Diagnostic);
             builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
 
-            builder.AppendDriverMethod(MethodNames.TypeByID, Command.Parameters[1], Command.Parameters[2]);
+            builder.AppendDriverMethod(MethodNames.Go, Command.Parameters[1]);
         }
     }
 }

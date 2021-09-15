@@ -5,13 +5,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 {
     class BooleanParm : ParameterGenerator
     {
-        private readonly ParameterBooleanValue BooleanValue;
+        private readonly BooleanValue BooleanValue;
 
         public BooleanParm(Parameter parm)
            : base(parm)
         {
-            ValidateParameterTypes(parm, ParameterTypes.Boolean, typeof(ParameterBooleanValue));
-            BooleanValue = parm.Value as ParameterBooleanValue;
+            ValidateParameterTypes(parm, ParmType.Boolean, typeof(BooleanValue));
+            BooleanValue = parm.Value as BooleanValue;
         }
 
         public override void Generate(StringBuilder builder)

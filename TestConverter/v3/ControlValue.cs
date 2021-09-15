@@ -4,10 +4,10 @@ using System.Xml.Serialization;
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
-    public class ParameterControlValue : ParameterValue
+    public class ControlValue : ParameterValue
     {
-        public ParameterControlValue()
-            : base(ParameterTypes.Control)
+        public ControlValue()
+            : base(ParmType.Control)
         {
         }
 
@@ -16,7 +16,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
 
         public override string ToString()
         {
-            return $"ParameterControlValue[{ControlId}]";
+            return $"{GetType().Name}[{ControlId}]";
         }
 
         private ParameterControlData controlData = null;

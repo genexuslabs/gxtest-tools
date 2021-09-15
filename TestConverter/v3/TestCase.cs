@@ -25,16 +25,25 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         public List<Parameter> Parameters { get; set; }
 
         [XmlElement("Param Literal")]
-        public List<ParameterLiteralValue> LiteralValues { get; set; }
+        public List<LiteralValue> LiteralValues { get; set; }
 
         [XmlElement("ParametersBoolean")]
-        public List<ParameterBooleanValue> BooleanValues { get; set; }
+        public List<BooleanValue> BooleanValues { get; set; }
+
+        [XmlElement("Param Variable")]
+        public List<VariableValue> VariableValues { get; set; }
 
         [XmlElement("ParametersGXObject")]
-        public List<ParameterControlValue> ControlValues { get; set; }
+        public List<ControlValue> ControlValues { get; set; }
 
         [XmlElement("ControlExportTC")]
         public List<ParameterControlData> ControlData { get; set; }
+
+        [XmlElement("ParameterByControl")]
+        public List<ControlSelectorValue> ControlSelectorValues { get; set; }
+
+        [XmlElement("ParameterByRow")]
+        public List<RowSelectorValue> RowSelectorValues { get; set; }
 
         public static TestCase DeserializeFromXMLfile(string xmlFilePath)
         {
@@ -147,6 +156,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         {
             LiteralValues.ForEach(val => AddParameterValue(val));
             BooleanValues.ForEach(val => AddParameterValue(val));
+            VariableValues.ForEach(val => AddParameterValue(val));
+            ControlSelectorValues.ForEach(val => AddParameterValue(val));
+            RowSelectorValues.ForEach(val => AddParameterValue(val));
 
             IndexControlData();
             ControlValues.ForEach(val =>

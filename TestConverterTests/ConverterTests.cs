@@ -1,6 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+﻿using GeneXus.GXtest.Tools.TestConverter.Generation;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.IO;
+using TestConverterTests.Helpers;
+using TestConverterTests.TestData;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Tests
 {
@@ -17,32 +20,23 @@ namespace GeneXus.GXtest.Tools.TestConverter.Tests
             file = "<Invalid path>";
             Assert.IsFalse(converter.ConvertFromFile(file));
 
-            foreach (var (inputFile, outputFile) in GetCases())
+            foreach (var testCase in FileTestCase.GetCases())
             {
-                TestFileConversion(inputFile, outputFile);
+                TestFileConversion(testCase);
             }
         }
 
-        private static void TestFileConversion(string inputFile, string outputFile)
+        private static void TestFileConversion(FileTestCase testCase)
         {
-            string expectedCode = File.ReadAllText(outputFile).Trim();
-
             Converter converter = new();
-            Assert.IsTrue(converter.ConvertFromFile(inputFile));
+            GenerationOptions.General.SetVariables(testCase.Variables);
+            GenerationOptions.General.BlankLineAfterElement = testCase.BlankLineAfterElement;
+            GenerationOptions.General.GenerateEndMethod = testCase.GenerateEndMethod;
+
+            Assert.IsTrue(converter.ConvertFromFile(testCase.InputFile));
             string code = converter.GetTestCode().Trim();
 
-            Assert.AreEqual(expectedCode, code);
-        }
-
-        private static readonly string testDataFolder = "TestData";
-        private static string getTestDataFile(string filename)
-        {
-            return Path.Combine(testDataFolder, filename);
-        }
-
-        private static IEnumerable<(string InputFile, string OutputFile)> GetCases()
-        {
-            yield return (getTestDataFile("MinimalTest.xml"), getTestDataFile("MinimalTestCode.txt"));
+            LineComparer.AreEqual(File.ReadAllLines(testCase.OutputFile), code.Split(Environment.NewLine), testCase.CaseName);
         }
     }
 }
