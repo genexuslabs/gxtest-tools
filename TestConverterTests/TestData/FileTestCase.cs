@@ -10,6 +10,8 @@ namespace TestConverterTests.TestData
 
         public bool BlankLineAfterElement { get; set; } = true;
 
+        public bool GenerateEndMethod { get; set; } = true;
+
         public FileTestCase(string caseName = "", string variables = "")
         {
             CaseName = caseName;
@@ -20,7 +22,11 @@ namespace TestConverterTests.TestData
         {
             return new FileTestCase[]
                 {
-                    new FileTestCase("MinimalTest") {BlankLineAfterElement = false },
+                    new FileTestCase("MinimalTest")
+                    {
+                        BlankLineAfterElement = false,
+                        GenerateEndMethod = false
+                    },
                     new FileTestCase("TestSAC30166", "testmain=TestMain.Link()"),
                };
         }

@@ -33,6 +33,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
         public Verbosity Verbosity { get; set; } = Verbosity.Normal;
 
         public bool BlankLineAfterElement { get; set; } = true;
+        public bool GenerateEndMethod { get; set; } = true;
 
         private readonly Dictionary<string, Variable> variables = new();
 

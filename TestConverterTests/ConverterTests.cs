@@ -31,6 +31,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Tests
             Converter converter = new();
             GenerationOptions.General.SetVariables(testCase.Variables);
             GenerationOptions.General.BlankLineAfterElement = testCase.BlankLineAfterElement;
+            GenerationOptions.General.GenerateEndMethod = testCase.GenerateEndMethod;
 
             Assert.IsTrue(converter.ConvertFromFile(testCase.InputFile));
             string code = converter.GetTestCode().Trim();

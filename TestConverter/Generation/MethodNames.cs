@@ -7,6 +7,7 @@
         public const string ClickByID = "ClickByID";
         public const string ClickPrompt = "ClickPrompt";
         public const string DeleteRow = "DeleteRow";
+        public const string End = "End";
         public const string GetTextByID = "GetTextByID";
         public const string Go = "Go";
         public const string IsElementPresentByID = "IsElementPresentByID";
