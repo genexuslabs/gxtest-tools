@@ -5,11 +5,7 @@
 &driver.Maximize()
 
 &driver.Go("http://localhost/GXtestDPs.NetEnvironment/wwcountry.aspx")
-
 &driver.Click("BtnInsert")
-
 &driver.TypeByID("CountryName", "Uruguay")
-
 &driver.Click("btn_enter")
-
 &driver.Click("deleteGrid")

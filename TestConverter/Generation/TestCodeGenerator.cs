@@ -46,7 +46,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
                     builder.AppendCommand(command);
                 }
 
-                builder.AppendLine();
+                if (GenerationOptions.General.BlankLineAfterElement)
+                    builder.AppendLine();
             }
         }
     }
