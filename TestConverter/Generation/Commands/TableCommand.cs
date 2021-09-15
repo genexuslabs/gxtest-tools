@@ -1,15 +1,12 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Parameters;
+﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Helpers;
+using GeneXus.GXtest.Tools.TestConverter.Generation.Parameters;
 using GeneXus.GXtest.Tools.TestConverter.v3;
-using System.Collections.Generic;
 using System.Text;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
     abstract class TableCommand : CommandGenerator
     {
-        private const string RowByControlNumber = "GetRowByControlNumericValue";
-        private const string RowByControlText = "GetRowByControlTextValue";
-
         //  [0] ignore        - ParameterBooleanValue[false],
         //  [1] grid          - ParameterControlValue[a4126e3c-555b-4570-86c5-da96ec7da727],
         //  [2] byRow         - /* SelectionByRow */ RowSelectorValue,
@@ -78,60 +75,8 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
                 if (!UsesRowSelector || RowSelector == null)
                     return 0;
 
-                return GetNumericValue(RowSelector.ValueParmIndex);
+                return ParameterHelper.GetNumericValue(Command, RowSelector.ValueParmIndex - 1);
             }
-        }
-
-        protected string ControlName
-        {
-            get
-            {
-                if (!UsesControlSelector || ControlSelector == null)
-                    return string.Empty;
-
-                return ParameterHelper.GetParameterCode(Command.Parameters[ControlSelector.ControlParmIndex - 1]);
-            }
-        }
-
-        protected ComparisonType ComparisonType => ControlSelector.ComparisonType;
-        protected ComparisonOperator Comparator => ControlSelector.Comparator;
-
-        protected int NumericValue
-        {
-            get
-            {
-                if (!UsesControlSelector || ControlSelector == null)
-                    return 0;
-
-                return GetNumericValue(ControlSelector.ValueParmIndex);
-            }
-        }
-
-        protected string StringValue
-        {
-            get
-            {
-                if (!UsesControlSelector || ControlSelector == null)
-                    return string.Empty;
-
-                return GetStringValue(ControlSelector.ValueParmIndex);
-            }
-        }
-
-
-        private int GetNumericValue(int parmIndex)
-        {
-            string numberAsString = StringHelper.RemoveQuotes(ParameterHelper.GetParameterCode(Command.Parameters[parmIndex - 1]));
-
-            if (!int.TryParse(numberAsString, out int number))
-                return 0;
-
-            return number;
-        }
-
-        private string GetStringValue(int parmIndex)
-        {
-            return ParameterHelper.GetParameterCode(Command.Parameters[parmIndex - 1]);
         }
 
         protected string TargetControlName => ParameterHelper.GetParameterCode(Command.Parameters[TargetControlIndex]);
@@ -145,32 +90,13 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
                 if (UsesControlSelector)
                 {
-                    string method = ComparisonType == ComparisonType.Number ? RowByControlNumber : RowByControlText;
-                    string comparator = GetComparatorExpression(Comparator);
-
-                    // eg: GetRowByControlNumericValue(&driver, "Grid1", "CountryId", CompareKind.Equal, 2)
-                    return $"{method}({DriverHelper.DriverVar}, {GridControlName}, {ControlName}, {comparator}, {NumericValue})";
+                    var selectorHelper = new ControlSelectorHelper(Command, ControlSelector);
+                    return selectorHelper.GetRowExpression(GridControlName);
                 }
 
                 return string.Empty;
             }
         }
 
-        private static readonly Dictionary<ComparisonOperator, string> comparatorExpression = new()
-        {
-            { ComparisonOperator.Contains, "Contains" },
-            { ComparisonOperator.EndsWith, "EndsWith" },
-            { ComparisonOperator.Equal, "CompareKind.Equal" },
-            { ComparisonOperator.Greater, "CompareKind.Greater" },
-            { ComparisonOperator.Less, "CompareKind.Less" },
-            { ComparisonOperator.NotEqual, "CompareKind.NotEqual" },
-            { ComparisonOperator.RegEx, "RegEx" },
-            { ComparisonOperator.StartsWith, "StartsWith" }
-        };
-
-        private static string GetComparatorExpression(ComparisonOperator comparator)
-        {
-            return comparatorExpression[comparator];
-        }
     }
 }

@@ -33,6 +33,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
                 CommandNames.Go => new Go(command),
                 CommandNames.Pause => new Pause(command),
                 CommandNames.PressKey => new PressKey(command),
+                CommandNames.VerifyControlText => new VerifyControlText(command),
                 _ => new NotImplemented(command),
             };
         }

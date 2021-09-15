@@ -32,5 +32,18 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
         {
             return builder.AppendDriverMethod(methodName, Array.ConvertAll(parameters, parm => ParameterHelper.GetParameterCode(parm)));
         }
+
+        public static string GetVerifyCode(string hasValidationCode, bool expectsFalse, string message)
+        {
+            string negation = expectsFalse ? "not " : string.Empty;
+            return GetDriverMethodCode(MethodNames.Verify, $"{negation}{ hasValidationCode}", "True", message);
+        }
+
+        public static bool GetExpectsFalse(Parameter parm)
+        {
+            string strNegateValue = ParameterHelper.GetParameterCode(parm);
+            _ = bool.TryParse(strNegateValue, out bool expectsFalse);
+            return expectsFalse;
+        }
     }
 }

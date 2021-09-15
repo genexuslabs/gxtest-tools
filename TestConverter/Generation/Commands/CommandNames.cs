@@ -12,5 +12,6 @@
         public const string Go = "Go";
         public const string Pause = "Pause";
         public const string PressKey = "PressKey";
+        public const string VerifyControlText = "VerifyControlText";
     }
 }
