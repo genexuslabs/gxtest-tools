@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace TestConverterTests.Helpers
@@ -26,9 +27,29 @@ namespace TestConverterTests.Helpers
                 string expected = gotExpected ? expectedEnum.Current : string.Empty;
                 string actual = gotActual ? actualEnum.Current : string.Empty;
 
-                Assert.AreEqual(expected, actual, false, $"{caseInfo}, Line {line}");
+                Assert.AreEqual(expected, actual, false, $"{caseInfo}, Line {line}, Position {GetFirstDiff(expected, actual)}");
                 line++;
             }
+        }
+
+        private static int GetFirstDiff(string a, string b)
+        {
+            // check up to minimal common length
+            int minLength = Math.Min(a.Length, b.Length);
+            for (int i = 0; i < minLength; i++)
+            {
+                if (a[i] != b[i])
+                    return i;
+            }
+
+            // if we couldn't find differences up to common length
+            // and they are both same lenght, then they are actually equal
+            if (a.Length == b.Length)
+                return -1;
+
+            // if they aren't same length, the first different char is
+            // the one following the last of the shortest string
+            return (a.Length < b.Length) ? a.Length : b.Length;
         }
     }
 }
