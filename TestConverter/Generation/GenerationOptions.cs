@@ -30,27 +30,24 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
                 string name = rawName.Trim();
 
                 if (name.StartsWith("&"))
-                    name = name.Substring(1);
+                    name = name[1..];
 
                 return name;
             }
 
-            public override bool Equals(object obj)
+            public override bool Equals(object anotherObject)
             {
-                if (obj == null)
+                //Check for null and compare run-time types.
+                if ((anotherObject == null) || !this.GetType().Equals(anotherObject.GetType()))
                     return false;
 
-                Variable theOther = obj as Variable;
-                if (theOther == null)
-                    return false;
+                Variable anotherVar = (Variable)anotherObject;
+                return (Name == anotherVar.Name) && (Value == anotherVar.Value);
+            }
 
-                if (string.Compare(Name, theOther.Name, /* ignoreCase */ true) != 0)
-                    return false;
-
-                if (Value == null)
-                    return theOther.Value == null;
-
-                return Value.Equals(theOther.Value);
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(Name, Value);
             }
 
             public override string ToString()
@@ -115,7 +112,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
             if (parts.Length > 2)
                 return false;
 
-            string value = (parts.Length == 2)? parts[1].Trim() : string.Empty;
+            string value = (parts.Length == 2) ? parts[1].Trim() : string.Empty;
 
             variable = new Variable(name, value);
             return true;

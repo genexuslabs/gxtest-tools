@@ -17,7 +17,14 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Tests
                 Assert.AreEqual(expectedVars.Length, options.Variables.Count);
                 foreach (var variable in expectedVars)
                 {
+                    // variable is found
                     Assert.IsTrue(options.Variables.ContainsKey(variable.Name));
+
+                    // variable is found even with different case
+                    Assert.IsTrue(options.Variables.ContainsKey(variable.Name.ToUpper()));
+                    Assert.IsTrue(options.Variables.ContainsKey(variable.Name.ToLower()));
+
+                    // variables have equal content
                     Assert.AreEqual(variable, options.Variables[variable.Name]);
                 }
             }
@@ -71,15 +78,6 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Tests
                 new GenerationOptions.Variable[]
                 {
                     new ("VARname", "42"),
-                }
-            );
-
-            // name is not case sensitive when retrieving / comparing
-            yield return (
-                "varname=41;VARname=42",
-                new GenerationOptions.Variable[]
-                {
-                    new ("varname", "42"),
                 }
             );
 
