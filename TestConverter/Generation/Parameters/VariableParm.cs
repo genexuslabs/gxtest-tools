@@ -23,7 +23,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
         private string GetActualValue()
         {
             if (!GenerationOptions.General.TryGetVariable(VariableValue.VariableName, out GenerationOptions.Variable variable))
-                throw new Exception($"Could not find value for variable '{VariableValue.VariableName}'");
+                throw new Exception($"Could not find value for variable '{VariableValue.VariableName}'.");
 
             return variable.Value;
         }
