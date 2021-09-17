@@ -12,18 +12,51 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
         Diagnostic = 4, // The most verbose and informative verbosity
     }
 
-    internal class GenerationOptions
+    public class GenerationOptions
     {
         public class Variable
         {
             public Variable(string name = "", string value = "")
             {
-                Name = name;
+                Name = NormalizeName(name);
                 Value = value;
             }
 
             public string Name { get; }
             public string Value { get; }
+
+            private static string NormalizeName(string rawName)
+            {
+                string name = rawName.Trim();
+
+                if (name.StartsWith("&"))
+                    name = name.Substring(1);
+
+                return name;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj == null)
+                    return false;
+
+                Variable theOther = obj as Variable;
+                if (theOther == null)
+                    return false;
+
+                if (string.Compare(Name, theOther.Name, /* ignoreCase */ true) != 0)
+                    return false;
+
+                if (Value == null)
+                    return theOther.Value == null;
+
+                return Value.Equals(theOther.Value);
+            }
+
+            public override string ToString()
+            {
+                return $"({Name ?? "[null]"}, {Value ?? "[null]"})";
+            }
         }
 
         private static readonly GenerationOptions generalOptions = new();
@@ -35,7 +68,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
         public bool BlankLineAfterElement { get; set; } = true;
         public bool GenerateEndMethod { get; set; } = true;
 
-        private readonly Dictionary<string, Variable> variables = new();
+        private readonly Dictionary<string, Variable> variables = new(StringComparer.OrdinalIgnoreCase);
 
         public IDictionary<string, Variable> Variables => variables;
 
@@ -57,11 +90,12 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
 
             foreach (string substitution in substitutions)
             {
-                if (string.IsNullOrEmpty(substitution))
+                if (string.IsNullOrWhiteSpace(substitution))
                     continue;
 
                 if (!TryParseSubstitution(substitution, out Variable variable))
                     throw new Exception($"Wrong variable substitution. Expected format: <name>=<value>. Found {substitution}");
+
                 variables[variable.Name] = variable;
             }
         }
@@ -72,13 +106,16 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
 
             char operatorChar = '=';
             string[] parts = substitution.Split(operatorChar);
-            if (parts.Length != 2)
-                return false;
 
             string name = parts[0].Trim();
-            string value = parts[1].Trim();
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(value))
+            if (name.Length == 0)
                 return false;
+
+            // more than 1 operatorChar?
+            if (parts.Length > 2)
+                return false;
+
+            string value = (parts.Length == 2)? parts[1].Trim() : string.Empty;
 
             variable = new Variable(name, value);
             return true;
