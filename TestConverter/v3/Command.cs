@@ -10,7 +10,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         public string ParentId { get; set; }
 
         [XmlElement("CommandOrd")]
-        public string Order { get; set; }
+        public int Order { get; set; }
 
         [XmlElement("CommandType")]
         public string Type { get; set; }
@@ -23,7 +23,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             return $"{Type} {Name}({string.Join(", ", Parameters)})";
         }
 
-        private readonly SortedList<string, Parameter> parms = new();
+        private readonly SortedList<int, Parameter> parms = new();
 
         internal IList<Parameter> Parameters => parms.Values;
 

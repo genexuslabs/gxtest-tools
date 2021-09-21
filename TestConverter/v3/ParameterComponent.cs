@@ -8,9 +8,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         public string ParentId { get; set; }
 
         [XmlElement("CommandOrd")]
-        public string ParentOrder { get; set; }
+        public int ParentOrder { get; set; }
 
         [XmlElement("ParameterOrd")]
-        public string Order { get; set; }
+        public int Order { get; set; }
     }
 }
