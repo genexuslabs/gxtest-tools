@@ -21,7 +21,7 @@ namespace GeneXus.GXtest.Tools.TestConverter
             [Option("vars", Separator = ';', Required = false, HelpText = "List of semicolon separated 'name=value' variable substitutions. Example: \"--vars\u00A0testmain=TestMain.Link()\".")]
             public IEnumerable<string> Variables { get; set; }
 
-            [Option('c', "compact", Required = false, HelpText = "Generate a blank line to separate commands from different elements.")]
+            [Option('c', "compact", Required = false, HelpText = "Don't generate a blank line to separate commands from different elements.")]
             public bool Compact { get; set; }
 
             [Option('m', "noEndMethod", Required = false, HelpText = "Don't generate a final '&driver.End()' line.")]
