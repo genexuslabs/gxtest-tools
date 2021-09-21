@@ -2,9 +2,9 @@
 
 namespace GeneXus.GXtest.Tools.TestConverter.v3
 {
-    public class ControlSelectorValue : ParameterValue
+    public class ControlRuleValue : ParameterValue
     {
-        public ControlSelectorValue()
+        public ControlRuleValue()
             : base(ParmType.SelectionByControl)
         {
         }

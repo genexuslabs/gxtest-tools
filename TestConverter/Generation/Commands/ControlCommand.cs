@@ -37,7 +37,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
         protected int ParmCount => LastSelectionParm + 1 + additionalParms;
 
-        private ControlSelectorValue ControlSelector => Command.Parameters[selectorIndex].Value as ControlSelectorValue;
+        private ControlRuleValue ControlSelector => Command.Parameters[selectorIndex].Value as ControlRuleValue;
 
         protected virtual bool PreGenerate(StringBuilder builder)
         {
@@ -55,7 +55,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
         protected string GetComparisonExpression()
         {
-            var selectorHelper = new ControlSelectorHelper(Command, ControlSelector);
+            var selectorHelper = new ControlRuleHelper(Command, ControlSelector);
             return selectorHelper.GetComparisonExpression();
         }
     }

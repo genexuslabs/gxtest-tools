@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace GeneXus.GXtest.Tools.TestConverter.Generation.Helpers
 {
-    internal class ControlSelectorHelper
+    internal class ControlRuleHelper
     {
         private readonly Command command;
-        private readonly ControlSelectorValue selector;
+        private readonly ControlRuleValue selector;
 
-        public ControlSelectorHelper(Command command, ControlSelectorValue selector)
+        public ControlRuleHelper(Command command, ControlRuleValue selector)
         {
             this.command = command;
             this.selector = selector;

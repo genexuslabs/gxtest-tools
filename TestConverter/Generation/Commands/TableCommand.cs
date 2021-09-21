@@ -66,7 +66,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
         protected bool UsesContextSelector => SelectorType == ParmType.SelectionByContext;
 
         private RowSelectorValue RowSelector => Command.Parameters[selectorIndex].Value as RowSelectorValue;
-        private ControlSelectorValue ControlSelector => Command.Parameters[selectorIndex].Value as ControlSelectorValue;
+        private ControlRuleValue ControlSelector => Command.Parameters[selectorIndex].Value as ControlRuleValue;
 
         protected int Row
         {
@@ -90,7 +90,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
                 if (UsesControlSelector)
                 {
-                    var selectorHelper = new ControlSelectorHelper(Command, ControlSelector);
+                    var selectorHelper = new ControlRuleHelper(Command, ControlSelector);
                     return selectorHelper.GetRowExpression(GridControlName);
                 }
 

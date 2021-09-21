@@ -40,7 +40,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
         public List<ParameterControlData> ControlData { get; set; }
 
         [XmlElement("ParameterByControl")]
-        public List<ControlSelectorValue> ControlSelectorValues { get; set; }
+        public List<ControlRuleValue> ControlRuleValues { get; set; }
 
         [XmlElement("ParameterByRow")]
         public List<RowSelectorValue> RowSelectorValues { get; set; }
@@ -157,7 +157,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.v3
             LiteralValues.ForEach(val => AddParameterValue(val));
             BooleanValues.ForEach(val => AddParameterValue(val));
             VariableValues.ForEach(val => AddParameterValue(val));
-            ControlSelectorValues.ForEach(val => AddParameterValue(val));
+            ControlRuleValues.ForEach(val => AddParameterValue(val));
             RowSelectorValues.ForEach(val => AddParameterValue(val));
 
             IndexControlData();
