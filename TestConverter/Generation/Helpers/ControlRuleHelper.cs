@@ -28,10 +28,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Helpers
             return $"{method}({DriverHelper.DriverVar}, {gridControlName}, {ControlName}, {Comparator}, {Value})";
         }
 
-        public string GetComparisonExpression()
+        public string GetComparisonExpression(string rowExpression = "")
         {
             string method = CompareTextsMethod;
-            string parm1 = GetControlTextCode(ControlName);
+            string parm1 = GetControlTextCode(ControlName, rowExpression);
 
             if (selector.ComparisonType == ComparisonType.Number)
             {
@@ -42,7 +42,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Helpers
             return $"{method}({parm1}, {Comparator}, {Value})";
         }
 
-        private static string GetControlTextCode(string name)
+        private static string GetControlTextCode(string name, string rowExpression = "")
         {
             // HACK. GetText() doesn't currently work for the ErrorViewer control, so we use a work-around.
             string lowerName = StringHelper.RemoveQuotes(name.ToLowerInvariant());
@@ -51,7 +51,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Helpers
                 return "&driver.GetTextByCSS(\"div.gx-warning-message\")";
             }
 
-            return $"&driver.GetText({name})";
+            if (!string.IsNullOrEmpty(rowExpression))
+                rowExpression = ", " + rowExpression;
+
+            return $"&driver.GetText({name}{rowExpression})";
         }
 
         private string ControlName => ParameterHelper.GetParameterCode(command.Parameters[selector.ControlParmIndex - 1]);
