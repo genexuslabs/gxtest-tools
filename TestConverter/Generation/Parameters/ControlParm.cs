@@ -16,7 +16,24 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters
 
         public override void Generate(StringBuilder builder)
         {
-            _ = builder.AppendQuoted(ControlValue.Data.Name);
+            _ = builder.AppendQuoted(ControlName);
+        }
+
+        private bool IsVariable
+        {
+            get
+            {
+                const string variableControlClass = "Variable";
+                return string.Compare(ControlValue.Data.Class, variableControlClass, /* ignoreCase */ true) == 0;
+            }
+        }
+
+        private string ControlName
+        {
+            get
+            {
+                return $"{(IsVariable ? "&" : "")}{ControlValue.Data.Name}";
+            }
         }
     }
 }
