@@ -28,6 +28,7 @@ namespace TestConverterTests.TestData
                         GenerateEndMethod = false
                     },
                     new FileTestCase("TestSAC30166", "testmain=TestMain.Link()"),
+                    new FileTestCase("TestSAC29742", "testmain=TestMain.Link()"),
                };
         }
 

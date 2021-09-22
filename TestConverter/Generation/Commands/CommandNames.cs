@@ -13,5 +13,6 @@
         public const string Pause = "Pause";
         public const string PressKey = "PressKey";
         public const string VerifyControlText = "VerifyControlText";
+        public const string VerifyControlTextTable = "VerifyControlTextTable";
     }
 }

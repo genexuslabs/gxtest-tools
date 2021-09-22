@@ -1,0 +1,28 @@
+// Caso 2 - SAC 29742
+
+// Start webdriver
+&driver.Start()
+&driver.Maximize()
+
+&driver.Go(TestMain.Link())
+
+&driver.Click("Button1")
+
+&driver.Click("Button2")
+
+&driver.Type("&ProdID", 1, "p3")
+&driver.Click("Button1")
+&driver.Verify(CompareTextValue(&driver.GetText("MovieID", 1), TextComparison.Equal, "1"), True, "")
+&driver.Verify(CompareTextValue(&driver.GetText("MovieName", 1), TextComparison.Equal, "Crepusculo"), True, "")
+&driver.Verify(&driver.AppearText("1 Crepusculo    3"), False)
+&driver.Type("&ProdID", 2, "prod1")
+&driver.Click("Button1")
+&driver.Verify(&driver.AppearText("2 Eclipse    1"), False)
+&driver.Type("&ProdID", 1, "prod2")
+&driver.Type("&ProdID", 2, "prod1")
+&driver.Click("Button1")
+&driver.Verify(&driver.AppearText("1 Crepusculo    2"), False)
+&driver.Verify(&driver.AppearText("2 Eclipse    1"), False)
+
+
+&driver.End()

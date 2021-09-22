@@ -34,6 +34,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
                 CommandNames.Pause => new Pause(command),
                 CommandNames.PressKey => new PressKey(command),
                 CommandNames.VerifyControlText => new VerifyControlText(command),
+                CommandNames.VerifyControlTextTable => new VerifyControlTextTable(command),
                 _ => new NotImplemented(command),
             };
         }
