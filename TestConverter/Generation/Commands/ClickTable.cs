@@ -7,8 +7,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
     class ClickTable : TableCommand
     {
+        private const int AdditionalParms = 0;
+
         public ClickTable(Command command)
-            : base(command, 0)
+            : base(command, AdditionalParms)
         {
             Debug.Assert(command.Name == CommandNames.ClickTable);
         }

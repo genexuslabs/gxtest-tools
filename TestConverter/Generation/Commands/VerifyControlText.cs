@@ -7,8 +7,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
     class VerifyControlText : ControlCommand
     {
+        private const int AdditionalParms = 2; // negate, errorMsg
+
         public VerifyControlText(Command command)
-            : base(command, /* additionalParms */ 2)
+            : base(command, AdditionalParms)
         {
             Debug.Assert(command.Name == CommandNames.VerifyControlText);
         }
@@ -20,7 +22,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
         {
             // VerifyControlText(
             // [0] ignore    - BooleanValue[false]
-            // [1] byControl - ControlSelectorValue[Control at parm[2] Equal(as String) Value at parm[3]]
+            // [1] byControl - ControlRuleValue[Control at parm[2] Equal(as String) Value at parm[3]]
             // [2] control   - ControlValue[33935f58-45a9-467f-898f-e4d127293861]
             // [3] value     - LiteralValue[Data has been successfully updated.]
             // [4] negate    - BooleanValue[false]

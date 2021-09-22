@@ -8,7 +8,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
     {
         // Control
         // [0] ignore    - BooleanValue[false]
-        // [1] byControl - ControlSelectorValue[Control at parm[2] Equal(as String) Value at parm[3]]
+        // [1] byControl - ControlRuleValue[Control at parm[2] Equal(as String) Value at parm[3]]
         // [2] control   - ControlValue[33935f58-45a9-467f-898f-e4d127293861]
         // [3] value     - LiteralValue[Data has been successfully updated.]
         // [4] negate    - BooleanValue[false]

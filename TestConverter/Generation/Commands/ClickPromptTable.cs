@@ -6,8 +6,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
     class ClickPromptTable : TableCommand
     {
+        private const int AdditionalParms = 0;
+
         public ClickPromptTable(Command command)
-            : base(command, /* additionalParms */ 0)
+            : base(command, AdditionalParms)
         {
             Debug.Assert(command.Name == CommandNames.ClickPromptTable);
         }

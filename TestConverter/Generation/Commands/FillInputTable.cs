@@ -7,8 +7,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
     class FillInputTable : TableCommand
     {
+        private const int AdditionalParms = 1; // value to fill
+
         public FillInputTable(Command command)
-            : base(command, /* additionalParms */ 1)
+            : base(command, AdditionalParms)
         {
             Debug.Assert(command.Name == CommandNames.FillInputTable);
         }

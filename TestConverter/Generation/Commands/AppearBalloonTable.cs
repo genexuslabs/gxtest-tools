@@ -7,8 +7,10 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 {
     class AppearBalloonTable : TableCommand
     {
+        private const int AdditionalParms = 2; // negate, error
+
         public AppearBalloonTable(Command command)
-            : base(command, /* additionalParms */ 2)
+            : base(command, AdditionalParms)
         {
             Debug.Assert(command.Name == CommandNames.AppearBalloonTable);
         }
