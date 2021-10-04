@@ -17,7 +17,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             builder.AppendCommentLine("FillInput command generation", Verbosity.Diagnostic);
             builder.AppendCommentLine($"Ignoring first parm {Command.Parameters[0]}", Verbosity.Diagnostic);
 
-            builder.AppendDriverMethod(MethodNames.TypeByID, Command.Parameters[1], Command.Parameters[2]);
+            builder.AppendDriverMethod(MethodNames.Type, Command.Parameters[1], Command.Parameters[2]);
         }
     }
 }
