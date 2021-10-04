@@ -44,7 +44,6 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation
             if (!GenerationOptions.General.GenerateEndMethod)
                 return;
 
-            builder.AppendLine();
             builder.AppendDriverMethodNoParms(MethodNames.End);
         }
 

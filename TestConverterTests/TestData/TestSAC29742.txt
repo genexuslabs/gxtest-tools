@@ -24,5 +24,4 @@
 &driver.Verify(&driver.AppearText("1 Crepusculo    2"), False)
 &driver.Verify(&driver.AppearText("2 Eclipse    1"), False)
 
-
 &driver.End()

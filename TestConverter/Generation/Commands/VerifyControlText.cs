@@ -36,7 +36,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
 
             bool expectsFalse = DriverHelper.GetExpectsFalse(Command.Parameters[NegateIndex]);
             string message = ParameterHelper.GetParameterCode(Command.Parameters[ErrorMsgIndex]);
-            builder.Append(DriverHelper.GetVerifyCode(GetComparisonExpression(), expectsFalse, message));
+            builder.AppendLine(DriverHelper.GetVerifyCode(GetComparisonExpression(), expectsFalse, message));
         }
     }
 }
