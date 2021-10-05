@@ -1,4 +1,4 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Parameters;
+﻿using GeneXus.GXtest.Tools.TestConverter.Generation.Helpers;
 using GeneXus.GXtest.Tools.TestConverter.v3;
 using System.Diagnostics;
 using System.Text;
@@ -32,19 +32,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             if (!PreGenerate(builder))
                 return;
 
-            // Expected:  &driver.Verify(&driver.GetTextByID("COUNTRYID_0001_Balloon") <> \"\", True, "No matching 'Country'.")
-            // Desired:   &driver.Verify(&driver.HasValidationText("CountryId", 1), True, "No matching 'Country'.")
-
-            string hasValidation = DriverHelper.GetDriverMethodCode(MethodNames.HasValidationText, TargetControlName, Row);
-            string hasValidationWorkaround = GetHasValidationWorkAround(TargetControlName, Row);
-            bool expectsFalse = DriverHelper.GetExpectsFalse(Command.Parameters[NegateIndex]);
-            string message = ParameterHelper.GetParameterCode(Command.Parameters[ErrorMsgIndex]);
-
-            builder.Append(DriverHelper.GetVerifyCode(hasValidationWorkaround, expectsFalse, message));
-            builder.AppendLine($" // {DriverHelper.GetVerifyCode(hasValidation, expectsFalse, message)}");
-
-            // When workaround stops being needed we will just do
-            // builder.AppendDriverMethod(MethodNames.Verify, hasValidation, expectedResult, message);
+            builder.AppendHasValidation(Command.Parameters[NegateIndex], Command.Parameters[ErrorMsgIndex], TargetControlName, Row);
         }
 
         protected override bool PreGenerate(StringBuilder builder)
@@ -59,17 +47,6 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Commands
             }
 
             return true;
-        }
-
-        private static string GetHasValidationWorkAround(string controlName, int row)
-        {
-            string balloonControlId = GetBalloonControlId(controlName, row);
-            return DriverHelper.GetDriverMethodCode(MethodNames.IsElementPresentByID, StringHelper.Quote(balloonControlId));
-        }
-
-        private static string GetBalloonControlId(string controlName, int row)
-        {
-            return $"{StringHelper.RemoveQuotes(controlName.ToUpper())}_{row:D4}_Balloon";
         }
     }
 }
