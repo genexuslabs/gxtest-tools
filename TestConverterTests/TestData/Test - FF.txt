@@ -1,0 +1,19 @@
+// Test - FF
+
+// Start webdriver
+&driver.Start()
+&driver.Maximize()
+
+&driver.Go(TestMain.Link())
+
+&driver.Click("Button1")
+
+&driver.Type("&Test_ID", "1")
+&driver.Type("&Test_Number", "1a")
+code not yet implemented: Validation AppearBalloon(BooleanValue[false], ControlValue[8ff7df6c-3a86-4e1f-8423-a506eebe727c], BooleanValue[true], LiteralValue[The value is not a valid number.])
+&driver.Type("&Test_Name", "uno")
+&driver.Click("Button1")
+&driver.Verify(CompareTextValue(&driver.GetText("&Test_Number"), TextComparison.Equal, "0"), True, "")
+&driver.Verify(&driver.AppearText("Data has been successfully added."), False)
+
+&driver.End()

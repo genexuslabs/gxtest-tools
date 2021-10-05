@@ -29,6 +29,7 @@ namespace TestConverterTests.TestData
                     },
                     new FileTestCase("TestSAC30166", "testmain=TestMain.Link()"),
                     new FileTestCase("TestSAC29742", "testmain=TestMain.Link()"),
+                    new FileTestCase("Test - FF", "testmain=TestMain.Link()"),
                };
         }
 

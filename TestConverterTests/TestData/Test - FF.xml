@@ -1,0 +1,617 @@
+<DSElements xmlns="http://tempuri.org/DSElements.xsd">
+  <Comandos_x0020_Elemento>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43784</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <CommandType>Event</CommandType>
+    <CommandName>Go</CommandName>
+  </Comandos_x0020_Elemento>
+  <Comandos_x0020_Elemento>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43786</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <CommandType>Event</CommandType>
+    <CommandName>Click</CommandName>
+  </Comandos_x0020_Elemento>
+  <Comandos_x0020_Elemento>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <CommandType>Action</CommandType>
+    <CommandName>FillInput</CommandName>
+  </Comandos_x0020_Elemento>
+  <Comandos_x0020_Elemento>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>2</CommandOrd>
+    <CommandType>Action</CommandType>
+    <CommandName>FillInput</CommandName>
+  </Comandos_x0020_Elemento>
+  <Comandos_x0020_Elemento>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>3</CommandOrd>
+    <CommandType>Validation</CommandType>
+    <CommandName>AppearBalloon</CommandName>
+  </Comandos_x0020_Elemento>
+  <Comandos_x0020_Elemento>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>4</CommandOrd>
+    <CommandType>Action</CommandType>
+    <CommandName>FillInput</CommandName>
+  </Comandos_x0020_Elemento>
+  <Comandos_x0020_Elemento>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>5</CommandOrd>
+    <CommandType>Event</CommandType>
+    <CommandName>Click</CommandName>
+  </Comandos_x0020_Elemento>
+  <Comandos_x0020_Elemento>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <CommandType>Validation</CommandType>
+    <CommandName>VerifyControlText</CommandName>
+  </Comandos_x0020_Elemento>
+  <Comandos_x0020_Elemento>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>7</CommandOrd>
+    <CommandType>Validation</CommandType>
+    <CommandName>AppearText</CommandName>
+  </Comandos_x0020_Elemento>
+  <Aristas>
+    <ProjectName>SAC 32710</ProjectName>
+    <EdgeName>43784</EdgeName>
+    <EdgeDesc>Go</EdgeDesc>
+    <PageNameSource>43783</PageNameSource>
+    <PageNameTarget>43785</PageNameTarget>
+    <EdgeOrder>A</EdgeOrder>
+  </Aristas>
+  <Aristas>
+    <ProjectName>SAC 32710</ProjectName>
+    <EdgeName>43786</EdgeName>
+    <EdgeDesc>Click Test1</EdgeDesc>
+    <PageNameSource>43785</PageNameSource>
+    <PageNameTarget>43787</PageNameTarget>
+    <EdgeOrder>A</EdgeOrder>
+  </Aristas>
+  <Paginas>
+    <ProjectName>SAC 32710</ProjectName>
+    <PageName>43783</PageName>
+    <PageDesc>Start</PageDesc>
+    <GXObjectName>
+    </GXObjectName>
+    <GXObjectType>
+    </GXObjectType>
+    <GXKBName>
+    </GXKBName>
+  </Paginas>
+  <Paginas>
+    <ProjectName>SAC 32710</ProjectName>
+    <PageName>43785</PageName>
+    <PageDesc>Test Main</PageDesc>
+    <GXObjectName>TestMain</GXObjectName>
+    <GXObjectType>WebPanel</GXObjectType>
+    <GXKBName>sac32710</GXKBName>
+  </Paginas>
+  <Paginas>
+    <ProjectName>SAC 32710</ProjectName>
+    <PageName>43787</PageName>
+    <PageDesc>Test_ Web Panel</PageDesc>
+    <GXObjectName>Test_WebPanel</GXObjectName>
+    <GXObjectType>WebPanel</GXObjectType>
+    <GXKBName>sac32710</GXKBName>
+  </Paginas>
+  <Casos_x0020_Prueba>
+    <ProjectName>SAC 32710</ProjectName>
+    <TestCaseName>Test - FF</TestCaseName>
+    <TestCaseDesc>
+    </TestCaseDesc>
+    <TestCaseGraph></TestCaseGraph>
+    <StartElementName>43783</StartElementName>
+    <FolderId>1955</FolderId>
+    <LastModification>2021-10-02T20:01:04.437-03:00</LastModification>
+    <IsReadyToRun>false</IsReadyToRun>
+    <User>guest</User>
+    <IsGenerated>false</IsGenerated>
+    <GeneratedByDefault>false</GeneratedByDefault>
+    <RawCommandList>
+    </RawCommandList>
+    <ExecutionMode>0</ExecutionMode>
+  </Casos_x0020_Prueba>
+  <TCToXML>
+    <ProjectName>SAC 32710</ProjectName>
+    <TestCaseName>Test - FF</TestCaseName>
+    <TestCaseDesc>
+    </TestCaseDesc>
+    <TestCaseGraph></TestCaseGraph>
+    <StartElementName>43783</StartElementName>
+    <Recursive>true</Recursive>
+    <ExportDPoolDef>true</ExportDPoolDef>
+    <Version>3.3.0</Version>
+    <FolderId>1955</FolderId>
+    <IsGenerated>false</IsGenerated>
+    <GeneratedByDefault>false</GeneratedByDefault>
+    <RawCommandList>
+    </RawCommandList>
+    <ExecutionMode>0</ExecutionMode>
+  </TCToXML>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43784</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43784</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterType>Variable</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43786</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43786</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterType>ControlGX</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterType>ControlGX</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterType>Value</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>2</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>2</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterType>ControlGX</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>2</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterType>Value</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>3</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>3</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterType>ControlGX</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>3</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>3</CommandOrd>
+    <ParameterOrd>4</ParameterOrd>
+    <ParameterType>Value</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>4</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>4</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterType>ControlGX</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>4</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterType>Value</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>5</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>5</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterType>ControlGX</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterType>SelectionByControl</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterType>ControlGX</ParameterType>
+    <IsParameterPart>true</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>4</ParameterOrd>
+    <ParameterType>Value</ParameterType>
+    <IsParameterPart>true</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>5</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>6</ParameterOrd>
+    <ParameterType>Value</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>7</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>7</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterType>Value</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>7</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterType>Boolean</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <ParameterAbstract>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>7</CommandOrd>
+    <ParameterOrd>4</ParameterOrd>
+    <ParameterType>Value</ParameterType>
+    <IsParameterPart>false</IsParameterPart>
+  </ParameterAbstract>
+  <Param_x0020_Literal>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterLiteralValue>1</ParameterLiteralValue>
+  </Param_x0020_Literal>
+  <Param_x0020_Literal>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>2</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterLiteralValue>1a</ParameterLiteralValue>
+  </Param_x0020_Literal>
+  <Param_x0020_Literal>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>3</CommandOrd>
+    <ParameterOrd>4</ParameterOrd>
+    <ParameterLiteralValue>The value is not a valid number.</ParameterLiteralValue>
+  </Param_x0020_Literal>
+  <Param_x0020_Literal>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>4</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterLiteralValue>uno</ParameterLiteralValue>
+  </Param_x0020_Literal>
+  <Param_x0020_Literal>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>4</ParameterOrd>
+    <ParameterLiteralValue>0</ParameterLiteralValue>
+  </Param_x0020_Literal>
+  <Param_x0020_Literal>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>6</ParameterOrd>
+    <ParameterLiteralValue>
+    </ParameterLiteralValue>
+  </Param_x0020_Literal>
+  <Param_x0020_Literal>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>7</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterLiteralValue>Data has been successfully added.</ParameterLiteralValue>
+  </Param_x0020_Literal>
+  <Param_x0020_Literal>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>7</CommandOrd>
+    <ParameterOrd>4</ParameterOrd>
+    <ParameterLiteralValue>
+    </ParameterLiteralValue>
+  </Param_x0020_Literal>
+  <Param_x0020_Variable>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43784</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <VariableName>testmain</VariableName>
+  </Param_x0020_Variable>
+  <ParametersGXObject>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43786</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <GXControlGUID>e69b31ed-7e72-46cd-a90f-621e73982fa7</GXControlGUID>
+  </ParametersGXObject>
+  <ParametersGXObject>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <GXControlGUID>fd4e90bf-cd97-4056-8335-03ed815e984f</GXControlGUID>
+  </ParametersGXObject>
+  <ParametersGXObject>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>2</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <GXControlGUID>8ff7df6c-3a86-4e1f-8423-a506eebe727c</GXControlGUID>
+  </ParametersGXObject>
+  <ParametersGXObject>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>3</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <GXControlGUID>8ff7df6c-3a86-4e1f-8423-a506eebe727c</GXControlGUID>
+  </ParametersGXObject>
+  <ParametersGXObject>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>4</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <GXControlGUID>9656aee4-1fca-4617-9486-fcbbd7078224</GXControlGUID>
+  </ParametersGXObject>
+  <ParametersGXObject>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>5</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <GXControlGUID>bfe055e4-997f-4298-b5a9-e524598d6263</GXControlGUID>
+  </ParametersGXObject>
+  <ParametersGXObject>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <GXControlGUID>8ff7df6c-3a86-4e1f-8423-a506eebe727c</GXControlGUID>
+  </ParametersGXObject>
+  <ParameterByControl>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>2</ParameterOrd>
+    <ParameterOrdControlGX>3</ParameterOrdControlGX>
+    <Comparator>equal</Comparator>
+    <ComparatorType>ComparatorStr</ComparatorType>
+    <ParameterOrdValuable>4</ParameterOrdValuable>
+  </ParameterByControl>
+  <ControlExportTC>
+    <GXControlGUID>fd4e90bf-cd97-4056-8335-03ed815e984f</GXControlGUID>
+    <GXControlName>Test_ID</GXControlName>
+    <GXObjectName>Test_WebPanel</GXObjectName>
+    <GXObjectType>WebPanel</GXObjectType>
+    <GXControlClass>Variable</GXControlClass>
+  </ControlExportTC>
+  <ControlExportTC>
+    <GXControlGUID>e69b31ed-7e72-46cd-a90f-621e73982fa7</GXControlGUID>
+    <GXControlName>Button1</GXControlName>
+    <GXObjectName>TestMain</GXObjectName>
+    <GXObjectType>WebPanel</GXObjectType>
+    <GXControlClass>None</GXControlClass>
+  </ControlExportTC>
+  <ControlExportTC>
+    <GXControlGUID>8ff7df6c-3a86-4e1f-8423-a506eebe727c</GXControlGUID>
+    <GXControlName>Test_Number</GXControlName>
+    <GXObjectName>Test_WebPanel</GXObjectName>
+    <GXObjectType>WebPanel</GXObjectType>
+    <GXControlClass>Variable</GXControlClass>
+  </ControlExportTC>
+  <ControlExportTC>
+    <GXControlGUID>bfe055e4-997f-4298-b5a9-e524598d6263</GXControlGUID>
+    <GXControlName>Button1</GXControlName>
+    <GXObjectName>Test_WebPanel</GXObjectName>
+    <GXObjectType>WebPanel</GXObjectType>
+    <GXControlClass>None</GXControlClass>
+  </ControlExportTC>
+  <ControlExportTC>
+    <GXControlGUID>9656aee4-1fca-4617-9486-fcbbd7078224</GXControlGUID>
+    <GXControlName>Test_Name</GXControlName>
+    <GXObjectName>Test_WebPanel</GXObjectName>
+    <GXObjectType>WebPanel</GXObjectType>
+    <GXControlClass>Variable</GXControlClass>
+  </ControlExportTC>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43784</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43786</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>1</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>2</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>3</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>3</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterBool>true</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>4</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>5</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>6</CommandOrd>
+    <ParameterOrd>5</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>7</CommandOrd>
+    <ParameterOrd>1</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+  <ParametersBoolean>
+    <ProjectName>SAC 32710</ProjectName>
+    <ElementName>43787</ElementName>
+    <CommandOrd>7</CommandOrd>
+    <ParameterOrd>3</ParameterOrd>
+    <ParameterBool>false</ParameterBool>
+  </ParametersBoolean>
+</DSElements>
