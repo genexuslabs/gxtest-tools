@@ -2,6 +2,7 @@
 {
     static class CommandNames
     {
+        public const string AppearBalloon = "AppearBalloon";
         public const string AppearBalloonTable = "AppearBalloonTable";
         public const string AppearText = "AppearText";
         public const string Click = "Click";

@@ -11,9 +11,9 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Helpers
         {
             // Expected:  &driver.Verify(&driver.GetTextByID("COUNTRYID_0001_Balloon") <> \"\", True, "No matching 'Country'.")
             // Desired:   &driver.Verify(&driver.HasValidationText("CountryId", 1), True, "No matching 'Country'.")
-            
-            string hasValidation = DriverHelper.GetDriverMethodCode(MethodNames.HasValidationText, controlName, row);
-            string hasValidationWorkaround = HasValidationHelper.GetHasValidationWorkAround(controlName, row);
+
+            string hasValidation = GetHasValidation(controlName, row);
+            string hasValidationWorkaround = GetHasValidationWorkAround(controlName, row);
             bool expectsFalse = DriverHelper.GetExpectsFalse(expectsFalseParm);
             string message = ParameterHelper.GetParameterCode(errorMsgParm);
 
@@ -22,6 +22,12 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Helpers
 
             // When workaround stops being needed we will just do
             // return builder.AppendDriverMethod(MethodNames.Verify, hasValidation, expectedResult, message);
+        }
+
+        private static string GetHasValidation(string controlName, int? row = null)
+        {
+            return (row == null) ? DriverHelper.GetDriverMethodCode(MethodNames.HasValidationText, controlName)
+                : DriverHelper.GetDriverMethodCode(MethodNames.HasValidationText, controlName, row);
         }
 
         private static string GetHasValidationWorkAround(string controlName, int? row = null)
