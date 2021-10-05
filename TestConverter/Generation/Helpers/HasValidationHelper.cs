@@ -45,7 +45,11 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Helpers
         private static string GetBalloonControlId(string controlName, string rowSpec = "")
         {
             string balloonSuffix = "_Balloon";
-            return $"{StringHelper.RemoveQuotes(controlName.ToUpper())}{rowSpec}{balloonSuffix}";
+            string rootName = StringHelper.RemoveQuotes(controlName.ToUpper());
+            if (rootName.StartsWith('&'))
+                rootName = "v" + rootName.Substring(1);
+
+            return $"{rootName}{rowSpec}{balloonSuffix}";
         }
     }
 }

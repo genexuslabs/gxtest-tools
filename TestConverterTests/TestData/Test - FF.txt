@@ -10,7 +10,7 @@
 
 &driver.Type("&Test_ID", "1")
 &driver.Type("&Test_Number", "1a")
-&driver.Verify(not &driver.IsElementPresentByID("&TEST_NUMBER_Balloon"), True, "The value is not a valid number.") // &driver.Verify(not &driver.HasValidationText("&Test_Number"), True, "The value is not a valid number.")
+&driver.Verify(not &driver.IsElementPresentByID("vTEST_NUMBER_Balloon"), True, "The value is not a valid number.") // &driver.Verify(not &driver.HasValidationText("&Test_Number"), True, "The value is not a valid number.")
 &driver.Type("&Test_Name", "uno")
 &driver.Click("Button1")
 &driver.Verify(CompareTextValue(&driver.GetText("&Test_Number"), TextComparison.Equal, "0"), True, "")
