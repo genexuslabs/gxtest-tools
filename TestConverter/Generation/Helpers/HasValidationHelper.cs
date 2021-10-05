@@ -47,7 +47,7 @@ namespace GeneXus.GXtest.Tools.TestConverter.Generation.Helpers
             string balloonSuffix = "_Balloon";
             string rootName = StringHelper.RemoveQuotes(controlName.ToUpper());
             if (rootName.StartsWith('&'))
-                rootName = "v" + rootName.Substring(1);
+                rootName = "v" + rootName[1..];
 
             return $"{rootName}{rowSpec}{balloonSuffix}";
         }
