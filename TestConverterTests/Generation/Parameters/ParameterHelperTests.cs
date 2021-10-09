@@ -1,9 +1,9 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.v3;
+﻿using GeneXus.GXtest.Tools.TestConvert.BL.v3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GeneXus.GXtest.Tools.TestConverter.Generation.Parameters.Tests
+namespace GeneXus.GXtest.Tools.TestConvert.BL.Generation.Parameters.Tests
 {
     [TestClass()]
     public class ParameterHelperTests

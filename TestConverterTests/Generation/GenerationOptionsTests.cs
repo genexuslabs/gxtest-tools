@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace GeneXus.GXtest.Tools.TestConverter.Generation.Tests
+namespace GeneXus.GXtest.Tools.TestConvert.BL.Generation.Tests
 {
     [TestClass()]
     public class GenerationOptionsTests

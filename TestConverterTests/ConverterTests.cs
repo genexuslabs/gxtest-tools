@@ -1,4 +1,5 @@
-﻿using GeneXus.GXtest.Tools.TestConverter.Generation;
+﻿using GeneXus.GXtest.Tools.TestConvert.BL;
+using GeneXus.GXtest.Tools.TestConvert.BL.Generation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;

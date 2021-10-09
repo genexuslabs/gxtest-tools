@@ -1,6 +1,7 @@
 ﻿using CommandLine;
 using CommandLine.Text;
-using GeneXus.GXtest.Tools.TestConverter.Generation;
+using GeneXus.GXtest.Tools.TestConvert.BL;
+using GeneXus.GXtest.Tools.TestConvert.BL.Generation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
