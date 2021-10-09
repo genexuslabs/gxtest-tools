@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestConvertBL\TestConvert.BL.csproj" />
+    <ProjectReference Include="..\TestConvert.BL\TestConvert.BL.csproj" />
   </ItemGroup>
 
 </Project>
