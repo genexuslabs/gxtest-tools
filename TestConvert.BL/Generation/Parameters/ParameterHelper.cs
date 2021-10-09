@@ -22,7 +22,7 @@ namespace GeneXus.GXtest.Tools.TestConvert.BL.Generation.Parameters
             switch (parm.Type)
             {
                 case ParmType.Literal:
-					return new LiteralParm(parm);
+                    return new LiteralParm(parm);
                 case ParmType.Control:
                     return new ControlParm(parm);
                 case ParmType.Boolean:

@@ -28,29 +28,29 @@ namespace GeneXus.GXtest.Tools.TestConvert.BL.Generation.Commands
                 case CommandNames.AppearBalloonTable:
                     return new AppearBalloonTable(command);
                 case CommandNames.AppearText:
-					return new AppearText(command);
+                    return new AppearText(command);
                 case CommandNames.Click:
-					return new Click(command);
+                    return new Click(command);
                 case CommandNames.ClickPromptTable:
-					return new ClickPromptTable(command);
+                    return new ClickPromptTable(command);
                 case CommandNames.ClickTable:
-					return new ClickTable(command);
+                    return new ClickTable(command);
                 case CommandNames.FillInput:
-					return new FillInput(command);
+                    return new FillInput(command);
                 case CommandNames.FillInputTable:
-					return new FillInputTable(command);
+                    return new FillInputTable(command);
                 case CommandNames.Go:
-					return new Go(command);
+                    return new Go(command);
                 case CommandNames.Pause:
-					return new Pause(command);
+                    return new Pause(command);
                 case CommandNames.PressKey:
-					return new PressKey(command);
+                    return new PressKey(command);
                 case CommandNames.VerifyControlText:
-					return new VerifyControlText(command);
+                    return new VerifyControlText(command);
                 case CommandNames.VerifyControlTextTable:
-					return new VerifyControlTextTable(command);
+                    return new VerifyControlTextTable(command);
                 default:
-					return new NotImplemented(command);
+                    return new NotImplemented(command);
             }
         }
     }

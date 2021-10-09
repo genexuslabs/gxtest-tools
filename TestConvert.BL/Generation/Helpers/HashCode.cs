@@ -10,7 +10,7 @@ namespace GeneXus.GXtest.Tools.TestConvert.BL.Generation.Helpers
      * "MIT licensed" (see https://rehansaeed.com/gethashcode-made-easy/#license)
      * 
      */
-    
+
     /// <summary>
     /// A hash code used to help with implementing <see cref="object.GetHashCode()"/>.
     /// </summary>
