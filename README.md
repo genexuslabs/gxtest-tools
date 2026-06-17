@@ -3,8 +3,6 @@
 # gxtest-tools
 Tools that may help on projects that use GeneXus and GXtest
 
-[![Build](https://github.com/genexuslabs/gxtest-tools/actions/workflows/dotnet.yml/badge.svg)](https://github.com/genexuslabs/gxtest-tools/actions/workflows/dotnet.yml)
-
 ## TestConverter
 Helps converting tests from GXtest v3 to v4.
 
@@ -33,4 +31,3 @@ names does not imply endorsement or affiliation with GeneXus S.A.
 
 Licensed under the [Apache License 2.0](LICENSE).
 Copyright 2021 GeneXus S.A.
-
