@@ -1,3 +1,5 @@
+> **⚠️ Archived:** This repository is archived and no longer actively maintained.
+
 # gxtest-tools
 Tools that may help on projects that use GeneXus and GXtest
 
@@ -18,4 +20,17 @@ Helps converting tests from GXtest v3 to v4.
 | `-m`, `--noEndMethod` | Don't generate a final '&driver.End()' line.|
 | `--help`            | Display this help screen.|
 | `--version`         | Display version information.|
+
+## Trademarks
+
+This project references third-party products for build and CI purposes.
+All trademarks are the property of their respective owners. Use of these
+names does not imply endorsement or affiliation with GeneXus S.A.
+
+- Microsoft®, Visual Studio®, Azure DevOps®, NuGet®, and .NET® are trademarks or registered trademarks of Microsoft Corporation.
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE).
+Copyright 2021 GeneXus S.A.
 

@@ -1,0 +1,19 @@
+gxtest-tools
+Copyright 2021 GeneXus S.A.
+
+This product includes software developed by third parties:
+
+CommandLineParser
+Copyright 2005-2015 Giacomo Stelluti Scala & Contributors
+Licensed under the MIT License.
+https://github.com/commandlineparser/commandline
+
+Microsoft MSTest Framework (MSTest.TestFramework, MSTest.TestAdapter)
+Copyright Microsoft Corporation
+Licensed under the MIT License.
+https://github.com/microsoft/testfx
+
+coverlet.collector
+Copyright (c) 2018 tonerdo
+Licensed under the MIT License.
+https://github.com/coverlet-coverage/coverlet
